@@ -127,12 +127,13 @@ For the easy of use in this documentation we will talk about these nodes as lett
 When we upload the <a href="https://gitlab.com/painlessMesh/painlessMesh/-/blob/develop/examples/basic/basic.ino">basic.ino</a> code with 3 nodes (A,B and C) the following structure will be configured automatically.
 
 ```mermaid
-  A-->B: 
-  A-->C: 
-  B-->A: 
-  B-->C:
-  C-->A:
-  C-->B: 
+  graph meshNetworkLayout;
+  A-->B; 
+  A-->C; 
+  B-->A; 
+  B-->C;
+  C-->A;
+  C-->B; 
 ```
 
 in JSON-format the structure will look something like this.
