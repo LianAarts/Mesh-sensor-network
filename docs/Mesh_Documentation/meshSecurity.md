@@ -14,6 +14,10 @@ If there are overlapping WiFi channels or signals this also be configured with a
 
 This setting can be done in the <a href="https://gitlab.com/painlessMesh/painlessMesh/-/blob/develop/src/arduino/wifi.hpp"> wifi.hpp file </a> of the painlessMesh library.
 
+## Unwanted Access
+
+Luckily all sensitive data is uploaded to the ESP and cannot be de-compressed and can stay save. 
+
 ## Security Protocols
 For the basic connection towards the WiFi it inherits the WiFi class combind with its own init() configuration.
 
@@ -26,3 +30,4 @@ When compared with the basic <a href="https://github.com/arduino-libraries/WiFi/
 
 - ESP has native hardware encryption for AES in **AP mode** so this has been imported automattically in order to add an extra security layer to messages passed between nodes in the mesh.
 
+ 
