@@ -10,18 +10,23 @@
 #define   MESH_PORT           5555
 
 #define LED 2
+#define buttonPin 16
 
 Scheduler userScheduler; // to control your personal task
 
 bool iAmRoot = false;
 bool rootFound = false;
 bool hasRun = false;
+bool serverNeeded = false;
 
-String inputName  = "sensor4";
+String inputName  = "";
 painlessMesh mesh;
 
 unsigned long lastTime = 0;
 unsigned long timerDelay = 10000;
+
+unsigned long lastTimeButton = 0;
+unsigned long timerDelayButton = 10000;
 
 unsigned long lastTimeRSSI = 0;
 unsigned long timerDelayRSSI = 30000;
@@ -30,20 +35,26 @@ unsigned long lastTimeRoot = 0;
 unsigned long timerDelayRoot = 60000;
 
 int RSSI = 0;
+int rootAddress = 0;
 
 //***********************************************************************
 //**************************** Mesh functions ***************************
 void sendMessage(String message) {
-  mesh.sendBroadcast(message);
-  Serial.println("message has been send");
-  // Serial.print("message has been sent: ");
-  // Serial.println(message);
+  // mesh.sendBroadcast(message);
+  if (rootAddress != 0){
+    mesh.sendSingle(rootAddress, message);
+    Serial.println("Single message has been send");
+  }
+  else{
+    mesh.sendBroadcast(message);
+    Serial.println("Broadcast message has been send");
+  }
 }
 
 void receivedCallback( uint32_t from, String &msg ) {
   Serial.print("Message received from ");
   Serial.println(from);
-  DynamicJsonDocument doc(7000);
+  DynamicJsonDocument doc(1024);
   deserializeJson(doc, msg);
   JsonArray arr = doc.as<JsonArray>();
 
@@ -52,19 +63,11 @@ void receivedCallback( uint32_t from, String &msg ) {
   if (strcmp(baseName, "Root") == 0){
     Serial.print(from);
     Serial.println(" is root");
+    rootAddress = from;
     rootFound = true;
     lastTimeRoot = millis();
   }
 
-  if ((millis() - lastTimeRoot) > timerDelayRoot && (!iAmRoot)){
-    mesh.setRoot(false);
-    mesh.setContainsRoot(false);
-    rootFound = false;
-    iAmRoot = false;
-    lastTimeRoot = millis();
-    lastTimeRSSI = millis();
-  }
-  
   if (strcmp(baseName, "connectionTest") == 0){
     Serial.printf("Message received from %u msg=%s\n", from, msg.c_str());
     
@@ -88,14 +91,7 @@ void receivedCallback( uint32_t from, String &msg ) {
   }
 
   else if (iAmRoot){
-    for (int i=0; i<arr.size(); i++) { 
-      JsonObject repo = arr[i];
-      String name = repo["n"];
-      String unit = repo["u"];
-      String value = repo["v"];
-      String ID = String(baseName) + "_";
-      post(value, ID + name, unit);
-    }
+    postJson(msg);
   }
 }
 
@@ -130,9 +126,13 @@ void setupMesh(){
 void setup() {
   Serial.begin(115200);
   pinMode(LED, OUTPUT);
+  pinMode(buttonPin, INPUT);
   digitalWrite(LED, LOW);
-
-  setupWebserver();
+  inputName = readSpiffs();
+  if (inputName == ""){
+    setupWebserver();
+    serverNeeded = true;
+  }
   delay(1000);
   setupSensor();
 }
@@ -145,7 +145,10 @@ void loop() {
   while (inputName != ""){
     //? Only run this one time (setup of the mesh network)
     if(hasRun == false){
-      endWebserver();
+      if (serverNeeded == true){
+        endWebserver();
+        writeSpiffs(inputName);
+      }
       Serial.print("Setup is finnished!! The sensor ID is: ");
       Serial.println(inputName);
       delay(100);
@@ -157,10 +160,22 @@ void loop() {
       }
       delay(100);
       setupMesh();
+      lastTimeButton = millis();
       hasRun = true;
     }
 
+    
     mesh.update();
+
+    if (digitalRead(buttonPin) == LOW and ((millis() - lastTimeButton) > timerDelayButton)){
+      Serial.print(digitalRead(buttonPin));
+      Serial.println(" Button has been pressed for 10 seconds");
+      writeSpiffs("");
+      ESP.restart();
+    }
+    if (digitalRead(buttonPin) == HIGH){
+      lastTimeButton = millis();
+    }
 
     if(!rootFound and ((millis() - lastTime) > timerDelay)){
       Serial.println("Selecting root...");
@@ -174,11 +189,15 @@ void loop() {
         Serial.println("I am the root");
         String rootStatus = "[{\"bn\": \"Root\"";
         sendMessage(rootStatus + "}]");
+        postJson(makeSensorMessage());
       }
       else{
         digitalWrite(LED, LOW);
         Serial.println("Not root");
         sendMessage(makeSensorMessage());
+        if ((millis() - lastTimeRoot) > timerDelayRoot && (!iAmRoot)){
+          ESP.restart();
+        }
       }
       lastTime = millis();
     }

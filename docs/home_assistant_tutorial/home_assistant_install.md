@@ -80,11 +80,11 @@ curl -fsSL get.docker.com | sh
 Be sure to use the <a href="https://github.com/home-assistant/os-agent/releases/tag/1.2.2">latest version</a>. **Adjust the link accordingly.**
 ```
 wget os-agent_1.2.2_linux_x86_64.deb
-sudo dpkg -i os-agent_1.2.2_linux_x86_64.deb 
+sudo dpkg -i os-agent_1.2.2_linux_x86_64.deb
 ```
 Check your installation:
 ```
-check installation: gdbus introspect --system --dest io.hass.os --object-path /io/hass/os 
+gdbus introspect --system --dest io.hass.os --object-path /io/hass/os
 ```
 
 Make sure to reboot your system before proceeding:
@@ -94,7 +94,7 @@ sudo reboot
 
 ### Install Home assistant
 
-Make sure you have a stable internet connection! We discovered a DNS problem so we could not reach the Home Assistant sever. We used tethering to get around this problem. 
+Make sure you have a stable internet connection! We discovered a DNS problem so we could not reach the Home Assistant server. We used tethering to get around this problem. 
 
 You can ping 104.26.4.238 to check your connection to the Home Assistant servers.
 ```
@@ -105,6 +105,11 @@ sudo dpkg -i homeassistant-supervised.deb
 Home Assistant should be up and running! 
 
 You can follow the full onboarding tutorial here: <a href="https://github.com/home-assistant/os-agent/releases/tag/1.2.2">full onboarding tutorial</a> 
+
+Your host machine might enter sleep mode after some time. To disable sleep mode use:
+```
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+``` 
 
 ## Setting up the access point:
 
