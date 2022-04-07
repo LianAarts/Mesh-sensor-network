@@ -1,0 +1,170 @@
+01-03-22:
+The first meeting went smoothly. Everyone is super friendly and helpful. After a short meeting, we were assigned a room where we will build our project. 
+We received additional monitors, laptops, and all the materials. During the provided lunch, we met two students who will be doing an internship at Thomas More in Geel. After lunch, we discussed the project. A general schedule was drawn up.
+
+We have been given access to the GitHub environment of the university. There are some problems with the login credentials but these should be resolved during the week.
+
+
+02-03-22:
+This morning we arrived on campus early. The plan of action was the biggest focus. We put together a basic PowerPoint where we explain everything. The university uses a proprietary chat system that they use for security reasons. We were also given access to this environment. We will contact our mentor through this system.
+We have received three different temperature sensors. We are going to have to select the best one. We started testing the first sensor. This one uses I2C. 
+
+
+03-03-22:
+Today we started programming the sensors. We have three different sensors to test out. We have chosen to test the two sensors with I2C first. The manufacturer of the sensors has very little documentation on the sensors. As a result, we have had many difficulties reading the sensors. We tried to implement an existing library but this does not work as desired. Therefore we decided to read out the I2C bus itself and calculate the temperature. We have not succeeded in reading the data. We have had some problems with the ESP32. The pinout on the back is very unclear and also cannot be found online from this particular board. 
+
+We also took advantage of the free lunch for the first time!
+
+
+04-03-22:
+We continued to read out the I2C data. After lunch, we had a meeting with Vincent where we discussed our progress on the project. We addressed the difficulties and set future goals. After the meeting, Jeroen had his first hands-on with the network part of the project. I did some more writing on the code which is working at the end of the day.
+
+
+05-03-22:
+We visited the open day at the university and met some students of IUT.
+
+
+07-03-22:
+Lian: Today I started to make a formal document where I compare the different sensors. The document is almost finalized. This will be shared with Vincent, together we will decide which sensor to use. 
+
+Jeroen: Today I discovered the painless library on GitHub. It works on the Feather32 we brought from home. I have not been able to get it working on the ESP-32 modules we are using for this project. I am getting a panicked core error that is hard to trace back. 
+
+We got access to the GitLab environment of the university, we will be using this for our project.
+
+
+08-03-22:
+Lian: I finalized the document of the sensor comparison and send it to Vincent. After that, I started with the installation of a Home Assistant on the HP Prodesk. I was able to boot from a USB drive. I have not been able to transfer this to the internal drive. When I try this the system becomes unusable.
+
+Jeroen: Today I continued to work on optimizing the connection between the different ESPs. I also tried to combine the libraries to also make requests towards Home Assistant.
+
+
+09-03-22:
+Lian: Vincent asked me to make a section about the power consumption of the sensors. After that started working on the RestAPI of Home Assistant. I used Postman for troubleshooting. When everything was working, I used the API to send sensor data from the ESP to Home Assistant. Here we can make a comparison of the received data we get. Two sensors are operational.
+
+Jeroen: Today and yesterday I continued to work on optimizing the connection between the different ESPs. I also tried to combine the libraries to also make requests towards Home Assistant.
+
+
+10-03-22:
+Lian: I started with the programming of the last sensor. All the sensors are visible in Home Assistant. Graphs can plot the measurements so we can compare the sensors. After this was done, I helped Jeroen with the mesh network and the API Post. I discovered that the use of wifi and PainlessMesh cannot be combined. We will try MQTT. I set up Home Assistant as an MQTT broker and tested a client. After some difficulties, I managed to display sensor data on Home Assistant with the use of MQTT. We will add this to the PainlessMesh code.
+
+Jeroen: Today I made a new slave so we can test the network. I tried to connect the master to the API of Home Assistant. We discovered that we cannot make a wifi connection while making a mesh network. Now we are trying MQTT.
+
+
+11-03-22:
+Lian: I started with the MQTT communication to Home Assistant. After some research, I found an example that makes it possible to use MQTT in combination with PainlessMesh. After I got this working I send the code to Jeroen so he could work this out further. Then I focused on the sensor data of Home Assistant. There was a small problem with the timestamps of the. data because the time of the machine was not set right. I accessed the bios to correct the time of the system. After this, I installed Influx DB and Grafana on Home Assistant to improve the visualization of the sensor data. Now we can compare the three sensors. 
+
+Jeroen: Today I worked on the MQTT and Painless Mesh example to make a first publish to Home Assistant. I worked on Full-duplex communication between ESP - MQTT - AH.
+
+We had our meeting with Maartje, Sophie, and Vincent. Afterward, we had our meeting with Vincent. We discussed some difficulties and important points. We set our goals for next week.
+
+
+14-03-22:
+Lian: I started by analyzing the data I collected during the weekend. All the sensors seem to follow the same trendline. The BME280 does show some abnormal measurements compared to the other sensors. I started working on Home Assistant. Home Assistant still needed the flash drive to boot. I Searched for a solution and eventually found a nice guide. I made a bootable ubuntu drive. It is possible to use ubuntu from the flash drive without installing the OS on the internal drive. Using this method, I was able to flash the internal nvme ssd. After lunch I restored the backup, I made of Home Assistant. Then I started working on the code of the mesh network. I have not been able to get measurements in Home Assistant.
+
+Jeroen: sick
+
+
+15-03-22:
+Lian: Today I started with researching the possibility to make home assistant an access point. We can use the wifi card of the hp machine, so we don’t have to rely on another network. I made a mistake and had to reinstall Home Assistant because of this. I am not able to enable the wifi card. The wifi card is detected when using hwinfos I have not been able to resolve this problem. Home assistant is using the Alpine Linux distribution as its base. 
+
+Jeroen: Today, after a day of absence I worked on the MQTT connection between the Control System and the root ESP.  I am checking on a publish and a subscribe key to receive and send messages. This data is displayed on the Home Assistant. I also checked the basics of the root-principal and hard-coded some slaves and a root.
+
+
+16-03-22:
+Lian: After a night of some research at home and a message from Vincent I decided to give the AP another try. I found out that there was no driver installed. After the installation of some packages, a restart is required. After this restart, all the packages seem to have disappeared. I tried this multiple times with the same result. Tomorrow I will try to install a supervised version of Home Assistant on top of Ubuntu or another distribution. 
+
+Jeroen: Today I worked on the API Request that needs to be up and running simultaneously with the Painless Mesh library. I found out that those 2 are not best friends and they often give library errors. I figured out a workaround for these problems and solved the issues and got everything up and running. Tomorrow I'll try and send some sensor data to the Control System.
+
+
+17-03-22:
+Lian: I started with reading the supervised Home Assistant install documentation. I decided to use the Debian distribution. After the installation of Debian I followed the guide provided by Home Assistant. This process was not very easy. I had to reinstall Debian because of an error. I got further the second time but came across a DNS error (probably because of the network configuration). I used my mobile data to download the Home Assistant software. Home Assistant was finally up and running.
+
+Jeroen: Today I worked on pushing my work on Git. I am still stuck on this part and will finish this tomorrow. I checked if the Mesh is still operational and working and if the nodes are responding as needed. I also made the post request work in combination with the painless mesh library. I'm ready for the meeting tomorrow with Vincent.
+
+
+18-03-22:
+Lian: After the successful installation of Home Assistant I started on the access point using Home Assistant. I had to install some drivers and packages to get the wifi card running. I also used the “Hassio access point” addon. When the wifi card was finally detected I was able to set up the access point. We removed the router from our network, we will be using the home assistant access point. We had some problems connecting the mesh network to the access point, we will have to search for a solution next week. We talked about our progress and we set our goals during our meeting.
+
+Jeroen: Today I worked on the Painless vs wifi Library to send API requests to the Home Assistant. I also worked on the Root configuration where the root needs to be determined by the mesh system. We have to make sure every node has the capability to send requests to the Home Assistant. After the meeting with Vincent, we were wondering if REST API/MQTT is the best way to go.
+
+
+21-03-22:
+Lian: Today I started with the plan of action. We already made a version, I used a new layout and adjusted a few things. We will present this plan this week. After that, I started on the documentation for the installation of Home Assistant and the AP. This document will be written in markdown language so we can easily add code blocks
+
+Jeroen: Today I looked into the root mesh network part where I was investigating which technique would be best to discover which node is the best root node. I discovered that WIFI libs and the PainlessMesh don't cooperate very easily. I tested different techniques and protocols to see which one would work in the future for our project. I also added my code to the GitLab repository.
+
+
+22-03-22;
+Lian: I continued with the installation guide. I used the second desktop to replicate the installation en document everything. After the installation was successful I wrote a full installation guide for Home Assistant and the access point in markdown language. I pushed everything to GitLab. I started helping Jeroen after that. I did not make any progress on the mesh network. It seems there is a problem with the combination of the wifi library and the painless mesh library.
+
+Jeroen: Today I worked on the same thing as yesterday. Vincent asked us to work out the 2 ways of communicating with the Control System, MQTT, and REST API. I was working all day to get the HTTPClient library and Painless Library up and running at the same time. It seems that they are not best friends and they are very hard to configure in 1 program. I also did some root algorithm thinking about when does each node has to configure itself as a node or root.
+
+
+23-03-22:
+Lian: Today I continued on the mesh network. We are unable to use the REST API in combination with the Painless mesh library. We tried using the wifi router again. We had an IP collision with the router and Home Assistant. After resolving this problem we were still not able to make a connection with Home Assistant. I tried switching to the Arduino SDK with no success.
+
+Jeroen: Today Lian and I worked on the communication towards the Control System. I discovered a Library (from the same author as the painless lib)that should be able to communicate as and gateway/node to communicate with the control system. Unfortunately, this has not worked for now. It won't connect to the right network and cannot display the active nodes. We are working very hard to discover and investigate the way to communicate with the Control System.
+
+
+24-03-22: 
+We found the problem that caused our error!!!! In Platformio we are automatically using the latest version of the painlessMesh network. Last week a new update was released. There is a problem that keeps u from using this in combination with the wifi library. The AP is working as intended.
+
+Lian: After solving the issue I started working on connecting the sensors to the mesh network. I am still using a predefined root node at this moment. I made a JSON format for sending the data between nodes based on senML. The root node uses the REST API to send the data to Home Assistant.
+
+Jeroen: After two days I discovered that the PainlessMesh released a new library version that was working against us. After a few minor adjustments, everything worked as it should and luckily we were able to continue quickly. I started working on the root allocation algorithm and now I have a good foundation to work on.
+
+
+25-03-22:
+Lian: I checked the mesh network to see if everything was still good. I made some small changes to the presentation for Maartje. At 10 am we presented our plan of action to Maartje. We got feedback and decided to research the possibility of making a PCB. I found out that the Adafruit HUZZAH 32 Feather is an open-source design. I will use Eagle to design a PCB based on the Feather board. After lunch, we had our weekly meeting with Vincent and Stephane. We discussed some topics and set goals for next week. I will focus on the configuration of the nodes next week.
+
+Jeroen: Today we had our 'Plan Of Action' Meeting with Maartje to discuss the current process, she was very happy. After that, I started working on the root algorithm to determine the root of the mesh network. After that, we had our meeting with Vincent & Stephane where we discussed the MatterMost board and the items on there. We discussed the workflow for the upcoming week. After that, I worked on the root algorithm and reliability tests of the painlessmesh Library.
+
+
+28-03-22:
+Lian: Today I started with the setup window for the ESP nodes. When you plug in your ESP it will first set up its own AP, you can connect with this and give your node a name. This name will be used in the post request and in Home Assistant. You currently have to browse to an IP address. I am working on a captive window that will pop up when you connect to the AP. I will also try to write the configuration to the EEPROM so nothing is lost when rebooting the node.
+
+Jeroen: I made a few functions (bool checkRoot(), size_t getRootId(protocol::NodeTree nodeTree)) to check the root and get the rootID, 
+I made the first prototype about this and hopefully I will get the root and assign the root to a certain node. I am making a comparison between WiFi and RRSI to check for the best connection.
+
+
+29-03-22:
+Lian: I finished the captive portal for the configuration early in the morning. After that, I started helping Jeroen with the root allocation. I decided to try a different concept so we wouldn't be doing double work. I will try to select a root based on the RSSI (Received Signal Strenght Index) of the wifi signal. I will set up a JSON so the nodes can share their signal strength and select a root node.
+
+Jeroen: Today Lian and I worked on the root algorithm. This is the tricky part of the whole Mesh setup, I worked on a script that every node pings the Control System to get the response time and make a root decision based on the average time of response. We made some first drafts and sketches on paper to visualize the network for ourselves. We combined some code to be up-to-date with each other and make sure we had the same code.
+
+
+30-03-22:
+Lian: I continued on the root allocation algorithm. I have a working concept that I am currently testing. There are a lot of bugs that need to be solved. The mesh network can decide which root has the best connection to Home Assistant. When this root is disconnected there will be another root selected. I have a few problems when sending API requests to Home Assistant. I will try to get a fully functioning demo for our meeting on Friday.
+
+Jeroen: For today Lian and I joined in to work on the Root Allocation. We were discussing how this would be the best way, we talked about a few options and protocols to accomplish this. After Lian got a good head start I start working on the documentation of the Mesh network sics Vincent told us this is very important and has to be done and finished after each step. The next step is to finish the first part of the documentation and push this to GitLab.
+
+
+31-03-22:
+Lian: Today I started with splitting the code into two parts, so it is easier to manage. I have one file with functions that need to be called and one file that manages the mesh network. I continued on making the mesh network more reliable. there are still a few bugs but the nodes figure out what the best root is given enough time. I will let the network run overnight to check the reliability. There are still some problems when connecting to the API. It is more stable than yesterday but still not as I want it. The mesh will be ready for a quick demo but it will need some improvement.
+
+Jeroen: I worked further on my first documentation of the mesh system. After I finished that I published it to GitLab. Then I started working with the notifications and alerts, I can now send alerts to devices through a service called 'notify.event'. Tomorrow I will finish this and start working with variables and priority alerts.
+
+
+01-04-22:
+Lian: I prepared the demo for the meeting in the morning. I was having a lot of connection issues. Home Assistant was not running stable, so the access point would lose its connection. We tried solving the issue but we had to (speedrun) reinstall Home Assistant from scratch. Home Assistant was running but after we reinstalled our backup the problem reappeared. This made our demo during our meeting with Vincent difficult. During our meeting, we discussed our next steps. I installed an older backup that hopefully should work. I will leave it running for the weekend so we can test the reliability.
+
+Jeroen: The week went by very quickly, today I worked on flashing Home Assistant to hopefully remove all the bugs that were building up in Home Assistant during testing. After a clean install we installed a backup we made (from 30-3). After that I grabbed the next item on the list 'EEPROM saving' this technique is used to store data in the chip so that it can always be used even after and before flashing the device. After this Lian and I made sure we were ready for the demo.
+
+
+04-04-22:
+Lian: I spend the whole day debugging Home Assistant. The home assistant keeps crashing after a given time. I have reinstalled Home Assistant a couple of times with no success. At first, I thought it was a problem with the access point. I used a fresh install and didn't install the AP but the problem still occurred. I will try to install an older version of Home Assistant tomorrow.
+
+Jeroen: Today I took a look at EEPROM Flash saving where data can be stored internally. This would prevent the reconfiguration of a (new) connected node. This library/protocol works with bytes to work with the stored data, this needs to be read and transformed into a readable string.
+
+
+05-04-22:
+Lian: I continued with the error of yesterday. I tried everything to get Home Assistant to a reliable state. I tried installing older versions with no success. I have not been able to install an older version of the Home Assistant supervisor. Because it was a core error I only reinstalled an older version of Home Assistant core. I even tried the other desktop machine but had the same outcome. I will try installing an older version of the supervisor tomorrow. If this doesn't work I will try a Raspberry Pi to see if I have the same problem.
+
+Jeroen: Today I finished the EEPROM saving where a String can be written and read in a function. This is now implemented in the code such that a new node with an existing configuration doesn't need to be reconfigured and can be moved around in the building. It was a bit difficult because the write and read of EEPROM happen in bits and bytes but I managed to write a function that can convert and write and String.
+
+
+06-04-22:
+Lian: I finally figured out what the problem was. The host machine would enter sleep mode after some time... Very weird because we didn't have any problems with our previous installs. I disabled the sleep mode and did some testing. After that, I tried to implement Jeroens EEPROM code in the main code. Because the spiffs file system uses the EEPROM it was difficult to implement. It is recommended to not use the EEPROM library in combination with spiffs. The solution is using a .txt file to save your data. I also added a button to the schematic. When this button is pressed the data saved on the file is cleared so you are able to choose a new name.
+
+Jeroen: Today I finished the EEPROM reading and I have sent this to Lian to finish it. After that, I started making the first .md for mesh security and looking up some important statements about the security in a mesh system. After lunch, I started working on alert sending with SMTP but Home Assistant cannot ping the outside so that is something for tomorrow to fix!
+

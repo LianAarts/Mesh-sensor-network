@@ -16,7 +16,7 @@ Debian 11 (bullseye) is the current recommended release for installing Home Assi
 ### Bios:
 
 - disable secure boot
-- enable boot from storage
+- enable boot from usb storage
 - secure erase your internal storage
 
 ### Installation
