@@ -26,8 +26,8 @@ When compared with the basic <a href="https://github.com/arduino-libraries/WiFi/
 - A WEP network can have four separate keys, each with its own "key index" value. The SSID, key, and key number are required for WEP encrypted networks. **Luckily this is not used in the painless library** because this is also an old and redundant technique.
 
 
-- WPA/WPA2 (TKIP) is used when the connection is made toward the Home Assistant API (**STA MODE**). WPA3 is currently being developed by esp-idf.
+- WPA2 (TKIP) is used when the connection is made toward the Home Assistant API (**STA MODE**). Unfortunately WPA3 is currently being developed by esp-idf and not available for us.
 
 - ESP has native hardware encryption for AES in **AP mode** so this has been imported automattically in order to add an extra security layer to messages passed between nodes in the mesh.
 
- 
+- The chip on the ESP32 is used which has **IEEE 802.11 revision** 

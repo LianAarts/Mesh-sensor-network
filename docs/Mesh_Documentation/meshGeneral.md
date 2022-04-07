@@ -122,29 +122,23 @@ Instead we recommend using TaskScheduler which is used in painlessMesh itself. F
 This example will be used over the whole documentation.
 
 The painlessMesh assigns an node with an nodeID. 
-For the easy of use in this documentation we will talk about these nodes as letters A, B and C. 
+For the easy of use in this documentation we will talk about these nodes as letters A, B, C, D an E 
 
-When we upload the <a href="https://gitlab.com/painlessMesh/painlessMesh/-/blob/develop/examples/basic/basic.ino">basic.ino</a> code with 3 nodes (A,B and C) the following structure will be configured automatically.
+When we upload the <a href="https://gitlab.com/painlessMesh/painlessMesh/-/blob/develop/examples/basic/basic.ino">basic.ino</a> code with 5 nodes (A,B, C, D and E) the following structure will be configured automatically.
 
-```mermaid
-  graph meshNetworkLayout;
-  A-->B; 
-  A-->C; 
-  B-->A; 
-  B-->C;
-  C-->A;
-  C-->B; 
-```
+![Mesh](resources/simpleMesh.png)***Figure1:** Simple Mesh Example with 4 notes*
 
 in JSON-format the structure will look something like this.
 Please note that the letters will be replaced with the corresponding nodeId in this format.
 
 ```json
 {
-  nodeId: A,
+  nodeId: C,
   subs{
+    nodeId: A,
     nodeId: B,
-    nodeId: C,
+    nodeId: D,
+    nodeId: E
   }
 }
 ```
