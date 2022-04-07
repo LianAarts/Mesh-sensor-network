@@ -18,7 +18,7 @@ BME680_Class BME680; // make a sensor object
 
 const char* PARAM_SLEEP = "name";
 const char* ssid = "New Node";
-String serverName = "http://192.168.3.3:8123/api/states/sensor.";
+String serverName = "";
 
 //***********************************************************************
 //**************************** Post function ****************************
@@ -27,7 +27,7 @@ void post(String sensorVal, String name, String unit) {
   WiFiClient client;
   HTTPClient http;
 
-  serverName = "http://192.168.3.3:8123/api/states/sensor." + name;
+  serverName = "http://192.168.99.1:8123/api/states/sensor." + name;
 
   http.begin(client, serverName);
 
@@ -126,10 +126,7 @@ void nextDnsRequest(){
 //***********************************************************************
 //********************** Make configuration screen **********************
 void setupWebserver(){
-  if(!SPIFFS.begin(true)){
-    Serial.println("An Error has occurred while mounting SPIFFS");
-    return;
-  }
+
   WiFi.mode(WIFI_AP); 
   WiFi.softAP(ssid);
 
@@ -204,4 +201,58 @@ String makeSensorMessage(){
     String meas4 = "}, {\"n\": \"pressure\", \"u\": \"Hpa\", \"v\":" + String(presBME680);
 
     return(header + meas1 + meas2 + meas3 + meas4 + "\"}]");
+}
+
+//***********************************************************************
+//*************************** Read saved data ***************************
+String readSpiffs(){
+  if(!SPIFFS.begin(true)){
+    Serial.println("An Error has occurred while mounting SPIFFS");
+  }
+
+  File file2 = SPIFFS.open("/assets.txt");
+  if(!file2){
+    Serial.println("Failed to open file for reading");
+  }
+  String data = "";
+  while(file2.available()){
+    data = data +char(file2.read());
+  }
+  Serial.print("saved data: ");
+  Serial.println(data);
+  file2.close();
+  return(data);
+}
+
+void writeSpiffs(String data){
+  File file = SPIFFS.open("/assets.txt", FILE_WRITE);
+  if(!file){
+    Serial.println("There was an error opening the file for writing");
+    return;
+  }
+  
+  if(file.print(data)){
+    Serial.println("File was written");;
+  } 
+  else{
+    Serial.println("File write failed");
+  }
+  file.close(); 
+}
+
+void postJson(String json){
+  DynamicJsonDocument doc(1024);
+  deserializeJson(doc, json);
+  JsonArray arr = doc.as<JsonArray>();
+
+  const char* baseName = arr[0]["bn"];
+  for (int i=0; i<arr.size(); i++) { 
+    JsonObject repo = arr[i];
+    String name = repo["n"];
+    String unit = repo["u"];
+    String value = repo["v"];
+    String ID = String(baseName) + "_";
+    post(value, ID + name, unit);
+  }
+
 }
