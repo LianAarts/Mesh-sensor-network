@@ -27,6 +27,7 @@ Download a suitable image file and flash the image to your USB drive. Attach the
 <a href="https://www.debian.org/releases/stable/i386/ ">Detailed tutorial</a>
 
 ## Install Home Assistant:
+Home Assistant depends on some other packages that need to be installed in advance.
 ### Add sudo user:
 
 We will add our user to the sudo group to enable the sudo command. Open your terminal and enter these commands. Reboot to apply changes.
