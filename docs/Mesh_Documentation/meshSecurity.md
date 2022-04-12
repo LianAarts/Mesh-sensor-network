@@ -1,7 +1,9 @@
 # Mesh Security
+
 The mesh needs to be secure so that it cannot be accessed from the outside. We can prevent and monitor unwanted access by implementing some features.
 
 ## Channel and Range
+
 The painlessMesh uses the 2.4Ghz WiFi band. Channel **one** is used by default but this can be changed. 
 Systems that operate on the 2.4GHz frequency can have a range that reaches up to 46 meters indoors and 92 meters outdoor. External factors can influence the range.
 

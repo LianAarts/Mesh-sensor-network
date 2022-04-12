@@ -6,13 +6,15 @@ Installing a supervised version of home assistant is only recommended for advanc
 
 ## What we need:
 
-- a suitable image for your machine. <a href="https://www.debian.org/distrib/netinst">find your image file here</a>
+- a suitable image for your machine, <a href="https://www.debian.org/distrib/netinst">find your image file here</a>
 - USB flash drive
 - flashing software for creating bootable USB drive (<a href="https://www.balena.io/etcher/">we used Balena Etcher</a>)
-- internet connection, preferably wired.
+- internet connection, preferably wired
 
 ## Install Debian:
-Debian 11 (bullseye) is the current recommended release for installing Home Assistant. We will be using this version in this tutorial.
+
+Debian 11 (Bullseye) is the current recommended release for installing Home Assistant. We will be using this version in this tutorial.
+
 ### Bios:
 
 - disable secure boot
@@ -27,7 +29,9 @@ Download a suitable image file and flash the image to your USB drive. Attach the
 <a href="https://www.debian.org/releases/stable/i386/ ">Detailed tutorial</a>
 
 ## Install Home Assistant:
+
 Home Assistant depends on some other packages that need to be installed in advance.
+
 ### Add sudo user:
 
 We will add our user to the sudo group to enable the sudo command. Open your terminal and enter these commands. Reboot to apply changes.
