@@ -234,9 +234,10 @@ String makeSensorMessage(){
   String meas2 = "}, {\"n\": \"gas\", \"u\": \"ohm\", \"v\":" + String(gasBME680);
   String meas3 = "}, {\"n\": \"humidity\", \"u\": \"%\", \"v\":" + String(humBME680);
   String meas4 = "}, {\"n\": \"pressure\", \"u\": \"Hpa\", \"v\":" + String(presBME680);
+  String meas5 = "}, {\"n\": \"chipID\", \"u\": \"ID\", \"v\":" + String(mesh.getNodeId());
   // make the JSON message
 
-  return(header + meas1 + meas2 + meas3 + meas4 + "\"}]");
+  return(header + meas1 + meas2 + meas3 + meas4 + meas5 + "\"}]");
   // return the JSON string to the main loop
 }
 
