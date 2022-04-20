@@ -1,9 +1,10 @@
 #include <Arduino.h>
-#include <functions.h>
+#include <functions.h> //! make name better and use "", ifndef
 #include <secret.h>
 
 #include <ArduinoJson.h>
 #include <painlessMesh.h>
+#include <WebServer.h>
 // all the libraries we need
 
 #define   MESH_PREFIX         MESH_PREFIX_secr
@@ -12,7 +13,7 @@
 // configuration for the mesh  network
 
 #define LED 2
-#define buttonPin 16
+// #define buttonPin 16
 // two pins we need for the reset of the eeprom
 
 Scheduler userScheduler; // to control your personal task
@@ -23,63 +24,93 @@ bool hasRun = false;
 bool serverNeeded = false;
 //variables used for decision making
 
+//! put in class or header
 String inputName  = "";
 // variable that will store the identifier of the node
 painlessMesh mesh;
 // make a mesh object
+WiFiClient client;
 
-unsigned long lastTime = 0;
-unsigned long timerDelay = 10000;
+WebServer APIserver(80);
+
+DynamicJsonDocument doc(512);
+JsonArray arr;
+
+StaticJsonDocument<250> jsonDocument;
+char buffer[250];
+
+int lastTime = 0;
+int timerDelay = 10000;
 // timing variable for send interval
 
-unsigned long lastTimeButton = 0;
-unsigned long timerDelayButton = 10000;
+int lastTimeButton = 0;
+int timerDelayButton = 10000;
 // timing variable for reset button (press 10 seconds for)
 
-unsigned long lastTimeRSSI = 0;
-unsigned long timerDelayRSSI = 30000;
+int lastTimeRSSI = 0;
+int timerDelayRSSI = 30000;
 // When there is no message with RSSI information for 30 seconds
 
-unsigned long lastTimeRoot = 0;
-unsigned long timerDelayRoot = 40000;
+int lastTimeRoot = 0;
+int timerDelayRoot = 40000;
 // When there is no root for 40 seconds
+//! 
+
+
 
 int RSSI = 0;
 int rootAddress = 0;
 // Variables that store RSSI measurement and address of the root node
 
+void sendBroadcast(String message){
+  mesh.sendBroadcast(message);
+  Serial.println("Broadcast message has been send");
+}
+
+void sendSingleMessage(String message, int address){
+  mesh.sendSingle(address, message);
+  Serial.print("Single message has been send to "); //! debug levels and define in parameter 
+  Serial.println(address);
+}
+
+void handlePost() {
+  if (APIserver.hasArg("plain") == false) {
+  }
+  String body = APIserver.arg("plain");
+  deserializeJson(jsonDocument, body);
+  Serial.print("Message has been send to: ");
+  Serial.println(int(jsonDocument["chipID"]));
+  sendSingleMessage("[{\"bn\": \"nameNotAllowed\"}]", int(jsonDocument["chipID"]));
+
+  APIserver.send(200, "application/json", "{}");
+}
+
+void setup_API() {   
+  // APIserver.on("/temperature", getTemperature);
+  APIserver.on("/usedNameID", HTTP_POST, handlePost);
+  APIserver.begin();
+  Serial.println("API is ready");
+}
+
 //***********************************************************************
 //**************************** Mesh functions ***************************
-void sendMessage(String message) {
-  if (rootAddress != 0){
-    // When there is a root message saved send message to root
-    mesh.sendSingle(rootAddress, message);
-    Serial.println("Single message has been send");
-  }
-  else{
-    // When we have no root address send a broadcast
-    mesh.sendBroadcast(message);
-    Serial.println("Broadcast message has been send");
-  }
-}
+
 
 void receivedCallback( uint32_t from, String &msg ) {
 //function that gets called when we receive a message from the mesh network
   Serial.print("Message received from ");
   Serial.println(from);
 
-  DynamicJsonDocument doc(1024);
   deserializeJson(doc, msg);
-  JsonArray arr = doc.as<JsonArray>();
+  arr = doc.as<JsonArray>();
   // messages are send in JSON format so we make a JSON object an deserialize it
-
-  const char* baseName = arr[0]["bn"];
+  const char* baseName = arr[0]["bn"]; //! check the json before reading
   // Read the first value
 
   // if the first value is connectiontest we stop sending messages with RSSI information
   if (strcmp(baseName, "connectionTest") == 0){
     Serial.printf("Message received from %u msg=%s\n", from, msg.c_str());
-    
+    //! always check json
     if (int(arr[0]["RSSI"]) > RSSI){
       rootFound = true;
       // if the received RSSI is better we are not the root
@@ -105,10 +136,19 @@ void receivedCallback( uint32_t from, String &msg ) {
     // reset the timer
   }
 
+  else if (strcmp(baseName, "nameNotAllowed") == 0){
+    Serial.print(from);
+    Serial.println(" Name is not allowed");
+    writeSpiffs("");
+    ESP.restart();
+  }
+
   if ((millis() - lastTimeRSSI) > timerDelayRSSI && (!rootFound)){
   // if we have not found a root and we did not receive a RSSI message in the last 30 seconds we are the root
     Serial.println("This is root");
     setupNetwork();
+    Serial.println("Connected to the WiFi network");
+    setup_API();
     // connect to the Home Asstant acces point
     mesh.setRoot(true);
     mesh.setContainsRoot(true);
@@ -139,6 +179,21 @@ void changedConnectionCallback() {
 void nodeTimeAdjustedCallback(int32_t offset) {
 }
 
+//! use namespace
+//***********************************************************************
+//********************************* API *********************************
+
+
+void apiCheck(){
+  APIserver.handleClient();
+}
+
+// void getTemperature() {
+//   Serial.println("Get temperature");
+//   APIserver.send(200, "application/json", buffer);
+// }
+
+
 //***********************************************************************
 //*********************** Setup mesh when needed ************************
 void setupMesh(){
@@ -157,10 +212,9 @@ void setupMesh(){
 void setup() {
   Serial.begin(115200);
   pinMode(LED, OUTPUT);
-  pinMode(buttonPin, INPUT);
+  // pinMode(buttonPin, INPUT);
   digitalWrite(LED, LOW);
   // setup button and led, turn off led
-
 
   inputName = readSpiffs();
   // we read the eeprom
@@ -170,7 +224,7 @@ void setup() {
     serverNeeded = true;
     // when the server was needed we also have to shut this server down so we can setup our mesh
   }
-  delay(1000);
+  delay(1000); //! remove maybe?
   setupSensor();
   // start the BME680 sensor
 }
@@ -213,27 +267,28 @@ void loop() {
     }
 
     mesh.update();
+    apiCheck();
     // this has to be done as often as possible
 
-    if (digitalRead(buttonPin) == LOW and ((millis() - lastTimeButton) > timerDelayButton)){
-      // when the button is pressed for 10 seconds we reset the eeprom and restart the esp
-      Serial.print(digitalRead(buttonPin));
-      Serial.println(" Button has been pressed for 10 seconds");
-      writeSpiffs("");
-      // write a empty string
-      ESP.restart();
-    }
-    if (digitalRead(buttonPin) == HIGH){
-      lastTimeButton = millis();
-      // if the buttonpin is not pressed we reset the timer
-    }
+    // if (digitalRead(buttonPin) == LOW and ((millis() - lastTimeButton) > timerDelayButton)){
+    //   // when the button is pressed for 10 seconds we reset the eeprom and restart the esp
+    //   Serial.print(digitalRead(buttonPin));
+    //   Serial.println(" Button has been pressed for 10 seconds");
+    //   writeSpiffs("");
+    //   // write a empty string
+    //   ESP.restart();
+    // }
+    // if (digitalRead(buttonPin) == HIGH){
+    //   lastTimeButton = millis();
+    //   // if the buttonpin is not pressed we reset the timer
+    // }
 
     if(!rootFound and ((millis() - lastTime) > timerDelay)){
       // as long we have not selected a root send a message every 10 seconds
       Serial.println("Selecting root...");
       String connectionStrength = "[{\"bn\": \"connectionTest\", \"RSSI\": " + String(RSSI);
       // make the message in JSON format
-      sendMessage(connectionStrength + "}]");
+      sendBroadcast(connectionStrength + "}]");
       // send a message with RSSI information
       lastTime = millis();
       // reset the timer
@@ -246,24 +301,27 @@ void loop() {
         // turn the blue led on
         Serial.println("I am the root");
         String rootStatus = "[{\"bn\": \"Root\"";
-        sendMessage(rootStatus + "}]");
+        sendBroadcast(rootStatus + "}]");
         // make and broadcast the root is alive message
-        postJson(makeSensorMessage());
+        postJson(makeSensorMessage(true));
         // we read the sensor and post everything to Home Assistant
       }
       else{
         digitalWrite(LED, LOW);
         // if we are not the root we turn off the blue light
         Serial.println("Not root");
-        sendMessage(makeSensorMessage());
+        if (rootAddress == 0){
+          sendBroadcast(makeSensorMessage(false));
+        }
+        else{
+          sendSingleMessage(makeSensorMessage(false), rootAddress);
+        }
         // the sensor is read and we send it to the root
-        
         if ((millis() - lastTimeRoot) > timerDelayRoot && (!iAmRoot)){
           // if we are not the root and we have not received a message from the root for 40 seconds
           // reset the esp (start the rootselection again)
           ESP.restart();
         }
-
       }
       lastTime = millis();
       // reset the timer

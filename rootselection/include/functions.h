@@ -2,8 +2,15 @@
 #define functions
 #include <Arduino.h>
 #include <painlessMesh.h>
-#include <secret.h>
+#include <WiFi.h>
 
+#include <secret.h>
+#define ssidScan ssidScan_secr
+#define passScan passScan_secr
+
+//! doxygen
+
+//! const String& sensorVal
 void post(String sensorVal, String name, String unit);
 void writeSpiffs(String data);
 void postJson(String json);
@@ -14,14 +21,12 @@ void nextDnsRequest();
 void setupNetwork();
 
 String readSpiffs();
-String makeSensorMessage();
+String makeSensorMessage(bool isRoot);
 
 int networkScan();
 
 extern String inputName;
 extern painlessMesh mesh; // for the mesh network
-
-#define ssidScan ssidScan_secr
-#define passScan passScan_secr
+extern WiFiClient client;
 
 #endif
