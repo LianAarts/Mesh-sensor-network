@@ -2,40 +2,42 @@
 #include <functions.h>
 
 #include <HTTPClient.h>
-#include <WiFi.h>
+
 #include <ESPAsyncWebServer.h>
 #include <SPIFFS.h>
 #include <Zanshin_BME680.h>
 #include <DNSServer.h>
 #include <painlessMesh.h>
-#include <secret.h>
+#include <secret.h> //! ""
 
 # define token token_secr
 // get the token from the secret.h
 
 AsyncWebServer server(80);
 // server on port 80
+
 DNSServer dnsServer; 
 // used for the captive window
 BME680_Class BME680; 
 // make a sensor object
 
+IPAddress ip;
+
 const char* PARAM_NAME = "name";
 // for AP input
-const char* ssid = "New Node";
+const char* ssid = "New Node"; //! use string maybe
 // SSID when we need the setupwindow
 String serverName = "";
+
+HTTPClient http;
 
 //***********************************************************************
 //**************************** Post function ****************************
 
 void post(String sensorVal, String name, String unit) {
-  WiFiClient client;
-  HTTPClient http;
-
-  serverName = "http://192.168.99.1:8123/api/states/sensor." + name;
+  serverName = "http://192.168.99.1:8123/api/states/sensor." + name; //! in configuration file
   // the name in the JSON is used as the entity ID
-
+  
   http.begin(client, serverName);
 
   http.addHeader("Content-Type", "application/json");
@@ -48,7 +50,8 @@ void post(String sensorVal, String name, String unit) {
 
   int httpResponseCode = http.POST(httpRequestData + httpAtributes + "\"}}");
   // POST the json
-  
+  Serial.print(sensorVal);
+  Serial.print("\t");
   Serial.print("HTTP Response code: ");
   Serial.println(httpResponseCode);
   if (httpResponseCode == -1){
@@ -71,7 +74,7 @@ int networkScan(){
     // we wait for the connection for 10 seconds
     // if we don't have a connection after 10 seconds we are probably not in range
     Serial.print('.');
-    delay(1000);
+    delay(1000); //! why delay (do some research)
   }
 
   int RSSI = WiFi.RSSI();
@@ -101,29 +104,23 @@ void setupNetwork(){
   mesh.update();
   Serial.println("Connecting to WiFi..");
   while (WiFi.status() != WL_CONNECTED) {
-    delay(100);
-    mesh.update();
-    delay(100);
-    mesh.update();
-    delay(100);
-    mesh.update();
-    delay(100);
-    mesh.update();
-    delay(100);
-    mesh.update();
-    Serial.print(".");
+    for (int i=0; i<=5; i++){
+      delay(100); //! for loop here
+      mesh.update();
+      Serial.print(".");
+    }
   }
   Serial.println("Connected to the WiFi network");
   Serial.print("SSID: ");
   Serial.println(WiFi.SSID());
-  IPAddress ip = WiFi.localIP();
+  ip = WiFi.localIP();
   Serial.print("IP Address: ");
   Serial.println(ip);
 }
 
 //***********************************************************************
 //************************ Captive config window ************************
-class CaptiveRequestHandler : public AsyncWebHandler {
+class CaptiveRequestHandler : public AsyncWebHandler { //!declaration on the header
 public:
   CaptiveRequestHandler() {}
   virtual ~CaptiveRequestHandler() {}
@@ -134,9 +131,12 @@ public:
   }
 
   void handleRequest(AsyncWebServerRequest *request) {
+    //! if request
+    //if()
+      // request->send(SPIFFS, "/index.html", String(), false);
     request->send(SPIFFS, "/index.html", String(), false);
   }
-};
+}; //! research this part
 
 //***********************************************************************
 //************************** Next DNS request ***************************
@@ -152,17 +152,19 @@ void setupWebserver(){
   WiFi.mode(WIFI_AP); 
   WiFi.softAP(ssid);
 
-  IPAddress IP = WiFi.softAPIP();
+  ip = WiFi.softAPIP();
   // get the ip address
   Serial.print("AP IP address: ");
-  Serial.println(IP);
+  Serial.println(ip);
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+    //! same here
     request->send(SPIFFS, "/index.html", String(), false);
   });
   // get the index page from spiffs
 
   server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest *request){
+    //! same here
     request->send(SPIFFS, "/style.css", "text/css");
   });
   // get the css file from spiffs
@@ -198,13 +200,12 @@ void endWebserver(){
 //***********************************************************************
 //**************************** Setup sensor *****************************
 void setupSensor(){
-  while (!BME680.begin(I2C_STANDARD_MODE)) {  
+  while (!BME680.begin(I2C_STANDARD_MODE)) {  //! ifdef for different sensors
     // Start BME680 using I2C, use first device found
     Serial.print(F("-  Unable to find BME680. Trying again in 5 seconds.\n"));
     delay(5000);
     // loop until the device is found
   }
-
   // Serial.print(F("- Setting 16x oversampling for all sensors\n"));
   BME680.setOversampling(TemperatureSensor, Oversample16);  // Use enumerated type values
   BME680.setOversampling(HumiditySensor, Oversample16);     // Use enumerated type values
@@ -217,8 +218,8 @@ void setupSensor(){
 
 //***********************************************************************
 //************************* Make sensor message *************************
-String makeSensorMessage(){
-  static int32_t  temp, humidity, pressure, gas;
+String makeSensorMessage(bool isRoot){
+  static int32_t  temp, humidity, pressure, gas; //! remove static
   // variables for the measurements
 
   BME680.getSensorData(temp, humidity, pressure, gas);
@@ -229,6 +230,7 @@ String makeSensorMessage(){
   float presBME680 = (pressure / 100)+ float(pressure % 100) /100;
   // calculate all the measurements
 
+  //! rapidjson maybe
   String header = "[{\"bn\": \"" + inputName;
   String meas1 = "\", \"n\": \"temperature\", \"u\": \"°C\", \"v\":" + String(tempBME680);
   String meas2 = "}, {\"n\": \"gas\", \"u\": \"ohm\", \"v\":" + String(gasBME680);
@@ -236,9 +238,16 @@ String makeSensorMessage(){
   String meas4 = "}, {\"n\": \"pressure\", \"u\": \"Hpa\", \"v\":" + String(presBME680);
   String meas5 = "}, {\"n\": \"chipID\", \"u\": \"ID\", \"v\":" + String(mesh.getNodeId());
   // make the JSON message
-
-  return(header + meas1 + meas2 + meas3 + meas4 + meas5 + "\"}]");
-  // return the JSON string to the main loop
+  if (isRoot){
+    String meas6 = "}, {\"n\": \"rootIP\", \"u\": \"\", \"v\":\"" + ip.toString();
+    return(header + meas1 + meas2 + meas3 + meas4 + meas5 + meas6 + "\"\"}]");
+    // return the JSON string to the main loop
+  }
+  else{
+    String meas6 = "}, {\"n\": \"rootIP\", \"u\": \"\", \"v\": \"0.0.0.0\"";
+    return(header + meas1 + meas2 + meas3 + meas4 + meas5 + meas6 + "\"}]");
+    // return the JSON string to the main loop
+  }
 }
 
 //***********************************************************************
