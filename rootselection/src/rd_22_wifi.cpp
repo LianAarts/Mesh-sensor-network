@@ -7,7 +7,6 @@
 #define token token_secr
 #define ssidScan ssidScan_secr
 #define passScan passScan_secr
-
 // get the token from the secret.h
 
 // make a sensor object
@@ -42,8 +41,8 @@ void post(String sensorVal, String name, String unit) {
 
   int httpResponseCode = http.POST(httpRequestData + httpAtributes + "\"}}");
   // POST the json
-  Serial.print(sensorVal);
-  Serial.print("\t");
+  // Serial.print(sensorVal);
+  // Serial.print("\t");
   Serial.print("HTTP Response code: ");
   Serial.println(httpResponseCode);
   if (httpResponseCode == -1){
@@ -93,12 +92,10 @@ void setupNetwork(){
   // it is difficult to connect to the AP while the mesh is running
   // we cannot block the mesh.update but the wifi library needs it's delays
   WiFi.begin(ssidScan, passScan);
-  // updateMesh();
   Serial.println("Connecting to WiFi..");
   while (WiFi.status() != WL_CONNECTED) {
     for (int i=0; i<=5; i++){
       delay(100); //! for loop here
-      // updateMesh();
       Serial.print(".");
     }
   }
@@ -110,7 +107,6 @@ void setupNetwork(){
   Serial.println(ip);
 }
 
-
 //***********************************************************************
 //************************ Split up json and post ***********************
 void postJson(String json){
@@ -119,19 +115,24 @@ void postJson(String json){
   JsonArray arr = doc.as<JsonArray>();
   // deserialize the string as a JSON object
 
-  const char* baseName = arr[0]["bn"];
-  for (int i=0; i<arr.size(); i++) {
-    // make a post for every measurement in the JSON
-    JsonObject repo = arr[i];
-    String unit = repo["u"];
-    // units of the measurements
-    String value = repo["v"];
-    // value we want to post
-    String name = repo["n"];
-    String ID = String(baseName) + "_";
-    // create a name from the sensorname and the name of the measurement
-    // like: sensor5_temperature
-    post(value, ID + name, unit);
-    // post the values
+  if (arr[0].containsKey("bn")){
+    const char* baseName = arr[0]["bn"];
+    for (int i=0; i<arr.size(); i++) {
+      // make a post for every measurement in the JSON
+      JsonObject repo = arr[i];
+      String unit = repo["u"];
+      // units of the measurements
+      String value = repo["v"];
+      // value we want to post
+      String name = repo["n"];
+      String ID = String(baseName) + "_";
+      // create a name from the sensorname and the name of the measurement
+      // like: sensor5_temperature
+      post(value, ID + name, unit);
+      // post the values
+    }
+  }
+  else{
+    Serial.println("Wrong JSON format received, no message will be send");
   }
 }

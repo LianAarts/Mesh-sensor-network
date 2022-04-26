@@ -8,15 +8,19 @@ StaticJsonDocument<250> jsonDocument;
 char buffer[250];
 
 WebServer APIserver(80);
+// make our webserver object
 
 void handlePost() {
   if (APIserver.hasArg("plain") == false) {
   }
   String body = APIserver.arg("plain");
   deserializeJson(jsonDocument, body);
+  
   Serial.print("Message has been send to: ");
   Serial.println(int(jsonDocument["chipID"]));
+
   sendSingleMessage("[{\"bn\": \"nameNotAllowed\"}]", int(jsonDocument["chipID"]));
+  // we send a mesh message to the node that is in the JSON
 
   APIserver.send(200, "application/json", "{}");
 }
@@ -24,7 +28,9 @@ void handlePost() {
 void setup_API(){
   // APIserver.on("/temperature", getTemperature);
   APIserver.on("/usedNameID", HTTP_POST, handlePost);
+  // when we receive a POST request with /usedNameID we got to the handlePost routine
   APIserver.begin();
+  // start our server when needed (only when root)
   Serial.println("API is ready");
 }
 
