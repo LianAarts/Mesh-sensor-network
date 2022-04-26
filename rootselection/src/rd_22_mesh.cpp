@@ -49,14 +49,18 @@ void setRSSI(int rssi){
   meshRSSI = rssi;
 }
 
+// return function of the root, if root true
 bool getIAmRoot(){
   return(iAmRoot);
 }
 
+// return the state of the root (is there a root?)
 bool getRootFound(){
   return(rootFound);
 }
 
+// timer that resets when keep alive message from root has been received
+// return a True if we have not received a message from the root for 40 seconds
 bool rootTimer(){
   if ((millis() - lastTimeRoot) > timerDelayRoot){
     return(true);
@@ -70,17 +74,21 @@ int getRootAddress(){
     return(rootAddress);
 }
 
+// send a broadcast message
 void sendBroadcast(String message){
   mesh.sendBroadcast(message);
   Serial.println("Broadcast message has been send");
 }
 
+// send a single message to a specific node
 void sendSingleMessage(String message, int address){
   mesh.sendSingle(address, message);
   Serial.print("Single message has been send to "); //! debug levels and define in parameter 
   Serial.println(address);
 }
 
+// update our mesh
+// this should be done as often as possible
 void updateMesh(){
   mesh.update();
 }
@@ -95,43 +103,50 @@ void receivedCallback( uint32_t from, String &msg ) {
   deserializeJson(doc, msg);
   arr = doc.as<JsonArray>();
   // messages are send in JSON format so we make a JSON object an deserialize it
-  const char* baseName = arr[0]["bn"]; //! check the json before reading
-  // Read the first value
+  if (arr[0].containsKey("bn")){
+    // we check the JSON if it has the right key
+    const char* baseName = arr[0]["bn"];
+    // Read the first value
 
-  // if the first value is connectiontest we stop sending messages with RSSI information
-  if (strcmp(baseName, "connectionTest") == 0){
-    Serial.printf("Message received from %u msg=%s\n", from, msg.c_str());
-    //! always check json
-    if (int(arr[0]["RSSI"]) > meshRSSI){
-      rootFound = true;
-      // if the received RSSI is better we are not the root
+    // if the first value is connectiontest we stop sending messages with RSSI information
+    if (strcmp(baseName, "connectionTest") == 0){
+      Serial.printf("Message received from %u msg=%s\n", from, msg.c_str());
+      //! always check json
+      if (arr[0].containsKey("RSSI")){
+        // only if we have the right key
+        if (int(arr[0]["RSSI"]) > meshRSSI){
+          rootFound = true;
+          // if the received RSSI is better we are not the root
+        }
+        else if (int(arr[0]["RSSI"]) == meshRSSI){
+          ESP.restart();
+          // if we have the same RSSI we reset the node 
+        }
+        lastTimeRSSI = millis();
+      }; // true
+
+      lastTimeRoot = millis();
+      // reset the timers
     }
-    else if (int(arr[0]["RSSI"]) == meshRSSI){
-      ESP.restart();
-      // if we have the same RSSI we reset the node 
-    }
-    lastTimeRSSI = millis();
-    lastTimeRoot = millis();
-    // reset the timers
-  }
   
-  // if the first value is Root
-  else if (strcmp(baseName, "Root") == 0){
-    Serial.print(from);
-    Serial.println(" is root");
-    rootAddress = from;
-    // we save the root address so we only send messages to the root
-    rootFound = true;
-    // I am not root
-    lastTimeRoot = millis();
-    // reset the timer
-  }
+    // if the first value is Root
+    else if (strcmp(baseName, "Root") == 0){
+      Serial.print(from);
+      Serial.println(" is root");
+      rootAddress = from;
+      // we save the root address so we only send messages to the root
+      rootFound = true;
+      // I am not root
+      lastTimeRoot = millis();
+      // reset the timer
+    }
 
-  else if (strcmp(baseName, "nameNotAllowed") == 0){
-    Serial.print(from);
-    Serial.println(" Name is not allowed");
-    writeSpiffs("");
-    ESP.restart();
+    else if (strcmp(baseName, "nameNotAllowed") == 0){
+      Serial.print(from);
+      Serial.println(" Name is not allowed");
+      writeSpiffs("");
+      ESP.restart();
+    }
   }
 
   if ((millis() - lastTimeRSSI) > timerDelayRSSI && (!rootFound)){
