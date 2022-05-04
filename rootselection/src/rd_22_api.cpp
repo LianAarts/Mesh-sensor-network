@@ -4,6 +4,11 @@
 
 #include "rd_22_mesh.h"
 
+#include "rd_22_configuration.h"
+#define DEBUG DEBUG_LEVEL
+#include "rd_22_debug.h"
+
+
 StaticJsonDocument<250> jsonDocument;
 char buffer[250];
 
@@ -16,8 +21,8 @@ void handlePost() {
   String body = APIserver.arg("plain");
   deserializeJson(jsonDocument, body);
   
-  Serial.print("Message has been send to: ");
-  Serial.println(int(jsonDocument["chipID"]));
+  debug3("Message has been send to: ");
+  debugln3(int(jsonDocument["chipID"]));
 
   sendSingleMessage("[{\"bn\": \"nameNotAllowed\"}]", int(jsonDocument["chipID"]));
   // we send a mesh message to the node that is in the JSON
@@ -26,12 +31,12 @@ void handlePost() {
 }
 
 void setup_API(){
-  // APIserver.on("/temperature", getTemperature);
+  // APIserver.on("/temperature", getTemperature); // example of GET request
   APIserver.on("/usedNameID", HTTP_POST, handlePost);
   // when we receive a POST request with /usedNameID we got to the handlePost routine
   APIserver.begin();
   // start our server when needed (only when root)
-  Serial.println("API is ready");
+  debugln2("API is ready");
 }
 
 void apiCheck(){
@@ -39,6 +44,6 @@ void apiCheck(){
 }
 
 // void getTemperature() {
-//   Serial.println("Get temperature");
+//   debugln3("Get temperature");
 //   APIserver.send(200, "application/json", buffer);
 // }

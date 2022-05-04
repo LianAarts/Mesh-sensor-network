@@ -3,6 +3,10 @@
 #include <SPIFFS.h>
 #include <DNSServer.h>
 
+#include "rd_22_configuration.h"
+#define DEBUG DEBUG_LEVEL
+#include "rd_22_debug.h"
+
 AsyncWebServer server(80);
 // server on port 80
 DNSServer dnsServer; 
@@ -19,14 +23,14 @@ const char* ssid = "New Node"; //! use string maybe
 //*************************** Read saved data ***************************
 String readSpiffs(){
   if(!SPIFFS.begin(true)){
-    Serial.println("An Error has occurred while mounting SPIFFS");
+    debugln1("An Error has occurred while mounting SPIFFS");
   }
   // start the spiffs file system
 
   File file = SPIFFS.open("/assets.txt");
   // open the text file as "file"
   if(!file){
-    Serial.println("Failed to open file for reading");
+    debugln1("Failed to open file for reading");
   }
   String data = "";
   // variable that will store the string
@@ -34,8 +38,8 @@ String readSpiffs(){
     data = data +char(file.read());
     // if we can open the file we read the content
   }
-  Serial.print("saved data: ");
-  Serial.println(data);
+  debug2("saved data: ");
+  debugln2(data);
   file.close();
   // close the file
   return(data);
@@ -48,16 +52,16 @@ void writeSpiffs(String data){
   File file = SPIFFS.open("/assets.txt", FILE_WRITE);
   // open the file to write (append will add, write will overwrite this file)
   if(!file){
-    Serial.println("There was an error opening the file for writing");
+    debugln1("There was an error opening the file for writing");
     return;
   }
   
   if(file.print(data)){
     // write the data
-    Serial.println("File was written");;
+    debugln2("File was written");;
   } 
   else{
-    Serial.println("File write failed");
+    debugln1("File write failed");
   }
   file.close(); 
   // close the file
@@ -98,7 +102,7 @@ void setupWebserver(){
   WiFi.softAP(ssid);
 
   // get the ip address
-  Serial.print("AP IP address: ");
+  debugln2("AP IP address: ");
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
     //! same here
@@ -121,7 +125,7 @@ void setupWebserver(){
       inputParam = PARAM_NAME;
       // this input will be the inputname we use
     }
-    Serial.println(inputName);
+    debugln2(inputName);
     writeSpiffs(inputName);
     
   });
