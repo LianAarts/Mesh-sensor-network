@@ -2,6 +2,6 @@
 #define rd_22_api
 
 void apiCheck();
-void setup_API();
+void setupAPI();
 
 #endif

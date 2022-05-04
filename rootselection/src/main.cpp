@@ -14,7 +14,8 @@
 #include "rd_22_280sensor.h"
 #define setupSensor() setupSensor280()
 #define makeSensorMessage(a, b, c, d) makeSensorMessage280(a, b, c, d)
-#else
+#endif
+#ifdef bme680
 #include "rd_22_680sensor.h"
 #define setupSensor() setupSensor680()
 #define makeSensorMessage(a, b, c, d) makeSensorMessage680(a, b, c, d)
@@ -52,17 +53,6 @@ String nodeName = "";
 
 //! use namespace
 
-void meshRoutine( void * parameter ) {
-  // threading routing that will run side by side the main loop
-  for(;;) {
-    updateMesh();
-    apiCheck();
-  }
-  /* delete a task when finish, this will never
-  happen because this is infinity loop */ 
-  vTaskDelete( NULL );
-}
-
 //***********************************************************************
 //******************************** setup ********************************
 void setup() {
@@ -73,7 +63,7 @@ void setup() {
   digitalWrite(LED, LOW);
   // setup button and led, turn off led
 
-  nodeName = readSpiffs();
+  nodeName = readSpiffs("/assets.txt");
   // we read the eeprom
   if (nodeName == ""){
     // if the eeprom is empty we setup the ap where we can enter our name of the sensor
@@ -91,7 +81,7 @@ void setup() {
 //******************************** loop *********************************
 void loop() {
   nextDnsRequest();
-  nodeName = readSpiffs();
+  nodeName = readSpiffs("/assets.txt");
 
   // while we don't have a sensorname we have to wait
   // the dns is used for the captive window
@@ -104,7 +94,7 @@ void loop() {
       if (serverNeeded == true){
         endWebserver();
         // kill the webserver when it was needed
-        writeSpiffs(nodeName);
+        writeSpiffs(nodeName, "/assets.txt");
         // we got a name if the server was needed
         // write this name to the memory
       }
@@ -137,7 +127,7 @@ void loop() {
     //   // when the button is pressed for 10 seconds we reset the eeprom and restart the esp
     //   debug1(digitalRead(buttonPin));
     //   debugln1(" Button has been pressed for 10 seconds, ESP will be reset");
-    //   writeSpiffs("");
+    //   writeSpiffs("", "/assets.txt");
     //   // write a empty string
     //   ESP.restart();
     // }
@@ -166,7 +156,7 @@ void loop() {
         String rootStatus = "[{\"bn\": \"Root\"";
         sendBroadcast(rootStatus + "}]");
         // make and broadcast the root is alive message
-        postJson(makeSensorMessage(true, nodeName, getIp(), getNodeIdMesh()));
+        splitJson(makeSensorMessage(true, nodeName, getIp(), getNodeIdMesh()));
         // we read the sensor and post everything to Home Assistant
       }
       else{

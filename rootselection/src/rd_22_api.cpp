@@ -15,6 +15,13 @@ char buffer[250];
 WebServer APIserver(80);
 // make our webserver object
 
+/**
+ * @brief When we receive a Post request from Home Assistant this function is called
+ * 
+ * This means we have a two nodes who are configured with the same name. 
+ * We will send a single message to the node that needs to clear it's name.
+ * 
+ */
 void handlePost() {
   if (APIserver.hasArg("plain") == false) {
   }
@@ -30,7 +37,11 @@ void handlePost() {
   APIserver.send(200, "application/json", "{}");
 }
 
-void setup_API(){
+/**
+ * @brief Setup the REST API server we use for the messages from Home Assistant to the mesh network.
+ * 
+ */
+void setupAPI(){
   // APIserver.on("/temperature", getTemperature); // example of GET request
   APIserver.on("/usedNameID", HTTP_POST, handlePost);
   // when we receive a POST request with /usedNameID we got to the handlePost routine
@@ -39,6 +50,12 @@ void setup_API(){
   debugln2("API is ready");
 }
 
+/**
+ * @brief Check the API server
+ * 
+ * @warning This should be done as often as possible
+ * 
+ */
 void apiCheck(){
   APIserver.handleClient();
 }

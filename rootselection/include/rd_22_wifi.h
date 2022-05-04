@@ -8,7 +8,7 @@
 
 //! const String& sensorVal
 void post(String sensorVal, String name, String unit); //?
-void postJson(String json); //?
+void splitJson(String json); //?
 void setupNetwork(); //?
 
 int networkScan(); //?

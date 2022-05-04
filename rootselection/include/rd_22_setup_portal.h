@@ -9,8 +9,6 @@ void nextDnsRequest();
 void setupWebserver();
 void endWebserver();
 
-void writeSpiffs(String data);
-String readSpiffs();
-
-void setup_API();
+void writeSpiffs(String data, String fileName);
+String readSpiffs(String fileName);
 #endif
