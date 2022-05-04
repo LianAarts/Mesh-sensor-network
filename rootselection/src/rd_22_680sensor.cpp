@@ -1,32 +1,36 @@
 #include <Arduino.h>
 #include <Zanshin_BME680.h>
-#include <ArduinoJson.h>
+
+#include "rd_22_configuration.h"
+#define DEBUG DEBUG_LEVEL
+#include "rd_22_debug.h"
 
 BME680_Class BME680;
+int32_t  temp, humidity, pressure, gas;
 
 //***********************************************************************
 //**************************** Setup sensor *****************************
-void setupSensor(){
+void setupSensor680(){
   while (!BME680.begin(I2C_STANDARD_MODE)) {  //! ifdef for different sensors
     // Start BME680 using I2C, use first device found
-    Serial.print(F("-  Unable to find BME680. Trying again in 5 seconds.\n"));
+    debugln1("-  Unable to find BME680. Trying again in 5 seconds.");
     delay(5000);
     // loop until the device is found
   }
-  // Serial.print(F("- Setting 16x oversampling for all sensors\n"));
+  debugln3("- Setting 16x oversampling for all sensors");
   BME680.setOversampling(TemperatureSensor, Oversample16);  // Use enumerated type values
   BME680.setOversampling(HumiditySensor, Oversample16);     // Use enumerated type values
   BME680.setOversampling(PressureSensor, Oversample16);     // Use enumerated type values
-  // Serial.print(F("- Setting IIR filter to a value of 4 samples\n"));
+  debugln3("- Setting IIR filter to a value of 4 samples");
   BME680.setIIRFilter(IIR4);  // Use enumerated type values
-  // Serial.print(F("- Setting gas measurement to 320\xC2\xB0\x43 for 150ms\n"));  // "�C" symbols
+  debugln3("- Setting gas measurement to 320\xC2\xB0\x43 for 150ms");  // "�C" symbols
   BME680.setGas(320, 150);  // 320�c for 150 milliseconds
 }
 
 //***********************************************************************
 //************************* Make sensor message *************************
-String makeSensorMessage(bool isRoot, String nodeName, String IP, String nodeID){
-  static int32_t  temp, humidity, pressure, gas; //! remove static
+String makeSensorMessage680(bool isRoot, String nodeName, String IP, String nodeID){
+  //! remove static
   // variables for the measurements
 
   BME680.getSensorData(temp, humidity, pressure, gas);
