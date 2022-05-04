@@ -25,5 +25,6 @@
 #define timerDelayRSSI 30000
 //assign root after this interval
 
+// #define bme280
 #define bme680
 // choose the right sensor (uncomment for BME280)

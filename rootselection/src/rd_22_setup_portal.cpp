@@ -21,13 +21,19 @@ const char* ssid = "New Node"; //! use string maybe
 
 //***********************************************************************
 //*************************** Read saved data ***************************
-String readSpiffs(){
+/**
+ * @brief Read a file in spiffs and return the content
+ * 
+ * @param fileName File we want to read
+ * @return String Content of the file
+ */
+String readSpiffs(String fileName){
   if(!SPIFFS.begin(true)){
     debugln1("An Error has occurred while mounting SPIFFS");
   }
   // start the spiffs file system
 
-  File file = SPIFFS.open("/assets.txt");
+  File file = SPIFFS.open(fileName);
   // open the text file as "file"
   if(!file){
     debugln1("Failed to open file for reading");
@@ -48,8 +54,15 @@ String readSpiffs(){
 
 //***********************************************************************
 //************************** Write to save data *************************
-void writeSpiffs(String data){
-  File file = SPIFFS.open("/assets.txt", FILE_WRITE);
+/**
+ * @brief Write to a file in Spiffs
+ * @warning This wil overwrite all the data!
+ * 
+ * @param data String that will be written in the file
+ * @param fileName File we want to write to
+ */
+void writeSpiffs(String data, String fileName){
+  File file = SPIFFS.open(fileName, FILE_WRITE);
   // open the file to write (append will add, write will overwrite this file)
   if(!file){
     debugln1("There was an error opening the file for writing");
@@ -89,6 +102,10 @@ public:
 
 //***********************************************************************
 //************************** Next DNS request ***************************
+/**
+ * @brief Handler for DNS requests
+ * 
+ */
 void nextDnsRequest(){
   dnsServer.processNextRequest();
   // dns for the captive window
@@ -96,6 +113,14 @@ void nextDnsRequest(){
 
 //***********************************************************************
 //********************** Make configuration screen **********************
+/**
+ * @brief Webserver that is needed when no name is saved in Spiffs
+ * With this small webserver we enable the user to connect to the node and configure the name of the node.
+ * This name will be used in Home Assistant as the entity ID.
+ * Example: name = node -> entity ID = node.temperature
+ * 
+ * The DNS server is used to make a captive portal.
+ */
 void setupWebserver(){
   // make the webserver where we can set our name
   WiFi.mode(WIFI_AP); 
@@ -126,7 +151,7 @@ void setupWebserver(){
       // this input will be the inputname we use
     }
     debugln2(inputName);
-    writeSpiffs(inputName);
+    writeSpiffs(inputName, "/assets.txt");
     
   });
   dnsServer.start(53, "*", WiFi.softAPIP());
@@ -140,6 +165,10 @@ void setupWebserver(){
 
 //***********************************************************************
 //********************** End configuration screen ***********************
+/**
+ * @brief End the webserver
+ * 
+ */
 void endWebserver(){
   server.end();
   // end the webserver

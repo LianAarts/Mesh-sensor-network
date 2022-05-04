@@ -32,8 +32,22 @@ String getIp(){
 //***********************************************************************
 //**************************** Post function ****************************
 
+/**
+ * @brief Post the measurement to the Home Assistant REST API
+ * 
+ * This wil be a individual entity that can display one value
+ * One sensor will need multiple Posts if it measures more than one value
+ * 
+ * We always check the HTTP response of the POST. 
+ * If the response is -1 we don't have a connection to Home Assistant.
+ * If this happens we reset the node.
+ * 
+ * @param sensorVal Value of the measurement
+ * @param name Entity ID used in Home Assistant
+ * @param unit Unit of measurement
+ */
 void post(String sensorVal, String name, String unit) {
-  // serverName = SERVERNAME + name; //! in configuration file
+  // serverName = SERVERNAME + name;
   // the name in the JSON is used as the entity ID
   
   http.begin(client, SERVERNAME + name);
@@ -63,6 +77,14 @@ void post(String sensorVal, String name, String unit) {
 
 //***********************************************************************
 //**************************** Network scan *****************************
+/**
+ * @brief Measure the RSSI of the Home Assistant access point
+ * 
+ * Received Signal Strength Indicator (RSSI) is the measurement of how strong the signal of a router of access point is to a device.
+ * The RSSI is a value between -100 and 0. Close to 0 means a better connection
+ * 
+ * @return int RSSI, a value between -100 and 0
+ */
 int networkScan(){
   WiFi.mode(WIFI_STA);
   // we use STA mode because we have to connect to the home assistant AP
@@ -96,6 +118,13 @@ int networkScan(){
 
 //***********************************************************************
 //*************************** Network connect ***************************
+/**
+ * @brief Connect to the Home Assistant access point
+ * 
+ * When we are the root we need to send Post requests.
+ * We need to connect to access point to be able to do this.
+ * 
+ */
 void setupNetwork(){
   // connect to the AP if we are the host
   // it is difficult to connect to the AP while the mesh is running
@@ -119,7 +148,12 @@ void setupNetwork(){
 
 //***********************************************************************
 //************************ Split up json and post ***********************
-void postJson(String json){
+/**
+ * @brief Split the received JSON in individual measurement so we can POST them to Home Assistant
+ * 
+ * @param json JSON input we want to split up
+ */
+void splitJson(String json){
   DynamicJsonDocument doc(1024);
   deserializeJson(doc, json);
   JsonArray arr = doc.as<JsonArray>();
