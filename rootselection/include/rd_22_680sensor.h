@@ -5,6 +5,7 @@
 
 void setupSensor680();
 
-String makeSensorMessage680(bool isRoot, String nodeName, String IP, String nodeID);
+String makeSensorMessage680(bool isRoot, String nodeName, String IP,
+                            String nodeID);
 
 #endif
