@@ -1,0 +1,92 @@
+\hypertarget{rd__22__setup__portal_8h}{}\doxysection{/\+Users/lian/\+Documents/\+Platform\+IO/\+Projects/rootselection/include/rd\+\_\+22\+\_\+setup\+\_\+portal.h File Reference}
+\label{rd__22__setup__portal_8h}\index{/Users/lian/Documents/PlatformIO/Projects/rootselection/include/rd\_22\_setup\_portal.h@{/Users/lian/Documents/PlatformIO/Projects/rootselection/include/rd\_22\_setup\_portal.h}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$ESPAsync\+Web\+Server.\+h$>$}\newline
+{\ttfamily \#include $<$SPIFFS.\+h$>$}\newline
+{\ttfamily \#include $<$DNSServer.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rd__22__setup__portal_8h_a799e5e955008130fecf7097d5edec20c}{next\+Dns\+Request}} ()
+\begin{DoxyCompactList}\small\item\em Handler for DNS requests. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__setup__portal_8h_a641c43a509987a62927fdb165032c576}{setup\+Webserver}} ()
+\begin{DoxyCompactList}\small\item\em Webserver that is needed when no name is saved in Spiffs With this small webserver, we enable the user to connect to the node and configure the name of the node. This name will be used in Home Assistant as the entity ID. Example\+: name = node -\/\texorpdfstring{$>$}{>} entity ID = node.\+temperature. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__setup__portal_8h_aff9b764ae7f5c309f499bb2b506ca6ce}{end\+Webserver}} ()
+\begin{DoxyCompactList}\small\item\em End the webserver. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__setup__portal_8h_a7f294e1ebc0b6d484c6cd5017869c63c}{write\+Spiffs}} (String data, String file\+Name)
+\begin{DoxyCompactList}\small\item\em Write to a file in Spiffs. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{rd__22__setup__portal_8h_ad4b714b34e039a9e8a50cae4e8776ed5}{read\+Spiffs}} (String file\+Name)
+\begin{DoxyCompactList}\small\item\em Read a file in spiffs and return the content. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rd__22__setup__portal_8h_aff9b764ae7f5c309f499bb2b506ca6ce}\label{rd__22__setup__portal_8h_aff9b764ae7f5c309f499bb2b506ca6ce}} 
+\index{rd\_22\_setup\_portal.h@{rd\_22\_setup\_portal.h}!endWebserver@{endWebserver}}
+\index{endWebserver@{endWebserver}!rd\_22\_setup\_portal.h@{rd\_22\_setup\_portal.h}}
+\doxysubsubsection{\texorpdfstring{endWebserver()}{endWebserver()}}
+{\footnotesize\ttfamily void end\+Webserver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+End the webserver. 
+
+\mbox{\Hypertarget{rd__22__setup__portal_8h_a799e5e955008130fecf7097d5edec20c}\label{rd__22__setup__portal_8h_a799e5e955008130fecf7097d5edec20c}} 
+\index{rd\_22\_setup\_portal.h@{rd\_22\_setup\_portal.h}!nextDnsRequest@{nextDnsRequest}}
+\index{nextDnsRequest@{nextDnsRequest}!rd\_22\_setup\_portal.h@{rd\_22\_setup\_portal.h}}
+\doxysubsubsection{\texorpdfstring{nextDnsRequest()}{nextDnsRequest()}}
+{\footnotesize\ttfamily void next\+Dns\+Request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handler for DNS requests. 
+
+\mbox{\Hypertarget{rd__22__setup__portal_8h_ad4b714b34e039a9e8a50cae4e8776ed5}\label{rd__22__setup__portal_8h_ad4b714b34e039a9e8a50cae4e8776ed5}} 
+\index{rd\_22\_setup\_portal.h@{rd\_22\_setup\_portal.h}!readSpiffs@{readSpiffs}}
+\index{readSpiffs@{readSpiffs}!rd\_22\_setup\_portal.h@{rd\_22\_setup\_portal.h}}
+\doxysubsubsection{\texorpdfstring{readSpiffs()}{readSpiffs()}}
+{\footnotesize\ttfamily String read\+Spiffs (\begin{DoxyParamCaption}\item[{String}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Read a file in spiffs and return the content. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & File we want to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String Content of the file 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rd__22__setup__portal_8h_a641c43a509987a62927fdb165032c576}\label{rd__22__setup__portal_8h_a641c43a509987a62927fdb165032c576}} 
+\index{rd\_22\_setup\_portal.h@{rd\_22\_setup\_portal.h}!setupWebserver@{setupWebserver}}
+\index{setupWebserver@{setupWebserver}!rd\_22\_setup\_portal.h@{rd\_22\_setup\_portal.h}}
+\doxysubsubsection{\texorpdfstring{setupWebserver()}{setupWebserver()}}
+{\footnotesize\ttfamily void setup\+Webserver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Webserver that is needed when no name is saved in Spiffs With this small webserver, we enable the user to connect to the node and configure the name of the node. This name will be used in Home Assistant as the entity ID. Example\+: name = node -\/\texorpdfstring{$>$}{>} entity ID = node.\+temperature. 
+
+The DNS server is used to make a captive portal. same here
+
+same here\mbox{\Hypertarget{rd__22__setup__portal_8h_a7f294e1ebc0b6d484c6cd5017869c63c}\label{rd__22__setup__portal_8h_a7f294e1ebc0b6d484c6cd5017869c63c}} 
+\index{rd\_22\_setup\_portal.h@{rd\_22\_setup\_portal.h}!writeSpiffs@{writeSpiffs}}
+\index{writeSpiffs@{writeSpiffs}!rd\_22\_setup\_portal.h@{rd\_22\_setup\_portal.h}}
+\doxysubsubsection{\texorpdfstring{writeSpiffs()}{writeSpiffs()}}
+{\footnotesize\ttfamily void write\+Spiffs (\begin{DoxyParamCaption}\item[{String}]{data,  }\item[{String}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Write to a file in Spiffs. 
+
+\begin{DoxyWarning}{Warning}
+This will overwrite all the data!
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & String that will be written in the file \\
+\hline
+{\em file\+Name} & File we want to write to \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,196 @@
+\hypertarget{rd__22__configuration_8h}{}\doxysection{/\+Users/lian/\+Documents/\+Platform\+IO/\+Projects/rootselection/include/rd\+\_\+22\+\_\+configuration.h File Reference}
+\label{rd__22__configuration_8h}\index{/Users/lian/Documents/PlatformIO/Projects/rootselection/include/rd\_22\_configuration.h@{/Users/lian/Documents/PlatformIO/Projects/rootselection/include/rd\_22\_configuration.h}}
+
+
+Configuration file for the mesh nodes.  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_a79f9b7e77f6e74c91163ff19b46c4925}{MESH\+\_\+\+PREFIX\+\_\+secr}}~\char`\"{}Lians\+Network2\char`\"{}
+\begin{DoxyCompactList}\small\item\em SSID of the mesh network. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_a339c2c68afdeb5057a6b1e5f5767507a}{MESH\+\_\+\+PASSWORD\+\_\+secr}}~\char`\"{}Lians\+Network2\char`\"{}
+\begin{DoxyCompactList}\small\item\em Password of the mesh network. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_ad5e05c0e9fd82d860ce8744376c1d5c9}{MESH\+\_\+\+PORT\+\_\+conf}}~5555
+\begin{DoxyCompactList}\small\item\em Port of the mesh network. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_a33ea1b9be62c9bbff886118f9049a69d}{token\+\_\+secr}}~\char`\"{}Bearer ey\+J0e\+XAi\+Oi\+JKV1\+Qi\+LCJhb\+Gci\+Oi\+JIUz\+I1\+Ni\+J9.\+ey\+Jpc3\+Mi\+Oi\+I4\+YTMy\+YWI2\+ZDMz\+NGE0\+Mj\+Iz\+ODM5\+Mz\+Iz\+Yz\+Q4\+MTE5\+Yz\+E2\+OCIs\+Imlhd\+CI6\+MTY0\+OTE2\+Mjc1\+Niwi\+ZXhw\+Ijox\+OTY0\+NTIy\+Nz\+U2f\+Q.\+AXA7u\+Us4c\+RBx\+NI0\+JDZGX1\+U9fqrxu\+Le\+Wr\+\_\+\+Xi\+N5\+\_\+j\+Rndk\char`\"{}
+\begin{DoxyCompactList}\small\item\em Bearer token for Home Assistant. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_a90f959ea05d387935fea4a9951f9c5c9}{ssid\+Scan\+\_\+secr}}~\char`\"{}home-\/assistant-\/AP\char`\"{}
+\begin{DoxyCompactList}\small\item\em SSID of the network the root needs to be connected to. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_a5cee90982c1f736f726dea41b4d5a583}{pass\+Scan\+\_\+secr}}~\char`\"{}networkubdx\char`\"{}
+\begin{DoxyCompactList}\small\item\em Password of the network the root needs to connect to. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_adfec9dfe4e00719339c143a88480d8db}{AP\+\_\+\+NAME}}~\char`\"{}New Node\char`\"{}
+\begin{DoxyCompactList}\small\item\em SSID for the configuration access point of the node. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}~3
+\begin{DoxyCompactList}\small\item\em The debug level will decide how much information is printed in the serial monitor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_aab4f68861c2e03b2a78c37c2213cb350}{SERVERNAME}}~\char`\"{}http\+://192.\+168.\+99.\+1\+:8123/api/states/sensor.\char`\"{}
+\begin{DoxyCompactList}\small\item\em Address for the API POST request. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_a1d961f597c22e57e305b290a4758e87f}{timer\+Delay}}~10000
+\begin{DoxyCompactList}\small\item\em Interval between messages to the mesh network. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_a26c9256653395fc9eb079ba36d9c8d8c}{timer\+Delay\+Button}}~10000
+\begin{DoxyCompactList}\small\item\em The amount of time the button has to be pressed for a name reset. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_a376db6e136a39525e82048442a542020}{timer\+Delay\+Root}}~40000
+\begin{DoxyCompactList}\small\item\em Reset the node after this interval. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{rd__22__configuration_8h_ae9bf3e80912bb302be86be72a14880ec}{timer\+Delay\+RSSI}}~30000
+\begin{DoxyCompactList}\small\item\em The nodes gets assigned as root after this interval. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration file for the mesh nodes. 
+
+\begin{DoxyAuthor}{Author}
+Lian Aarts 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2022-\/05-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rd__22__configuration_8h_adfec9dfe4e00719339c143a88480d8db}\label{rd__22__configuration_8h_adfec9dfe4e00719339c143a88480d8db}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!AP\_NAME@{AP\_NAME}}
+\index{AP\_NAME@{AP\_NAME}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{AP\_NAME}{AP\_NAME}}
+{\footnotesize\ttfamily \#define AP\+\_\+\+NAME~\char`\"{}New Node\char`\"{}}
+
+
+
+SSID for the configuration access point of the node. 
+
+\mbox{\Hypertarget{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}\label{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!DEBUG\_LEVEL@{DEBUG\_LEVEL}}
+\index{DEBUG\_LEVEL@{DEBUG\_LEVEL}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_LEVEL}{DEBUG\_LEVEL}}
+{\footnotesize\ttfamily \#define DEBUG\+\_\+\+LEVEL~3}
+
+
+
+The debug level will decide how much information is printed in the serial monitor. 
+
+1\+: only critical information (errors)
+
+2\+: state of code
+
+3\+: verbose, print everything that is happening \mbox{\Hypertarget{rd__22__configuration_8h_a339c2c68afdeb5057a6b1e5f5767507a}\label{rd__22__configuration_8h_a339c2c68afdeb5057a6b1e5f5767507a}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!MESH\_PASSWORD\_secr@{MESH\_PASSWORD\_secr}}
+\index{MESH\_PASSWORD\_secr@{MESH\_PASSWORD\_secr}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{MESH\_PASSWORD\_secr}{MESH\_PASSWORD\_secr}}
+{\footnotesize\ttfamily \#define MESH\+\_\+\+PASSWORD\+\_\+secr~\char`\"{}Lians\+Network2\char`\"{}}
+
+
+
+Password of the mesh network. 
+
+\mbox{\Hypertarget{rd__22__configuration_8h_ad5e05c0e9fd82d860ce8744376c1d5c9}\label{rd__22__configuration_8h_ad5e05c0e9fd82d860ce8744376c1d5c9}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!MESH\_PORT\_conf@{MESH\_PORT\_conf}}
+\index{MESH\_PORT\_conf@{MESH\_PORT\_conf}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{MESH\_PORT\_conf}{MESH\_PORT\_conf}}
+{\footnotesize\ttfamily \#define MESH\+\_\+\+PORT\+\_\+conf~5555}
+
+
+
+Port of the mesh network. 
+
+\mbox{\Hypertarget{rd__22__configuration_8h_a79f9b7e77f6e74c91163ff19b46c4925}\label{rd__22__configuration_8h_a79f9b7e77f6e74c91163ff19b46c4925}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!MESH\_PREFIX\_secr@{MESH\_PREFIX\_secr}}
+\index{MESH\_PREFIX\_secr@{MESH\_PREFIX\_secr}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{MESH\_PREFIX\_secr}{MESH\_PREFIX\_secr}}
+{\footnotesize\ttfamily \#define MESH\+\_\+\+PREFIX\+\_\+secr~\char`\"{}Lians\+Network2\char`\"{}}
+
+
+
+SSID of the mesh network. 
+
+\mbox{\Hypertarget{rd__22__configuration_8h_a5cee90982c1f736f726dea41b4d5a583}\label{rd__22__configuration_8h_a5cee90982c1f736f726dea41b4d5a583}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!passScan\_secr@{passScan\_secr}}
+\index{passScan\_secr@{passScan\_secr}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{passScan\_secr}{passScan\_secr}}
+{\footnotesize\ttfamily \#define pass\+Scan\+\_\+secr~\char`\"{}networkubdx\char`\"{}}
+
+
+
+Password of the network the root needs to connect to. 
+
+\mbox{\Hypertarget{rd__22__configuration_8h_aab4f68861c2e03b2a78c37c2213cb350}\label{rd__22__configuration_8h_aab4f68861c2e03b2a78c37c2213cb350}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!SERVERNAME@{SERVERNAME}}
+\index{SERVERNAME@{SERVERNAME}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{SERVERNAME}{SERVERNAME}}
+{\footnotesize\ttfamily \#define SERVERNAME~\char`\"{}http\+://192.\+168.\+99.\+1\+:8123/api/states/sensor.\char`\"{}}
+
+
+
+Address for the API POST request. 
+
+\mbox{\Hypertarget{rd__22__configuration_8h_a90f959ea05d387935fea4a9951f9c5c9}\label{rd__22__configuration_8h_a90f959ea05d387935fea4a9951f9c5c9}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!ssidScan\_secr@{ssidScan\_secr}}
+\index{ssidScan\_secr@{ssidScan\_secr}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{ssidScan\_secr}{ssidScan\_secr}}
+{\footnotesize\ttfamily \#define ssid\+Scan\+\_\+secr~\char`\"{}home-\/assistant-\/AP\char`\"{}}
+
+
+
+SSID of the network the root needs to be connected to. 
+
+\mbox{\Hypertarget{rd__22__configuration_8h_a1d961f597c22e57e305b290a4758e87f}\label{rd__22__configuration_8h_a1d961f597c22e57e305b290a4758e87f}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!timerDelay@{timerDelay}}
+\index{timerDelay@{timerDelay}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{timerDelay}{timerDelay}}
+{\footnotesize\ttfamily \#define timer\+Delay~10000}
+
+
+
+Interval between messages to the mesh network. 
+
+if sensornode\+: single message with sensordata will be send
+
+if rootnode\+: broadcast essage with root information will be send \mbox{\Hypertarget{rd__22__configuration_8h_a26c9256653395fc9eb079ba36d9c8d8c}\label{rd__22__configuration_8h_a26c9256653395fc9eb079ba36d9c8d8c}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!timerDelayButton@{timerDelayButton}}
+\index{timerDelayButton@{timerDelayButton}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{timerDelayButton}{timerDelayButton}}
+{\footnotesize\ttfamily \#define timer\+Delay\+Button~10000}
+
+
+
+The amount of time the button has to be pressed for a name reset. 
+
+\mbox{\Hypertarget{rd__22__configuration_8h_a376db6e136a39525e82048442a542020}\label{rd__22__configuration_8h_a376db6e136a39525e82048442a542020}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!timerDelayRoot@{timerDelayRoot}}
+\index{timerDelayRoot@{timerDelayRoot}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{timerDelayRoot}{timerDelayRoot}}
+{\footnotesize\ttfamily \#define timer\+Delay\+Root~40000}
+
+
+
+Reset the node after this interval. 
+
+When a node doesn\textquotesingle{}t receieve a message from the root for this period of time it will reset itsself.
+
+The root node will send messages at set intervals defined in \mbox{\hyperlink{rd__22__configuration_8h_a1d961f597c22e57e305b290a4758e87f}{timer\+Delay}}. This should always be atleast two times the \mbox{\hyperlink{rd__22__configuration_8h_a1d961f597c22e57e305b290a4758e87f}{timer\+Delay}}.
+
+Time in miliseconds. \mbox{\Hypertarget{rd__22__configuration_8h_ae9bf3e80912bb302be86be72a14880ec}\label{rd__22__configuration_8h_ae9bf3e80912bb302be86be72a14880ec}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!timerDelayRSSI@{timerDelayRSSI}}
+\index{timerDelayRSSI@{timerDelayRSSI}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{timerDelayRSSI}{timerDelayRSSI}}
+{\footnotesize\ttfamily \#define timer\+Delay\+RSSI~30000}
+
+
+
+The nodes gets assigned as root after this interval. 
+
+When a node doesn\textquotesingle{}t receieve RSSI information from other nodes for this period of time it will assign itself as root.
+
+Time in miliseconds. \mbox{\Hypertarget{rd__22__configuration_8h_a33ea1b9be62c9bbff886118f9049a69d}\label{rd__22__configuration_8h_a33ea1b9be62c9bbff886118f9049a69d}} 
+\index{rd\_22\_configuration.h@{rd\_22\_configuration.h}!token\_secr@{token\_secr}}
+\index{token\_secr@{token\_secr}!rd\_22\_configuration.h@{rd\_22\_configuration.h}}
+\doxysubsubsection{\texorpdfstring{token\_secr}{token\_secr}}
+{\footnotesize\ttfamily \#define token\+\_\+secr~\char`\"{}Bearer ey\+J0e\+XAi\+Oi\+JKV1\+Qi\+LCJhb\+Gci\+Oi\+JIUz\+I1\+Ni\+J9.\+ey\+Jpc3\+Mi\+Oi\+I4\+YTMy\+YWI2\+ZDMz\+NGE0\+Mj\+Iz\+ODM5\+Mz\+Iz\+Yz\+Q4\+MTE5\+Yz\+E2\+OCIs\+Imlhd\+CI6\+MTY0\+OTE2\+Mjc1\+Niwi\+ZXhw\+Ijox\+OTY0\+NTIy\+Nz\+U2f\+Q.\+AXA7u\+Us4c\+RBx\+NI0\+JDZGX1\+U9fqrxu\+Le\+Wr\+\_\+\+Xi\+N5\+\_\+j\+Rndk\char`\"{}}
+
+
+
+Bearer token for Home Assistant. 
+
+Long lived access token in Home Assistant (\href{https://developers.home-assistant.io/docs/auth_api/}{\texttt{ https\+://developers.\+home-\/assistant.\+io/docs/auth\+\_\+api/}}) 

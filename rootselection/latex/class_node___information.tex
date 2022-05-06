@@ -1,0 +1,258 @@
+\hypertarget{class_node___information}{}\doxysection{Node\+\_\+\+Information Class Reference}
+\label{class_node___information}\index{Node\_Information@{Node\_Information}}
+
+
+Class of a node.  
+
+
+
+
+{\ttfamily \#include $<$rd\+\_\+22\+\_\+node\+\_\+class.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_node___information_af17cd635331041cfdfb706829069ad84}{set\+Node\+ID}} (String Id)
+\begin{DoxyCompactList}\small\item\em Set the node ID value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node___information_a5f39b9ce8828cbf07dcc59b4395d19a1}{set\+RSSI}} (int rssi)
+\begin{DoxyCompactList}\small\item\em Set the RSSI value. Received Signal Strength Indicator (RSSI) is the measurement of how strong the signal of a router or access point is to a device. We use this measurement to determine which node has the better connection to the Home Assistant access point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node___information_a99d8c2d94dac6661c948069b5e5d755c}{set\+Root\+ID}} (int address)
+\begin{DoxyCompactList}\small\item\em Set the address of the root node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node___information_aadf659515696552e730048f4baecebbd}{set\+IAm\+Root}} (bool state)
+\begin{DoxyCompactList}\small\item\em Set root status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node___information_a9f0f60c48d84559283c6e0c053bb00fc}{set\+Root\+Found}} (bool state)
+\begin{DoxyCompactList}\small\item\em Set root found status. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{class_node___information_adb90db7e79a057036916051f2daaab2a}{get\+Node\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Get the Node Id of this node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_node___information_a80eb95b38698673366ae84db6e956864}{get\+RSSI}} ()
+\begin{DoxyCompactList}\small\item\em Get the RSSI of this node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_node___information_afe12903637adf933df4e8c5b0438ba2e}{get\+Root\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Get the address of the root node. We send our measurements to this address. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node___information_a037472bd81ba1f0467259d576adabfd8}{get\+IAm\+Root}} ()
+\begin{DoxyCompactList}\small\item\em Returns the root status of this node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node___information_a8b996704a08afbbb93291ff01b6ba773}{get\+Root\+Found}} ()
+\begin{DoxyCompactList}\small\item\em Return the state of the root. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{class_node___information_ad90eb23b137c77d94bad7b9a437e05ff}{node\+ID}}
+\begin{DoxyCompactList}\small\item\em The chip ID of this node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_node___information_a3b769ea94798ff2f7d30d08df4160dfa}{root\+ID}}
+\begin{DoxyCompactList}\small\item\em Chip ID of the root node, we have to send messages to this node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_node___information_a0e8ac74167ea215aeb0c6eb2e3583f68}{RSSI}}
+\begin{DoxyCompactList}\small\item\em RSSI value of the node and the Home Assistant AP. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node___information_a0c697004ece0f0fac7dbe3222e612e93}{i\+Am\+Root}}
+\begin{DoxyCompactList}\small\item\em This value is true when this node is the root. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node___information_a5ceb6ed064bf65b68c928368a54f973a}{root\+Found}}
+\begin{DoxyCompactList}\small\item\em This value is true when there is a root node in the network. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class of a node. 
+
+This class will contain all the information about the node. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_node___information_a037472bd81ba1f0467259d576adabfd8}\label{class_node___information_a037472bd81ba1f0467259d576adabfd8}} 
+\index{Node\_Information@{Node\_Information}!getIAmRoot@{getIAmRoot}}
+\index{getIAmRoot@{getIAmRoot}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{getIAmRoot()}{getIAmRoot()}}
+{\footnotesize\ttfamily bool Node\+\_\+\+Information\+::get\+IAm\+Root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the root status of this node. 
+
+\begin{DoxyReturn}{Returns}
+true This node is the root. 
+
+false This node is not root. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node___information_adb90db7e79a057036916051f2daaab2a}\label{class_node___information_adb90db7e79a057036916051f2daaab2a}} 
+\index{Node\_Information@{Node\_Information}!getNodeID@{getNodeID}}
+\index{getNodeID@{getNodeID}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{getNodeID()}{getNodeID()}}
+{\footnotesize\ttfamily String Node\+\_\+\+Information\+::get\+Node\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Node Id of this node. 
+
+\begin{DoxyReturn}{Returns}
+String Node ID. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node___information_a8b996704a08afbbb93291ff01b6ba773}\label{class_node___information_a8b996704a08afbbb93291ff01b6ba773}} 
+\index{Node\_Information@{Node\_Information}!getRootFound@{getRootFound}}
+\index{getRootFound@{getRootFound}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{getRootFound()}{getRootFound()}}
+{\footnotesize\ttfamily bool Node\+\_\+\+Information\+::get\+Root\+Found (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return the state of the root. 
+
+\begin{DoxyReturn}{Returns}
+true If there is a root in the network. 
+
+false If there is no root in the network. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node___information_afe12903637adf933df4e8c5b0438ba2e}\label{class_node___information_afe12903637adf933df4e8c5b0438ba2e}} 
+\index{Node\_Information@{Node\_Information}!getRootID@{getRootID}}
+\index{getRootID@{getRootID}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{getRootID()}{getRootID()}}
+{\footnotesize\ttfamily int Node\+\_\+\+Information\+::get\+Root\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the address of the root node. We send our measurements to this address. 
+
+\begin{DoxyReturn}{Returns}
+int Root chip ID. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node___information_a80eb95b38698673366ae84db6e956864}\label{class_node___information_a80eb95b38698673366ae84db6e956864}} 
+\index{Node\_Information@{Node\_Information}!getRSSI@{getRSSI}}
+\index{getRSSI@{getRSSI}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{getRSSI()}{getRSSI()}}
+{\footnotesize\ttfamily int Node\+\_\+\+Information\+::get\+RSSI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the RSSI of this node. 
+
+\begin{DoxyReturn}{Returns}
+int RSSI value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node___information_aadf659515696552e730048f4baecebbd}\label{class_node___information_aadf659515696552e730048f4baecebbd}} 
+\index{Node\_Information@{Node\_Information}!setIAmRoot@{setIAmRoot}}
+\index{setIAmRoot@{setIAmRoot}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{setIAmRoot()}{setIAmRoot()}}
+{\footnotesize\ttfamily void Node\+\_\+\+Information\+::set\+IAm\+Root (\begin{DoxyParamCaption}\item[{bool}]{state }\end{DoxyParamCaption})}
+
+
+
+Set root status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & true\+: this is the root, false\+: this is not root. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node___information_af17cd635331041cfdfb706829069ad84}\label{class_node___information_af17cd635331041cfdfb706829069ad84}} 
+\index{Node\_Information@{Node\_Information}!setNodeID@{setNodeID}}
+\index{setNodeID@{setNodeID}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{setNodeID()}{setNodeID()}}
+{\footnotesize\ttfamily void Node\+\_\+\+Information\+::set\+Node\+ID (\begin{DoxyParamCaption}\item[{String}]{ID }\end{DoxyParamCaption})}
+
+
+
+Set the node ID value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ID} & The Node ID \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node___information_a9f0f60c48d84559283c6e0c053bb00fc}\label{class_node___information_a9f0f60c48d84559283c6e0c053bb00fc}} 
+\index{Node\_Information@{Node\_Information}!setRootFound@{setRootFound}}
+\index{setRootFound@{setRootFound}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{setRootFound()}{setRootFound()}}
+{\footnotesize\ttfamily void Node\+\_\+\+Information\+::set\+Root\+Found (\begin{DoxyParamCaption}\item[{bool}]{state }\end{DoxyParamCaption})}
+
+
+
+Set root found status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & true\+: root is found, false\+: root is not found. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node___information_a99d8c2d94dac6661c948069b5e5d755c}\label{class_node___information_a99d8c2d94dac6661c948069b5e5d755c}} 
+\index{Node\_Information@{Node\_Information}!setRootID@{setRootID}}
+\index{setRootID@{setRootID}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{setRootID()}{setRootID()}}
+{\footnotesize\ttfamily void Node\+\_\+\+Information\+::set\+Root\+ID (\begin{DoxyParamCaption}\item[{int}]{ID }\end{DoxyParamCaption})}
+
+
+
+Set the address of the root node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ID} & chip\+ID of the root node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node___information_a5f39b9ce8828cbf07dcc59b4395d19a1}\label{class_node___information_a5f39b9ce8828cbf07dcc59b4395d19a1}} 
+\index{Node\_Information@{Node\_Information}!setRSSI@{setRSSI}}
+\index{setRSSI@{setRSSI}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{setRSSI()}{setRSSI()}}
+{\footnotesize\ttfamily void Node\+\_\+\+Information\+::set\+RSSI (\begin{DoxyParamCaption}\item[{int}]{rssi }\end{DoxyParamCaption})}
+
+
+
+Set the RSSI value. Received Signal Strength Indicator (RSSI) is the measurement of how strong the signal of a router or access point is to a device. We use this measurement to determine which node has the better connection to the Home Assistant access point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rssi} & RSSI value (between -\/100 and 0). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_node___information_a0c697004ece0f0fac7dbe3222e612e93}\label{class_node___information_a0c697004ece0f0fac7dbe3222e612e93}} 
+\index{Node\_Information@{Node\_Information}!iAmRoot@{iAmRoot}}
+\index{iAmRoot@{iAmRoot}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{iAmRoot}{iAmRoot}}
+{\footnotesize\ttfamily bool Node\+\_\+\+Information\+::i\+Am\+Root}
+
+
+
+This value is true when this node is the root. 
+
+\mbox{\Hypertarget{class_node___information_ad90eb23b137c77d94bad7b9a437e05ff}\label{class_node___information_ad90eb23b137c77d94bad7b9a437e05ff}} 
+\index{Node\_Information@{Node\_Information}!nodeID@{nodeID}}
+\index{nodeID@{nodeID}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{nodeID}{nodeID}}
+{\footnotesize\ttfamily String Node\+\_\+\+Information\+::node\+ID}
+
+
+
+The chip ID of this node. 
+
+\mbox{\Hypertarget{class_node___information_a5ceb6ed064bf65b68c928368a54f973a}\label{class_node___information_a5ceb6ed064bf65b68c928368a54f973a}} 
+\index{Node\_Information@{Node\_Information}!rootFound@{rootFound}}
+\index{rootFound@{rootFound}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{rootFound}{rootFound}}
+{\footnotesize\ttfamily bool Node\+\_\+\+Information\+::root\+Found}
+
+
+
+This value is true when there is a root node in the network. 
+
+\mbox{\Hypertarget{class_node___information_a3b769ea94798ff2f7d30d08df4160dfa}\label{class_node___information_a3b769ea94798ff2f7d30d08df4160dfa}} 
+\index{Node\_Information@{Node\_Information}!rootID@{rootID}}
+\index{rootID@{rootID}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{rootID}{rootID}}
+{\footnotesize\ttfamily int Node\+\_\+\+Information\+::root\+ID}
+
+
+
+Chip ID of the root node, we have to send messages to this node. 
+
+\mbox{\Hypertarget{class_node___information_a0e8ac74167ea215aeb0c6eb2e3583f68}\label{class_node___information_a0e8ac74167ea215aeb0c6eb2e3583f68}} 
+\index{Node\_Information@{Node\_Information}!RSSI@{RSSI}}
+\index{RSSI@{RSSI}!Node\_Information@{Node\_Information}}
+\doxysubsubsection{\texorpdfstring{RSSI}{RSSI}}
+{\footnotesize\ttfamily int Node\+\_\+\+Information\+::\+RSSI}
+
+
+
+RSSI value of the node and the Home Assistant AP. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/lian/\+Documents/\+Platform\+IO/\+Projects/rootselection/include/\mbox{\hyperlink{rd__22__node__class_8h}{rd\+\_\+22\+\_\+node\+\_\+class.\+h}}\item 
+/\+Users/lian/\+Documents/\+Platform\+IO/\+Projects/rootselection/src/\mbox{\hyperlink{rd__22__node__class_8cpp}{rd\+\_\+22\+\_\+node\+\_\+class.\+cpp}}\end{DoxyCompactItemize}

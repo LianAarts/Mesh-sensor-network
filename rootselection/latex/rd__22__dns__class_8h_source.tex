@@ -1,0 +1,34 @@
+\hypertarget{rd__22__dns__class_8h_source}{}\doxysection{rd\+\_\+22\+\_\+dns\+\_\+class.\+h}
+\label{rd__22__dns__class_8h_source}\index{/Users/lian/Documents/PlatformIO/Projects/rootselection/include/rd\_22\_dns\_class.h@{/Users/lian/Documents/PlatformIO/Projects/rootselection/include/rd\_22\_dns\_class.h}}
+\mbox{\hyperlink{rd__22__dns__class_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef rd\_22\_dns\_class}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define rd\_22\_dns\_class}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <DNSServer.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <ESPAsyncWebServer.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <SPIFFS.h>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{comment}{//***********************************************************************}}
+\DoxyCodeLine{9 \textcolor{comment}{//************************ Captive config window ************************}}
+\DoxyCodeLine{14 \textcolor{comment}{}\textcolor{keyword}{class }\mbox{\hyperlink{class_captive_request_handler}{CaptiveRequestHandler}}}
+\DoxyCodeLine{15     : \textcolor{keyword}{public} AsyncWebHandler \{}
+\DoxyCodeLine{16  \textcolor{keyword}{public}:}
+\DoxyCodeLine{17   \mbox{\hyperlink{class_captive_request_handler_a55a395297a70178cbc2705df7c3cd965}{CaptiveRequestHandler}}() \{\}}
+\DoxyCodeLine{18   \textcolor{keyword}{virtual} \mbox{\hyperlink{class_captive_request_handler_aa4d2f873a3da8158c3572e589bcf47ed}{\string~CaptiveRequestHandler}}() \{\}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20   \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_captive_request_handler_a81537107c18faeb62c7718a87d568fd4}{canHandle}}(AsyncWebServerRequest *request) \{}
+\DoxyCodeLine{21     \textcolor{comment}{// request-\/>addInterestingHeader("{}ANY"{});}}
+\DoxyCodeLine{22     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{23   \}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25   \textcolor{keywordtype}{void} \mbox{\hyperlink{class_captive_request_handler_a2db05ba45b384a0eaa9a7d51f963a94f}{handleRequest}}(AsyncWebServerRequest *request) \{}
+\DoxyCodeLine{27     \textcolor{comment}{// if()}}
+\DoxyCodeLine{28     \textcolor{comment}{//  request-\/>send(SPIFFS, "{}/index.html"{}, String(), false);}}
+\DoxyCodeLine{29     request-\/>send(SPIFFS, \textcolor{stringliteral}{"{}/index.html"{}}, String(), \textcolor{keyword}{false});}
+\DoxyCodeLine{30   \}}
+\DoxyCodeLine{31 \};  }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

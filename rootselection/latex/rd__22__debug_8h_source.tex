@@ -1,0 +1,29 @@
+\hypertarget{rd__22__debug_8h_source}{}\doxysection{rd\+\_\+22\+\_\+debug.\+h}
+\label{rd__22__debug_8h_source}\index{/Users/lian/Documents/PlatformIO/Projects/rootselection/include/rd\_22\_debug.h@{/Users/lian/Documents/PlatformIO/Projects/rootselection/include/rd\_22\_debug.h}}
+\mbox{\hyperlink{rd__22__debug_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#if DEBUG >= 1}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define debug1(x) Serial.print(x)}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#define debugln1(x) Serial.println(x)}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#define debug1(x)}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define debugln1(x)}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#if DEBUG >= 2}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define debug2(x) Serial.print(x)}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define debugln2(x) Serial.println(x)}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define debug2(x)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define debugln2(x)}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#if DEBUG >= 3}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define debug3(x) Serial.print(x)}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define debugln3(x) Serial.println(x)}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define debug3(x)}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define debugln3(x)}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
