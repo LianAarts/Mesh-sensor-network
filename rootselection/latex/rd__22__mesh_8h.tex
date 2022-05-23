@@ -18,7 +18,7 @@ bool \mbox{\hyperlink{rd__22__mesh_8h_af33853c91660c3c7381e91ba58bb0364}{root\+T
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_node___information}{Node\+\_\+\+Information}} \mbox{\hyperlink{rd__22__mesh_8h_a1044458da94efb15060cad8b57168721}{node}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Node object that will store all the information about our node. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -34,11 +34,13 @@ Timer that resets when a keep-\/alive message from the root has been received.
 
 We can use this to check if there is a root node in the network. The root node will send a broadcast at set intervals. We have to select a new node when there is no more root.
 
-\begin{DoxyReturn}{Returns}
-true No message of the root has been received in the timeframe that has been set. 
 
-false A message has been received in the timeframe. 
-\end{DoxyReturn}
+\begin{DoxyRetVals}{Return values}
+{\em true} & No message of the root has been received in the timeframe that has been set. \\
+\hline
+{\em false} & A message has been received in the timeframe. \\
+\hline
+\end{DoxyRetVals}
 \mbox{\Hypertarget{rd__22__mesh_8h_a8e8613de2dd40203c81a54e38c834e0f}\label{rd__22__mesh_8h_a8e8613de2dd40203c81a54e38c834e0f}} 
 \index{rd\_22\_mesh.h@{rd\_22\_mesh.h}!sendBroadcast@{sendBroadcast}}
 \index{sendBroadcast@{sendBroadcast}!rd\_22\_mesh.h@{rd\_22\_mesh.h}}
@@ -102,4 +104,8 @@ This should be done as often as possible.
 \index{node@{node}!rd\_22\_mesh.h@{rd\_22\_mesh.h}}
 \doxysubsubsection{\texorpdfstring{node}{node}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_node___information}{Node\+\_\+\+Information}} node\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Node object that will store all the information about our node. 
 

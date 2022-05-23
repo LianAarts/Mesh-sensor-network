@@ -14,14 +14,16 @@
 \#define \mbox{\hyperlink{main_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}~\mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}
 \item 
 \#define \mbox{\hyperlink{main_8cpp_aeb7a7ba1ab7e0406f1b5ab36d579f585}{LED}}~2
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a352fec4313db424629486e83da01de55}{button\+Pin}}~16
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
-\begin{DoxyCompactList}\small\item\em use namespace \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The setup will run once and will initialise everything needed. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This loop will run forever. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -29,8 +31,10 @@ bool \mbox{\hyperlink{main_8cpp_a1676d54e7d7343d33d9d6cc46784493d}{has\+Run}} = 
 \item 
 bool \mbox{\hyperlink{main_8cpp_a449d43501edbb18da3d4aec4a1610a50}{server\+Needed}} = false
 \item 
+bool \mbox{\hyperlink{main_8cpp_ad43bbd53ee15610b1c213b0b6412d175}{led\+State}} = LOW
+\item 
 int \mbox{\hyperlink{main_8cpp_aeae30c813ed1775e59944bf6d09e9afb}{last\+Time\+Button}} = 0
-\begin{DoxyCompactList}\small\item\em put in class or header \end{DoxyCompactList}\item 
+\item 
 int \mbox{\hyperlink{main_8cpp_a3bf6f737f472dad7f01f18d21d9cd0dc}{last\+Time}} = 0
 \item 
 String \mbox{\hyperlink{main_8cpp_ac72c672187176a6a0d7ade3dc9e30a27}{node\+Name}} = \char`\"{}\char`\"{}
@@ -38,6 +42,12 @@ String \mbox{\hyperlink{main_8cpp_ac72c672187176a6a0d7ade3dc9e30a27}{node\+Name}
 
 
 \doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{main_8cpp_a352fec4313db424629486e83da01de55}\label{main_8cpp_a352fec4313db424629486e83da01de55}} 
+\index{main.cpp@{main.cpp}!buttonPin@{buttonPin}}
+\index{buttonPin@{buttonPin}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{buttonPin}{buttonPin}}
+{\footnotesize\ttfamily \#define button\+Pin~16}
+
 \mbox{\Hypertarget{main_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}\label{main_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}} 
 \index{main.cpp@{main.cpp}!DEBUG@{DEBUG}}
 \index{DEBUG@{DEBUG}!main.cpp@{main.cpp}}
@@ -59,6 +69,10 @@ String \mbox{\hyperlink{main_8cpp_ac72c672187176a6a0d7ade3dc9e30a27}{node\+Name}
 \doxysubsubsection{\texorpdfstring{loop()}{loop()}}
 {\footnotesize\ttfamily void loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+This loop will run forever. 
+
 \mbox{\Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}} 
 \index{main.cpp@{main.cpp}!setup@{setup}}
 \index{setup@{setup}!main.cpp@{main.cpp}}
@@ -67,9 +81,9 @@ String \mbox{\hyperlink{main_8cpp_ac72c672187176a6a0d7ade3dc9e30a27}{node\+Name}
 
 
 
-use namespace 
+The setup will run once and will initialise everything needed. 
 
-remove maybe?
+
 
 \doxysubsection{Variable Documentation}
 \mbox{\Hypertarget{main_8cpp_a1676d54e7d7343d33d9d6cc46784493d}\label{main_8cpp_a1676d54e7d7343d33d9d6cc46784493d}} 
@@ -90,9 +104,11 @@ remove maybe?
 \doxysubsubsection{\texorpdfstring{lastTimeButton}{lastTimeButton}}
 {\footnotesize\ttfamily int last\+Time\+Button = 0}
 
-
-
-put in class or header 
+\mbox{\Hypertarget{main_8cpp_ad43bbd53ee15610b1c213b0b6412d175}\label{main_8cpp_ad43bbd53ee15610b1c213b0b6412d175}} 
+\index{main.cpp@{main.cpp}!ledState@{ledState}}
+\index{ledState@{ledState}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{ledState}{ledState}}
+{\footnotesize\ttfamily bool led\+State = LOW}
 
 \mbox{\Hypertarget{main_8cpp_ac72c672187176a6a0d7ade3dc9e30a27}\label{main_8cpp_ac72c672187176a6a0d7ade3dc9e30a27}} 
 \index{main.cpp@{main.cpp}!nodeName@{nodeName}}

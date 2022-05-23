@@ -12,13 +12,12 @@
  * @brief SSID of the mesh network.
  * 
  */
-#define MESH_PREFIX_secr "LiansNetwork2"
-
+#define MESH_SSID_SECR "LiansNetwork2"
 /**
  * @brief Password of the mesh network.
  * 
  */
-#define MESH_PASSWORD_secr "LiansNetwork2"
+#define MESH_PASSWORD_SECR "LiansNetwork2"
 
 /**
  * @brief Port of the mesh network.
@@ -29,22 +28,22 @@
 /**
  * @brief Bearer token for Home Assistant
  * 
- * Long lived access token in Home Assistant (https://developers.home-assistant.io/docs/auth_api/)
+ * Long-lived access token in Home Assistant (https://developers.home-assistant.io/docs/auth_api/)
  * 
  */
-#define token_secr "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI4YTMyYWI2ZDMzNGE0MjIzODM5MzIzYzQ4MTE5YzE2OCIsImlhdCI6MTY0OTE2Mjc1NiwiZXhwIjoxOTY0NTIyNzU2fQ.AXA7uUs4cRBxNI0JDZGX1U9fqrxuLeWr_XiN5_jRndk"
+#define TOKEN_SECR "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI4YTMyYWI2ZDMzNGE0MjIzODM5MzIzYzQ4MTE5YzE2OCIsImlhdCI6MTY0OTE2Mjc1NiwiZXhwIjoxOTY0NTIyNzU2fQ.AXA7uUs4cRBxNI0JDZGX1U9fqrxuLeWr_XiN5_jRndk"
 
 /**
  * @brief SSID of the network the root needs to be connected to.
  * 
  */
-#define ssidScan_secr "home-assistant-AP"
+#define SSID_SCAN_SECR "home-assistant-AP"
 
 /**
  * @brief Password of the network the root needs to connect to.
  * 
  */
-#define passScan_secr "networkubdx"
+#define PASS_SCAN_SECR "networkubdx"
 
 /**
  * @brief SSID for the configuration access point of the node.
@@ -72,38 +71,38 @@
 /**
  * @brief Interval between messages to the mesh network.
  * 
- * if sensornode: single message with sensordata will be send
+ * if sensor node: single message with sensor data will be sent
  * 
- * if rootnode: broadcast essage with root information will be send
+ * if root node: broadcast message with root information will be sent
  */
 #define timerDelay 10000
 
 /**
  * @brief The amount of time the button has to be pressed for a name reset.
  */
-#define timerDelayButton 10000
+#define timerDelayButton 5000
 
 
 /**
  * @brief Reset the node after this interval.
  * 
- * When a node doesn't receieve a message from the root
- * for this period of time it will reset itsself.
+ * When a node doesn't receive a message from the root
+ * for this period it will reset itself.
  * 
  * The root node will send messages at set intervals defined in #timerDelay.
- * This should always be atleast two times the #timerDelay.
+ * This should always be at least two times the #timerDelay.
  * 
- * Time in miliseconds.
+ * Time in milliseconds.
  */
 #define timerDelayRoot 40000
 
 /**
  * @brief The nodes gets assigned as root after this interval
  * 
- * When a node doesn't receieve RSSI information from other 
- * nodes for this period of time it will assign itself as root.
+ * When a node doesn't receive RSSI information from other 
+ * nodes for this period will assign themselves as root.
  * 
- * Time in miliseconds.
+ * Time in milliseconds.
  */
 #define timerDelayRSSI 30000
 

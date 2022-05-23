@@ -25,6 +25,30 @@
 var NAVTREE =
 [
   [ "Mesh network node", "index.html", [
+    [ "Mesh Network of Environmental Sensors", "index.html", [
+      [ "File layout", "index.html#autotoc_md1", null ],
+      [ "Necessary steps", "index.html#autotoc_md2", [
+        [ "Extra functionality:", "index.html#autotoc_md3", null ],
+        [ "1. Configuration of the identifier", "index.html#autotoc_md4", [
+          [ "Dependencies:", "index.html#autotoc_md5", null ]
+        ] ],
+        [ "2. Measure RSSI:", "index.html#autotoc_md6", [
+          [ "Dependencies:", "index.html#autotoc_md7", null ]
+        ] ],
+        [ "3. Setup the mesh:", "index.html#autotoc_md8", [
+          [ "Dependencies:", "index.html#autotoc_md9", null ]
+        ] ],
+        [ "4. Select a root", "index.html#autotoc_md10", [
+          [ "Dependencies:", "index.html#autotoc_md11", null ]
+        ] ],
+        [ "5. Connect to access point", "index.html#autotoc_md12", [
+          [ "Dependencies:", "index.html#autotoc_md13", null ]
+        ] ],
+        [ "6. Send measurements", "index.html#autotoc_md14", [
+          [ "Dependencies:", "index.html#autotoc_md15", null ]
+        ] ]
+      ] ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

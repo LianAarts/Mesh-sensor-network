@@ -11,13 +11,31 @@
 #define ssid AP_NAME
 // ssid for the setup window
 
+/**
+ * @brief Object of the webserver on port 80.
+ * 
+ */
 AsyncWebServer server(80);
 // server on port 80
+
+/**
+ * @brief DNS server for the captive window.
+ * 
+ */
 DNSServer dnsServer;
 // used for the captive window
 
+/**
+ * @brief Name of the field in the HTML file.
+ * 
+ */
 String PARAM_NAME = "name";
 // for AP input
+
+/**
+ * @brief Variable that will store the input of our webserver.
+ * 
+ */
 String inputName = "";
 
 //***********************************************************************

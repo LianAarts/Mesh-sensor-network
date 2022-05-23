@@ -7,11 +7,18 @@
 #define DEBUG DEBUG_LEVEL
 #include "rd_22_debug.h"
 
-StaticJsonDocument<250> jsonDocument;
-char buffer[250];
-
+/**
+ * @brief API server object.
+ * 
+ */
 WebServer APIserver(80);
 // make our webserver object
+
+/**
+ * @brief Json object with a size of 200 bytes.
+ * 
+ */
+StaticJsonDocument<250> jsonDocument;
 
 /**
  * @brief When we receive a Post request from Home Assistant this function is
@@ -38,7 +45,7 @@ void handlePost() {
 }
 
 /**
- * @brief Setup the REST API server we use for the messages from Home Assistant
+ * @brief Set up the REST API server we use for the messages from Home Assistant
  * to the mesh network.
  *
  */

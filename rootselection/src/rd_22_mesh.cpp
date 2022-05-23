@@ -10,24 +10,49 @@
 #define DEBUG DEBUG_LEVEL
 #include "rd_22_debug.h"
 
-#define MESH_PREFIX MESH_PREFIX_secr
-#define MESH_PASSWORD MESH_PASSWORD_secr
+#define MESH_PREFIX MESH_SSID_SECR
+#define MESH_PASSWORD MESH_PASSWORD_SECR
 #define MESH_PORT MESH_PORT_conf
 // configuration for the mesh network
 
 // Scheduler userScheduler; // to control your personal task
 
+/**
+ * @brief Json object with a size of 512 bytes.
+ * 
+ */
 DynamicJsonDocument doc(512);
+/**
+ * @brief JSON array object
+ * Because we send a JSON array we also need a JSON array object.
+ * 
+ */
 JsonArray arr;
 
+/**
+ * @brief Mesh object
+ * 
+ */
 painlessMesh mesh;
 // make a mesh object
 
+/**
+ * @brief Node object that will store all the information about our node.
+ * 
+ */
 Node_Information node;
 
+/**
+ * @brief Variable that will store timing information.
+ * 
+ */
 int lastTimeRSSI = 0;
 // When there is no message with RSSI information for 30 seconds
 
+/**
+ * @brief Variable that will store timing information.
+ * 
+ */
 int lastTimeRoot = 0;
 // When there is no root for 40 seconds
 
@@ -39,9 +64,9 @@ int lastTimeRoot = 0;
  * The root node will send a broadcast at set intervals.
  * We have to select a new node when there is no more root.
  *
- * @return true No message of the root has been received in the timeframe that
+ * @retval true No message of the root has been received in the timeframe that
  * has been set.
- * @return false A message has been received in the timeframe.
+ * @retval false A message has been received in the timeframe.
  */
 // timer that resets when keep alive message from root has been received
 // return a True if we have not received a message from the root for 40 seconds
@@ -192,7 +217,7 @@ void newConnectionCallback(uint32_t nodeId) {
 }
 
 /**
- * @brief When we have a connection changes in the mesh network this function is
+ * @brief When we have a connection change in the mesh network this function is
  * called.
  *
  * The layout is printed when this happens
@@ -202,6 +227,7 @@ void changedConnectionCallback() {
   debug3("Changed Connection, ");
   debugln3(mesh.subConnectionJson(true).c_str());
 }
+
 
 /**
  * @brief This function is called when a node syncs its own time with that of

@@ -13,7 +13,7 @@
 Adafruit_BME280 BME280;
 
 /**
- * @brief setup the BME680 sensor
+ * @brief setup of the BME680 sensor
  *
  */
 void setupSensor280() { BME280.begin(); }

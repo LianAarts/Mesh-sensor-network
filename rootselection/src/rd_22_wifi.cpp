@@ -7,24 +7,53 @@
 #define DEBUG DEBUG_LEVEL
 #include "rd_22_debug.h"
 
-#define token token_secr
-#define ssidScan ssidScan_secr
-#define passScan passScan_secr
+#define token TOKEN_SECR
+#define ssidScan SSID_SCAN_SECR
+#define passScan PASS_SCAN_SECR
 // get the token from the secret.h
 
-const char *test = "home-assistant-AP";
-
+/**
+ * @brief Http client object.
+ * 
+ */
 HTTPClient http;
 // String serverName = "";
 
+/**
+ * @brief Wifi client object.
+ * 
+ */
 WiFiClient client;
 
+/**
+ * @brief Ip address object
+ * 
+ */
 IPAddress ip;
 
+/**
+ * @brief variable will store the measurement data of our POST request to Home Assistant.
+ * 
+ */
 String httpRequestData = "";
+/**
+ * @brief Variable will store the attributes of our POST request.
+ * 
+ */
 String httpAtributes = "";
+
+/**
+ * @brief The response code of our POST request to Home Assistant.
+ * Response codes of 200 or 201 are successful.
+ * 
+ */
 int httpResponseCode = 0;
 
+/**
+ * @brief Get the IP of the node.
+ * 
+ * @return String The IP address in String format.
+ */
 String getIp() { return (ip.toString()); }
 
 //***********************************************************************
@@ -76,16 +105,17 @@ void post(String sensorVal, String name, String unit) {
 //***********************************************************************
 //**************************** Network scan *****************************
 /**
- * @brief Measure the RSSI of the Home Assistant access point
+ * @brief Measure the RSSI of the Home Assistant access point.
+ * 
+ * We search the index of the desired network and we measure the RSSI.
  *
  * Received Signal Strength Indicator (RSSI) is the measurement of how strong
  * the signal of a router or access point is to a device. The RSSI is a value
- * between -100 and 0. Close to 0 means a better connection
+ * between -100 and 0. An RSSI closer to 0 means a better connection.
  * 
- * There is no connection to the access point. 
- * We search the index of the desired network and we measure the RSSI.
+ * When there is no connection to the access point we set the value to -100.
  *
- * @return int RSSI, a value between -100 and 0
+ * @return int RSSI, a value between -100 and 0.
  */
 int networkScan() {
   int RSSI = -100;
@@ -94,7 +124,7 @@ int networkScan() {
   // Scan all the networks that are nearby
   for (int i = 0; i < numberOfNetworks; i++) {
     // run trough all the networks
-    if (strcmp(WiFi.SSID(i).c_str(), ssidScan_secr) == 0) {
+    if (strcmp(WiFi.SSID(i).c_str(), ssidScan) == 0) {
       //If we found the desired network we measure the SSID
       // debug2(i);
       debug2("Network name: ");

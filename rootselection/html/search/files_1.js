@@ -16,5 +16,6 @@ var searchData=
   ['rd_5f22_5fsetup_5fportal_2ecpp_13',['rd_22_setup_portal.cpp',['../rd__22__setup__portal_8cpp.html',1,'']]],
   ['rd_5f22_5fsetup_5fportal_2eh_14',['rd_22_setup_portal.h',['../rd__22__setup__portal_8h.html',1,'']]],
   ['rd_5f22_5fwifi_2ecpp_15',['rd_22_wifi.cpp',['../rd__22__wifi_8cpp.html',1,'']]],
-  ['rd_5f22_5fwifi_2eh_16',['rd_22_wifi.h',['../rd__22__wifi_8h.html',1,'']]]
+  ['rd_5f22_5fwifi_2eh_16',['rd_22_wifi.h',['../rd__22__wifi_8h.html',1,'']]],
+  ['readme_2emd_17',['readme.md',['../readme_8md.html',1,'']]]
 ];

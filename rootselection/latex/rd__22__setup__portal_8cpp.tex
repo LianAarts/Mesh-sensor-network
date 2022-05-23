@@ -18,7 +18,7 @@
 \begin{DoxyCompactItemize}
 \item 
 Async\+Web\+Server \mbox{\hyperlink{rd__22__setup__portal_8cpp_a85f30d66aa1231313c8553fd485b22b1}{server}} (80)
-\item 
+\begin{DoxyCompactList}\small\item\em Object of the webserver on port 80. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{rd__22__setup__portal_8cpp_ad4b714b34e039a9e8a50cae4e8776ed5}{read\+Spiffs}} (String file\+Name)
 \begin{DoxyCompactList}\small\item\em Read a file in spiffs and return the content. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{rd__22__setup__portal_8cpp_a7f294e1ebc0b6d484c6cd5017869c63c}{write\+Spiffs}} (String data, String file\+Name)
@@ -33,11 +33,11 @@ void \mbox{\hyperlink{rd__22__setup__portal_8cpp_aff9b764ae7f5c309f499bb2b506ca6
 \begin{DoxyCompactItemize}
 \item 
 DNSServer \mbox{\hyperlink{rd__22__setup__portal_8cpp_a52c5394c861b62875409604eedc0fcd7}{dns\+Server}}
-\item 
+\begin{DoxyCompactList}\small\item\em DNS server for the captive window. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{rd__22__setup__portal_8cpp_aa048745e9a60bd1f72122826f81c43ee}{PARAM\+\_\+\+NAME}} = \char`\"{}name\char`\"{}
-\item 
+\begin{DoxyCompactList}\small\item\em Name of the field in the HTML file. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{rd__22__setup__portal_8cpp_a01fae7ad7973e7b86c2dcb52a7d4acec}{input\+Name}} = \char`\"{}\char`\"{}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Variable that will store the input of our webserver. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -100,6 +100,10 @@ String Content of the file
 \doxysubsubsection{\texorpdfstring{server()}{server()}}
 {\footnotesize\ttfamily Async\+Web\+Server server (\begin{DoxyParamCaption}\item[{80}]{ }\end{DoxyParamCaption})}
 
+
+
+Object of the webserver on port 80. 
+
 \mbox{\Hypertarget{rd__22__setup__portal_8cpp_a641c43a509987a62927fdb165032c576}\label{rd__22__setup__portal_8cpp_a641c43a509987a62927fdb165032c576}} 
 \index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!setupWebserver@{setupWebserver}}
 \index{setupWebserver@{setupWebserver}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
@@ -141,15 +145,27 @@ This will overwrite all the data!
 \doxysubsubsection{\texorpdfstring{dnsServer}{dnsServer}}
 {\footnotesize\ttfamily DNSServer dns\+Server}
 
+
+
+DNS server for the captive window. 
+
 \mbox{\Hypertarget{rd__22__setup__portal_8cpp_a01fae7ad7973e7b86c2dcb52a7d4acec}\label{rd__22__setup__portal_8cpp_a01fae7ad7973e7b86c2dcb52a7d4acec}} 
 \index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!inputName@{inputName}}
 \index{inputName@{inputName}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
 \doxysubsubsection{\texorpdfstring{inputName}{inputName}}
 {\footnotesize\ttfamily String input\+Name = \char`\"{}\char`\"{}}
 
+
+
+Variable that will store the input of our webserver. 
+
 \mbox{\Hypertarget{rd__22__setup__portal_8cpp_aa048745e9a60bd1f72122826f81c43ee}\label{rd__22__setup__portal_8cpp_aa048745e9a60bd1f72122826f81c43ee}} 
 \index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!PARAM\_NAME@{PARAM\_NAME}}
 \index{PARAM\_NAME@{PARAM\_NAME}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
 \doxysubsubsection{\texorpdfstring{PARAM\_NAME}{PARAM\_NAME}}
 {\footnotesize\ttfamily String PARAM\+\_\+\+NAME = \char`\"{}name\char`\"{}}
+
+
+
+Name of the field in the HTML file. 
 
