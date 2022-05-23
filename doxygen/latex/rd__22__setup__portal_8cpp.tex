@@ -1,0 +1,190 @@
+\hypertarget{rd__22__setup__portal_8cpp}{}\doxysection{/\+Users/lian/\+Documents/\+Platform\+IO/\+Projects/rootselection/src/rd\+\_\+22\+\_\+setup\+\_\+portal.cpp File Reference}
+\label{rd__22__setup__portal_8cpp}\index{/Users/lian/Documents/PlatformIO/Projects/rootselection/src/rd\_22\_setup\_portal.cpp@{/Users/lian/Documents/PlatformIO/Projects/rootselection/src/rd\_22\_setup\_portal.cpp}}
+
+
+Reading and writing EEPROM. Captive configuration portal.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$DNSServer.\+h$>$}\newline
+{\ttfamily \#include $<$ESPAsync\+Web\+Server.\+h$>$}\newline
+{\ttfamily \#include $<$SPIFFS.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rd\+\_\+22\+\_\+dns\+\_\+class.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rd\+\_\+22\+\_\+configuration.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rd\+\_\+22\+\_\+debug.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rd__22__setup__portal_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}~\mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}
+\item 
+\#define \mbox{\hyperlink{rd__22__setup__portal_8cpp_abd15b8fcd3b82c2827693b9fd882a206}{ssid}}~\mbox{\hyperlink{rd__22__configuration_8h_adfec9dfe4e00719339c143a88480d8db}{AP\+\_\+\+NAME}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Async\+Web\+Server \mbox{\hyperlink{rd__22__setup__portal_8cpp_a85f30d66aa1231313c8553fd485b22b1}{server}} (80)
+\begin{DoxyCompactList}\small\item\em Object of the webserver on port 80. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{rd__22__setup__portal_8cpp_ad4b714b34e039a9e8a50cae4e8776ed5}{read\+Spiffs}} (String file\+Name)
+\begin{DoxyCompactList}\small\item\em Read a file in spiffs and return the content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__setup__portal_8cpp_a7f294e1ebc0b6d484c6cd5017869c63c}{write\+Spiffs}} (String data, String file\+Name)
+\begin{DoxyCompactList}\small\item\em Write to a file in Spiffs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__setup__portal_8cpp_a799e5e955008130fecf7097d5edec20c}{next\+Dns\+Request}} ()
+\begin{DoxyCompactList}\small\item\em Handler for DNS requests. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__setup__portal_8cpp_a641c43a509987a62927fdb165032c576}{setup\+Webserver}} ()
+\begin{DoxyCompactList}\small\item\em Webserver that is needed when no name is saved in Spiffs With this small webserver, we enable the user to connect to the node and configure the name of the node. This name will be used in Home Assistant as the entity ID. Example\+: name = node -\/\texorpdfstring{$>$}{>} entity ID = node.\+temperature. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__setup__portal_8cpp_aff9b764ae7f5c309f499bb2b506ca6ce}{end\+Webserver}} ()
+\begin{DoxyCompactList}\small\item\em End the webserver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+DNSServer \mbox{\hyperlink{rd__22__setup__portal_8cpp_a52c5394c861b62875409604eedc0fcd7}{dns\+Server}}
+\begin{DoxyCompactList}\small\item\em DNS server for the captive window. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{rd__22__setup__portal_8cpp_aa048745e9a60bd1f72122826f81c43ee}{PARAM\+\_\+\+NAME}} = \char`\"{}name\char`\"{}
+\begin{DoxyCompactList}\small\item\em Name of the field in the HTML file. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{rd__22__setup__portal_8cpp_a01fae7ad7973e7b86c2dcb52a7d4acec}{input\+Name}} = \char`\"{}\char`\"{}
+\begin{DoxyCompactList}\small\item\em Variable that will store the input of our webserver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Reading and writing EEPROM. Captive configuration portal. 
+
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/05-\/23
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rd__22__setup__portal_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}\label{rd__22__setup__portal_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}} 
+\index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!DEBUG@{DEBUG}}
+\index{DEBUG@{DEBUG}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{DEBUG}{DEBUG}}
+{\footnotesize\ttfamily \#define DEBUG~\mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}}
+
+\mbox{\Hypertarget{rd__22__setup__portal_8cpp_abd15b8fcd3b82c2827693b9fd882a206}\label{rd__22__setup__portal_8cpp_abd15b8fcd3b82c2827693b9fd882a206}} 
+\index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!ssid@{ssid}}
+\index{ssid@{ssid}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{ssid}{ssid}}
+{\footnotesize\ttfamily \#define ssid~\mbox{\hyperlink{rd__22__configuration_8h_adfec9dfe4e00719339c143a88480d8db}{AP\+\_\+\+NAME}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rd__22__setup__portal_8cpp_aff9b764ae7f5c309f499bb2b506ca6ce}\label{rd__22__setup__portal_8cpp_aff9b764ae7f5c309f499bb2b506ca6ce}} 
+\index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!endWebserver@{endWebserver}}
+\index{endWebserver@{endWebserver}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{endWebserver()}{endWebserver()}}
+{\footnotesize\ttfamily void end\+Webserver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+End the webserver. 
+
+\mbox{\Hypertarget{rd__22__setup__portal_8cpp_a799e5e955008130fecf7097d5edec20c}\label{rd__22__setup__portal_8cpp_a799e5e955008130fecf7097d5edec20c}} 
+\index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!nextDnsRequest@{nextDnsRequest}}
+\index{nextDnsRequest@{nextDnsRequest}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{nextDnsRequest()}{nextDnsRequest()}}
+{\footnotesize\ttfamily void next\+Dns\+Request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handler for DNS requests. 
+
+\mbox{\Hypertarget{rd__22__setup__portal_8cpp_ad4b714b34e039a9e8a50cae4e8776ed5}\label{rd__22__setup__portal_8cpp_ad4b714b34e039a9e8a50cae4e8776ed5}} 
+\index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!readSpiffs@{readSpiffs}}
+\index{readSpiffs@{readSpiffs}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{readSpiffs()}{readSpiffs()}}
+{\footnotesize\ttfamily String read\+Spiffs (\begin{DoxyParamCaption}\item[{String}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Read a file in spiffs and return the content. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & File we want to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String Content of the file 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rd__22__setup__portal_8cpp_a85f30d66aa1231313c8553fd485b22b1}\label{rd__22__setup__portal_8cpp_a85f30d66aa1231313c8553fd485b22b1}} 
+\index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!server@{server}}
+\index{server@{server}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{server()}{server()}}
+{\footnotesize\ttfamily Async\+Web\+Server server (\begin{DoxyParamCaption}\item[{80}]{ }\end{DoxyParamCaption})}
+
+
+
+Object of the webserver on port 80. 
+
+\mbox{\Hypertarget{rd__22__setup__portal_8cpp_a641c43a509987a62927fdb165032c576}\label{rd__22__setup__portal_8cpp_a641c43a509987a62927fdb165032c576}} 
+\index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!setupWebserver@{setupWebserver}}
+\index{setupWebserver@{setupWebserver}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{setupWebserver()}{setupWebserver()}}
+{\footnotesize\ttfamily void setup\+Webserver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Webserver that is needed when no name is saved in Spiffs With this small webserver, we enable the user to connect to the node and configure the name of the node. This name will be used in Home Assistant as the entity ID. Example\+: name = node -\/\texorpdfstring{$>$}{>} entity ID = node.\+temperature. 
+
+The DNS server is used to make a captive portal. same here
+
+same here\mbox{\Hypertarget{rd__22__setup__portal_8cpp_a7f294e1ebc0b6d484c6cd5017869c63c}\label{rd__22__setup__portal_8cpp_a7f294e1ebc0b6d484c6cd5017869c63c}} 
+\index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!writeSpiffs@{writeSpiffs}}
+\index{writeSpiffs@{writeSpiffs}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{writeSpiffs()}{writeSpiffs()}}
+{\footnotesize\ttfamily void write\+Spiffs (\begin{DoxyParamCaption}\item[{String}]{data,  }\item[{String}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Write to a file in Spiffs. 
+
+\begin{DoxyWarning}{Warning}
+This will overwrite all the data!
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & String that will be written in the file \\
+\hline
+{\em file\+Name} & File we want to write to \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{rd__22__setup__portal_8cpp_a52c5394c861b62875409604eedc0fcd7}\label{rd__22__setup__portal_8cpp_a52c5394c861b62875409604eedc0fcd7}} 
+\index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!dnsServer@{dnsServer}}
+\index{dnsServer@{dnsServer}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{dnsServer}{dnsServer}}
+{\footnotesize\ttfamily DNSServer dns\+Server}
+
+
+
+DNS server for the captive window. 
+
+\mbox{\Hypertarget{rd__22__setup__portal_8cpp_a01fae7ad7973e7b86c2dcb52a7d4acec}\label{rd__22__setup__portal_8cpp_a01fae7ad7973e7b86c2dcb52a7d4acec}} 
+\index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!inputName@{inputName}}
+\index{inputName@{inputName}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{inputName}{inputName}}
+{\footnotesize\ttfamily String input\+Name = \char`\"{}\char`\"{}}
+
+
+
+Variable that will store the input of our webserver. 
+
+\mbox{\Hypertarget{rd__22__setup__portal_8cpp_aa048745e9a60bd1f72122826f81c43ee}\label{rd__22__setup__portal_8cpp_aa048745e9a60bd1f72122826f81c43ee}} 
+\index{rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}!PARAM\_NAME@{PARAM\_NAME}}
+\index{PARAM\_NAME@{PARAM\_NAME}!rd\_22\_setup\_portal.cpp@{rd\_22\_setup\_portal.cpp}}
+\doxysubsubsection{\texorpdfstring{PARAM\_NAME}{PARAM\_NAME}}
+{\footnotesize\ttfamily String PARAM\+\_\+\+NAME = \char`\"{}name\char`\"{}}
+
+
+
+Name of the field in the HTML file. 
+

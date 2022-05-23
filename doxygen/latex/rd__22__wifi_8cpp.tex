@@ -1,0 +1,239 @@
+\hypertarget{rd__22__wifi_8cpp}{}\doxysection{/\+Users/lian/\+Documents/\+Platform\+IO/\+Projects/rootselection/src/rd\+\_\+22\+\_\+wifi.cpp File Reference}
+\label{rd__22__wifi_8cpp}\index{/Users/lian/Documents/PlatformIO/Projects/rootselection/src/rd\_22\_wifi.cpp@{/Users/lian/Documents/PlatformIO/Projects/rootselection/src/rd\_22\_wifi.cpp}}
+
+
+Measuring RSSI, connecting to the server, POST request and JSON deserialization.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino\+Json.\+h$>$}\newline
+{\ttfamily \#include $<$HTTPClient.\+h$>$}\newline
+{\ttfamily \#include $<$Wi\+Fi.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rd\+\_\+22\+\_\+configuration.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rd\+\_\+22\+\_\+debug.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rd__22__wifi_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}~\mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}
+\item 
+\#define \mbox{\hyperlink{rd__22__wifi_8cpp_a29ec70fa12d4cf5af9b0aadd7bc27875}{token}}~\mbox{\hyperlink{rd__22__configuration_8h_a3cb0a34fa1f839f37c60073c252159c6}{TOKEN\+\_\+\+SECR}}
+\item 
+\#define \mbox{\hyperlink{rd__22__wifi_8cpp_ac015ef281be46553436f6ee16b2e5e68}{ssid\+Scan}}~\mbox{\hyperlink{rd__22__configuration_8h_a3731e20afd485a20f45d87a5fac14dfd}{SSID\+\_\+\+SCAN\+\_\+\+SECR}}
+\item 
+\#define \mbox{\hyperlink{rd__22__wifi_8cpp_a3f54551baefecea1c8b34f25378585c1}{pass\+Scan}}~\mbox{\hyperlink{rd__22__configuration_8h_a2d93710b326c349eceb334c43069e714}{PASS\+\_\+\+SCAN\+\_\+\+SECR}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{rd__22__wifi_8cpp_a7f6ad1fbb8ddfbceb2416ca94574252a}{get\+Ip}} ()
+\begin{DoxyCompactList}\small\item\em Get the IP of the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__wifi_8cpp_a433a2bfe9f984e7dbd6e66f7a251852d}{post}} (String sensor\+Val, String name, String unit)
+\begin{DoxyCompactList}\small\item\em Post the measurement to the Home Assistant REST API. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rd__22__wifi_8cpp_ab59433792d0c66f5863aff6b77069863}{network\+Scan}} ()
+\begin{DoxyCompactList}\small\item\em Measure the RSSI of the Home Assistant access point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__wifi_8cpp_a6d6c298c788eeb7b18a19d82a77761b3}{setup\+Network}} ()
+\begin{DoxyCompactList}\small\item\em Connect to the Home Assistant access point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__wifi_8cpp_aa400750636d4d4831176d9358a10ad2b}{split\+Json}} (String json)
+\begin{DoxyCompactList}\small\item\em Split the received JSON in individual measurements so we can POST them to Home Assistant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+HTTPClient \mbox{\hyperlink{rd__22__wifi_8cpp_a58eddff149cd37cc3f16deb0bf67c9c0}{http}}
+\begin{DoxyCompactList}\small\item\em Http client object. \end{DoxyCompactList}\item 
+Wi\+Fi\+Client \mbox{\hyperlink{rd__22__wifi_8cpp_a323dfc205549b3c13f0a25c1b670708a}{client}}
+\begin{DoxyCompactList}\small\item\em Wifi client object. \end{DoxyCompactList}\item 
+IPAddress \mbox{\hyperlink{rd__22__wifi_8cpp_a863c214d56d28a55467c000641e1be91}{ip}}
+\begin{DoxyCompactList}\small\item\em Ip address object. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{rd__22__wifi_8cpp_a76dee866cef104107a6bb2bc8a492924}{http\+Request\+Data}} = \char`\"{}\char`\"{}
+\begin{DoxyCompactList}\small\item\em variable will store the measurement data of our POST request to Home Assistant. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{rd__22__wifi_8cpp_a114aa1458f71b84775e6274fc63a00f9}{http\+Atributes}} = \char`\"{}\char`\"{}
+\begin{DoxyCompactList}\small\item\em Variable will store the attributes of our POST request. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rd__22__wifi_8cpp_a37c34f4f38cdb432d71a76d70ea582ba}{http\+Response\+Code}} = 0
+\begin{DoxyCompactList}\small\item\em The response code of our POST request to Home Assistant. Response codes of 200 or 201 are successful. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Measuring RSSI, connecting to the server, POST request and JSON deserialization. 
+
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/05-\/23
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rd__22__wifi_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}\label{rd__22__wifi_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!DEBUG@{DEBUG}}
+\index{DEBUG@{DEBUG}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{DEBUG}{DEBUG}}
+{\footnotesize\ttfamily \#define DEBUG~\mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}}
+
+\mbox{\Hypertarget{rd__22__wifi_8cpp_a3f54551baefecea1c8b34f25378585c1}\label{rd__22__wifi_8cpp_a3f54551baefecea1c8b34f25378585c1}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!passScan@{passScan}}
+\index{passScan@{passScan}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{passScan}{passScan}}
+{\footnotesize\ttfamily \#define pass\+Scan~\mbox{\hyperlink{rd__22__configuration_8h_a2d93710b326c349eceb334c43069e714}{PASS\+\_\+\+SCAN\+\_\+\+SECR}}}
+
+\mbox{\Hypertarget{rd__22__wifi_8cpp_ac015ef281be46553436f6ee16b2e5e68}\label{rd__22__wifi_8cpp_ac015ef281be46553436f6ee16b2e5e68}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!ssidScan@{ssidScan}}
+\index{ssidScan@{ssidScan}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{ssidScan}{ssidScan}}
+{\footnotesize\ttfamily \#define ssid\+Scan~\mbox{\hyperlink{rd__22__configuration_8h_a3731e20afd485a20f45d87a5fac14dfd}{SSID\+\_\+\+SCAN\+\_\+\+SECR}}}
+
+\mbox{\Hypertarget{rd__22__wifi_8cpp_a29ec70fa12d4cf5af9b0aadd7bc27875}\label{rd__22__wifi_8cpp_a29ec70fa12d4cf5af9b0aadd7bc27875}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!token@{token}}
+\index{token@{token}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily \#define token~\mbox{\hyperlink{rd__22__configuration_8h_a3cb0a34fa1f839f37c60073c252159c6}{TOKEN\+\_\+\+SECR}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rd__22__wifi_8cpp_a7f6ad1fbb8ddfbceb2416ca94574252a}\label{rd__22__wifi_8cpp_a7f6ad1fbb8ddfbceb2416ca94574252a}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!getIp@{getIp}}
+\index{getIp@{getIp}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{getIp()}{getIp()}}
+{\footnotesize\ttfamily String get\+Ip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the IP of the node. 
+
+\begin{DoxyReturn}{Returns}
+String The IP address in String format. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rd__22__wifi_8cpp_ab59433792d0c66f5863aff6b77069863}\label{rd__22__wifi_8cpp_ab59433792d0c66f5863aff6b77069863}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!networkScan@{networkScan}}
+\index{networkScan@{networkScan}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{networkScan()}{networkScan()}}
+{\footnotesize\ttfamily int network\+Scan (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Measure the RSSI of the Home Assistant access point. 
+
+We search the index of the desired network and we measure the RSSI.
+
+Received Signal Strength Indicator (RSSI) is the measurement of how strong the signal of a router or access point is to a device. The RSSI is a value between -\/100 and 0. An RSSI closer to 0 means a better connection.
+
+When there is no connection to the access point we set the value to -\/100.
+
+\begin{DoxyReturn}{Returns}
+int RSSI, a value between -\/100 and 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rd__22__wifi_8cpp_a433a2bfe9f984e7dbd6e66f7a251852d}\label{rd__22__wifi_8cpp_a433a2bfe9f984e7dbd6e66f7a251852d}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!post@{post}}
+\index{post@{post}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}}
+{\footnotesize\ttfamily void post (\begin{DoxyParamCaption}\item[{String}]{sensor\+Val,  }\item[{String}]{name,  }\item[{String}]{unit }\end{DoxyParamCaption})}
+
+
+
+Post the measurement to the Home Assistant REST API. 
+
+This will be an individual entity that can display one value. One sensor will need multiple Posts if it measures more than one value.
+
+We always check the HTTP response of the POST. If the response is -\/1 we don\textquotesingle{}t have a connection to Home Assistant. If this happens we reset the node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor\+Val} & Value of the measurement \\
+\hline
+{\em name} & Entity ID used in Home Assistant \\
+\hline
+{\em unit} & Unit of measurement \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rd__22__wifi_8cpp_a6d6c298c788eeb7b18a19d82a77761b3}\label{rd__22__wifi_8cpp_a6d6c298c788eeb7b18a19d82a77761b3}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!setupNetwork@{setupNetwork}}
+\index{setupNetwork@{setupNetwork}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{setupNetwork()}{setupNetwork()}}
+{\footnotesize\ttfamily void setup\+Network (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Connect to the Home Assistant access point. 
+
+When we are the root we need to send Post requests. We need to connect to the access point to be able to do this. why delay (do some research)\mbox{\Hypertarget{rd__22__wifi_8cpp_aa400750636d4d4831176d9358a10ad2b}\label{rd__22__wifi_8cpp_aa400750636d4d4831176d9358a10ad2b}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!splitJson@{splitJson}}
+\index{splitJson@{splitJson}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{splitJson()}{splitJson()}}
+{\footnotesize\ttfamily void split\+Json (\begin{DoxyParamCaption}\item[{String}]{json }\end{DoxyParamCaption})}
+
+
+
+Split the received JSON in individual measurements so we can POST them to Home Assistant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & JSON input we want to split up \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{rd__22__wifi_8cpp_a323dfc205549b3c13f0a25c1b670708a}\label{rd__22__wifi_8cpp_a323dfc205549b3c13f0a25c1b670708a}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!client@{client}}
+\index{client@{client}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily Wi\+Fi\+Client client}
+
+
+
+Wifi client object. 
+
+\mbox{\Hypertarget{rd__22__wifi_8cpp_a58eddff149cd37cc3f16deb0bf67c9c0}\label{rd__22__wifi_8cpp_a58eddff149cd37cc3f16deb0bf67c9c0}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!http@{http}}
+\index{http@{http}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{http}{http}}
+{\footnotesize\ttfamily HTTPClient http}
+
+
+
+Http client object. 
+
+\mbox{\Hypertarget{rd__22__wifi_8cpp_a114aa1458f71b84775e6274fc63a00f9}\label{rd__22__wifi_8cpp_a114aa1458f71b84775e6274fc63a00f9}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!httpAtributes@{httpAtributes}}
+\index{httpAtributes@{httpAtributes}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{httpAtributes}{httpAtributes}}
+{\footnotesize\ttfamily String http\+Atributes = \char`\"{}\char`\"{}}
+
+
+
+Variable will store the attributes of our POST request. 
+
+\mbox{\Hypertarget{rd__22__wifi_8cpp_a76dee866cef104107a6bb2bc8a492924}\label{rd__22__wifi_8cpp_a76dee866cef104107a6bb2bc8a492924}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!httpRequestData@{httpRequestData}}
+\index{httpRequestData@{httpRequestData}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{httpRequestData}{httpRequestData}}
+{\footnotesize\ttfamily String http\+Request\+Data = \char`\"{}\char`\"{}}
+
+
+
+variable will store the measurement data of our POST request to Home Assistant. 
+
+\mbox{\Hypertarget{rd__22__wifi_8cpp_a37c34f4f38cdb432d71a76d70ea582ba}\label{rd__22__wifi_8cpp_a37c34f4f38cdb432d71a76d70ea582ba}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!httpResponseCode@{httpResponseCode}}
+\index{httpResponseCode@{httpResponseCode}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{httpResponseCode}{httpResponseCode}}
+{\footnotesize\ttfamily int http\+Response\+Code = 0}
+
+
+
+The response code of our POST request to Home Assistant. Response codes of 200 or 201 are successful. 
+
+\mbox{\Hypertarget{rd__22__wifi_8cpp_a863c214d56d28a55467c000641e1be91}\label{rd__22__wifi_8cpp_a863c214d56d28a55467c000641e1be91}} 
+\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!ip@{ip}}
+\index{ip@{ip}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
+\doxysubsubsection{\texorpdfstring{ip}{ip}}
+{\footnotesize\ttfamily IPAddress ip}
+
+
+
+Ip address object. 
+

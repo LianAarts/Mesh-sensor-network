@@ -1,0 +1,59 @@
+\hypertarget{rd__22__680sensor_8h}{}\doxysection{/\+Users/lian/\+Documents/\+Platform\+IO/\+Projects/rootselection/include/rd\+\_\+22\+\_\+680sensor.h File Reference}
+\label{rd__22__680sensor_8h}\index{/Users/lian/Documents/PlatformIO/Projects/rootselection/include/rd\_22\_680sensor.h@{/Users/lian/Documents/PlatformIO/Projects/rootselection/include/rd\_22\_680sensor.h}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$Zanshin\+\_\+\+BME680.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rd__22__680sensor_8h_abe3b0217638808155a0ac7f709f39771}{setup\+Sensor680}} ()
+\begin{DoxyCompactList}\small\item\em setup of the BME680 sensor \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{rd__22__680sensor_8h_ae59aa409df16e98af3f6b8f36b1968c3}{make\+Sensor\+Message680}} (bool is\+Root, String \mbox{\hyperlink{main_8cpp_ac72c672187176a6a0d7ade3dc9e30a27}{node\+Name}}, String IP, String node\+ID)
+\begin{DoxyCompactList}\small\item\em Make the JSON that we send to the root node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rd__22__680sensor_8h_ae59aa409df16e98af3f6b8f36b1968c3}\label{rd__22__680sensor_8h_ae59aa409df16e98af3f6b8f36b1968c3}} 
+\index{rd\_22\_680sensor.h@{rd\_22\_680sensor.h}!makeSensorMessage680@{makeSensorMessage680}}
+\index{makeSensorMessage680@{makeSensorMessage680}!rd\_22\_680sensor.h@{rd\_22\_680sensor.h}}
+\doxysubsubsection{\texorpdfstring{makeSensorMessage680()}{makeSensorMessage680()}}
+{\footnotesize\ttfamily String make\+Sensor\+Message680 (\begin{DoxyParamCaption}\item[{bool}]{is\+Root,  }\item[{String}]{node\+Name,  }\item[{String}]{IP,  }\item[{String}]{node\+ID }\end{DoxyParamCaption})}
+
+
+
+Make the JSON that we send to the root node. 
+
+This JSON is based on the Sen\+ML specification. This one JSON will include multiple measurements.
+
+bn\+: Basename or sensor name (sensor1)
+
+n\+: Measurement name (temperature)
+
+u\+: Unit of Measurement (°C)
+
+v\+: Value (21.\+8)
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Root} & If we are root we also send the IP address of the root so Home Assistant can send API requests to the root. \\
+\hline
+{\em node\+Name} & This is part of the entity ID we want to use in Home Assistant \\
+\hline
+{\em IP} & IP address of the node. \\
+\hline
+{\em node\+ID} & Node\+ID, we use this to check duplicate names in Home Assistant \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String String in JSON format with all the measurements 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rd__22__680sensor_8h_abe3b0217638808155a0ac7f709f39771}\label{rd__22__680sensor_8h_abe3b0217638808155a0ac7f709f39771}} 
+\index{rd\_22\_680sensor.h@{rd\_22\_680sensor.h}!setupSensor680@{setupSensor680}}
+\index{setupSensor680@{setupSensor680}!rd\_22\_680sensor.h@{rd\_22\_680sensor.h}}
+\doxysubsubsection{\texorpdfstring{setupSensor680()}{setupSensor680()}}
+{\footnotesize\ttfamily void setup\+Sensor680 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+setup of the BME680 sensor 
+
+ifdef for different sensors

@@ -1,0 +1,114 @@
+\hypertarget{rd__22__280sensor_8cpp}{}\doxysection{/\+Users/lian/\+Documents/\+Platform\+IO/\+Projects/rootselection/src/rd\+\_\+22\+\_\+280sensor.cpp File Reference}
+\label{rd__22__280sensor_8cpp}\index{/Users/lian/Documents/PlatformIO/Projects/rootselection/src/rd\_22\_280sensor.cpp@{/Users/lian/Documents/PlatformIO/Projects/rootselection/src/rd\_22\_280sensor.cpp}}
+
+
+Functions for BME280.  
+
+
+{\ttfamily \#include $<$Adafruit\+\_\+\+BME280.\+h$>$}\newline
+{\ttfamily \#include $<$Adafruit\+\_\+\+Sensor.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rd\+\_\+22\+\_\+configuration.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rd\+\_\+22\+\_\+debug.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rd__22__280sensor_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}~\mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rd__22__280sensor_8cpp_a59eae95eb374001290380dee3bccc344}{setup\+Sensor280}} ()
+\begin{DoxyCompactList}\small\item\em setup of the BME680 sensor \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{rd__22__280sensor_8cpp_ac0598231ce2b9109c3e58f4128fab687}{make\+Sensor\+Message280}} (bool is\+Root, String \mbox{\hyperlink{main_8cpp_ac72c672187176a6a0d7ade3dc9e30a27}{node\+Name}}, String IP, String node\+ID)
+\begin{DoxyCompactList}\small\item\em Make the JSON that we send to the root node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Adafruit\+\_\+\+BME280 \mbox{\hyperlink{rd__22__280sensor_8cpp_a36e2c841c6c571101ec010df6fcaac71}{BME280}}
+\begin{DoxyCompactList}\small\item\em sensor object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for BME280. 
+
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/05-\/23
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rd__22__280sensor_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}\label{rd__22__280sensor_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}} 
+\index{rd\_22\_280sensor.cpp@{rd\_22\_280sensor.cpp}!DEBUG@{DEBUG}}
+\index{DEBUG@{DEBUG}!rd\_22\_280sensor.cpp@{rd\_22\_280sensor.cpp}}
+\doxysubsubsection{\texorpdfstring{DEBUG}{DEBUG}}
+{\footnotesize\ttfamily \#define DEBUG~\mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rd__22__280sensor_8cpp_ac0598231ce2b9109c3e58f4128fab687}\label{rd__22__280sensor_8cpp_ac0598231ce2b9109c3e58f4128fab687}} 
+\index{rd\_22\_280sensor.cpp@{rd\_22\_280sensor.cpp}!makeSensorMessage280@{makeSensorMessage280}}
+\index{makeSensorMessage280@{makeSensorMessage280}!rd\_22\_280sensor.cpp@{rd\_22\_280sensor.cpp}}
+\doxysubsubsection{\texorpdfstring{makeSensorMessage280()}{makeSensorMessage280()}}
+{\footnotesize\ttfamily String make\+Sensor\+Message280 (\begin{DoxyParamCaption}\item[{bool}]{is\+Root,  }\item[{String}]{node\+Name,  }\item[{String}]{IP,  }\item[{String}]{node\+ID }\end{DoxyParamCaption})}
+
+
+
+Make the JSON that we send to the root node. 
+
+This JSON is based on the Sen\+ML specification. This one JSON will include multiple measurements.
+
+bn\+: Basename or sensor name (sensor1)
+
+n\+: Measurement name (temperature)
+
+u\+: Unit of Measurement (°C)
+
+v\+: Value (21.\+8)
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Root} & If we are root we also send the IP address of the root so Home Assistant can send API requests to the root. \\
+\hline
+{\em node\+Name} & This is part of the entity ID we want to use in Home Assistant \\
+\hline
+{\em IP} & IP address of the node. \\
+\hline
+{\em node\+ID} & Node\+ID, we use this to check duplicate names in Home Assistant \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String String in JSON format with all the measurements 
+\end{DoxyReturn}
+remove static
+
+rapidjson maybe\mbox{\Hypertarget{rd__22__280sensor_8cpp_a59eae95eb374001290380dee3bccc344}\label{rd__22__280sensor_8cpp_a59eae95eb374001290380dee3bccc344}} 
+\index{rd\_22\_280sensor.cpp@{rd\_22\_280sensor.cpp}!setupSensor280@{setupSensor280}}
+\index{setupSensor280@{setupSensor280}!rd\_22\_280sensor.cpp@{rd\_22\_280sensor.cpp}}
+\doxysubsubsection{\texorpdfstring{setupSensor280()}{setupSensor280()}}
+{\footnotesize\ttfamily void setup\+Sensor280 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+setup of the BME680 sensor 
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{rd__22__280sensor_8cpp_a36e2c841c6c571101ec010df6fcaac71}\label{rd__22__280sensor_8cpp_a36e2c841c6c571101ec010df6fcaac71}} 
+\index{rd\_22\_280sensor.cpp@{rd\_22\_280sensor.cpp}!BME280@{BME280}}
+\index{BME280@{BME280}!rd\_22\_280sensor.cpp@{rd\_22\_280sensor.cpp}}
+\doxysubsubsection{\texorpdfstring{BME280}{BME280}}
+{\footnotesize\ttfamily Adafruit\+\_\+\+BME280 BME280}
+
+
+
+sensor object 
+
