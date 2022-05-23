@@ -1,0 +1,143 @@
+\label{index_md__Users_lian_Documents_PlatformIO_Projects_rootselection_readme}%
+\Hypertarget{index_md__Users_lian_Documents_PlatformIO_Projects_rootselection_readme}%
+ The purpose of this project is to deploy classrooms with environmental sensors that measure metrics like temperature and humidity. Because of the large area that has to be covered, it is impossible to set up a conventional solution. The Wifi infrastructure of the school cannot be used for security reasons.
+
+The solution to these problems is the deployment of a mesh network. The nodes in a mesh network don\textquotesingle{}t only act as clients but also as repeaters. Every node will expand the network.
+
+\href{https://meshnetwork.sinners.be}{\texttt{ Description of the code.}}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Centralized architecture   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Mesh architecture    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Centralized architecture   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Mesh architecture    }\\\cline{1-2}
+\endhead
+\PBS\centering  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{conventional_setup.png}%conventional setup
+\end{DoxyInlineImage}
+    &\PBS\centering  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{mesh_setup.png}%mesh setup
+\end{DoxyInlineImage}
+    \\\cline{1-2}
+\end{longtabu}
+
+
+The painless mesh library enables us to set up this network without needing to worry about how the network is structured or managed. We only need to worry about our root node. The use of a root node is highly recommended and will improve the stability of the network.
+
+The root node can be used as a bridge to another network. This functionality is important so we can send our data to Home Assistant. We will use the REST API of Home Assistant to transfer the sensor data. Our root has to be selected based on the connection strength to the access point.\hypertarget{index_autotoc_md1}{}\doxysection{File layout}\label{index_autotoc_md1}
+
+\begin{DoxyItemize}
+\item main\+: main loop
+\item rd\+\_\+22\+\_\+280sensor\+: read bme280
+\item rd\+\_\+22\+\_\+680sensor\+: read bme680
+\item rd\+\_\+22\+\_\+api\+: setup the api and callback when a POST is received
+\item rd\+\_\+22\+\_\+mesh\+: send messages,
+\item rd\+\_\+22\+\_\+node\+\_\+class\+:
+\item rd\+\_\+22\+\_\+setup\+\_\+portal\+: read Spiffs, captive portal for setup
+\item rd\+\_\+22\+\_\+wifi\+: measure RSSI, connect to wifi, POST, deserialize json
+\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{Necessary steps}\label{index_autotoc_md2}
+
+\begin{DoxyEnumerate}
+\item Configuration of identifier
+\item Measure RSSI to the access point
+\item Setup mesh
+\item Select a root
+\item Connect to access point \& setup API
+\item Send measurements
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md3}{}\doxysubsection{Extra functionality\+:}\label{index_autotoc_md3}
+
+\begin{DoxyEnumerate}
+\item Reset the name with a button
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md4}{}\doxysubsection{1. Configuration of the identifier}\label{index_autotoc_md4}
+Every node needs its unique identifier. It is important that this can be configured by the users of the sensors. To be able to set an identifier we set up a small access point and webserver on the ESP. When you connect to this access point you can enter a name in the captive portal. The configuration will be saved in the EEPROM so it is not lost when there is a loss of power.
+
+Steps we execute\+:
+\begin{DoxyItemize}
+\item Read spiffs, if we have saved data we don\textquotesingle{}t need the webserver
+\item setup the webserver and the DNS handler
+\item Wait for data submit
+\item Write the data to EEPROM
+\item End the webserver
+\end{DoxyItemize}
+
+\hypertarget{index_autotoc_md5}{}\doxysubsubsection{Dependencies\+:}\label{index_autotoc_md5}
+\href{https://github.com/me-no-dev/ESPAsyncWebServer}{\texttt{ ESPAsync\+Web\+Server}}\+: We use this to be able to set up the webserver.
+
+\href{https://github.com/espressif/arduino-esp32/tree/master/libraries/DNSServer}{\texttt{ DNSServer}}\+: Used to make a captive portal. When you connect to the access point a webpage will pop up.
+
+\href{https://github.com/espressif/arduino-esp32/tree/master/libraries/SPIFFS}{\texttt{ SPIFFS}}\+: Used for reading and writing data in EEPROM.\hypertarget{index_autotoc_md6}{}\doxysubsection{2. Measure RSSI\+:}\label{index_autotoc_md6}
+The Received Signal Strength Index (RSSI) is used to determine the best root node. The RSSI is the measurement of how strong the signal of a router or access point is to a device. The RSSI is a value between -\/100 and 0. An RSSI closer to 0 means a better connection.
+
+Steps we execute\+:
+\begin{DoxyItemize}
+\item Scan all networks
+\item Find the network with the SSID we want to connect to
+\item Measure the RSSI (when we have no connection we set the RSSI to -\/100)
+\end{DoxyItemize}
+
+\hypertarget{index_autotoc_md7}{}\doxysubsubsection{Dependencies\+:}\label{index_autotoc_md7}
+\href{https://github.com/espressif/arduino-esp32/tree/master/libraries/WiFi}{\texttt{ Wi\+Fi}}\+: To scan for networks and retrieve the RSSI.\hypertarget{index_autotoc_md8}{}\doxysubsection{3. Setup the mesh\+:}\label{index_autotoc_md8}
+The mesh network uses its SSID and password. Every node that uses the same credentials will join the same mesh network. The use of delay() should be avoided. Using delay() will cause the mesh to fall apart.
+
+The mesh.\+update() function should be executed as much as possible. When a message from the mesh network is received a callback will be executed.\hypertarget{index_autotoc_md9}{}\doxysubsubsection{Dependencies\+:}\label{index_autotoc_md9}
+\href{https://gitlab.com/painlessMesh/painlessMesh}{\texttt{ painless\+Mesh}}\+: Mesh library.\hypertarget{index_autotoc_md10}{}\doxysubsection{4. Select a root}\label{index_autotoc_md10}
+When a mesh network is set up, a root has to be selected that will act as a bridge. All the nodes in the network will start broadcasting their RSSI values to each other. When a node receives a message with a better RSSI than its RSSI it will stop broadcasting its RSSI. Eventually, there will be only one node that is still broadcasting its RSSI. This node will be selected to be the root.
+
+Steps we execute\+:
+\begin{DoxyItemize}
+\item Broadcast RSSI.
+\item When other nodes have a better RSSI stop broadcasting.
+\item When the node does not receive any more RSSI data declare himself as root.
+\end{DoxyItemize}
+
+\hypertarget{index_autotoc_md11}{}\doxysubsubsection{Dependencies\+:}\label{index_autotoc_md11}
+\href{https://gitlab.com/painlessMesh/painlessMesh}{\texttt{ painless\+Mesh}}\+: Mesh library.\hypertarget{index_autotoc_md12}{}\doxysubsection{5. Connect to access point}\label{index_autotoc_md12}
+Only if the node is root!
+
+When a node is declared as root it will connect to the access point. A REST API will also be set up so Home Assistant can send messages to the mesh network.
+
+Connecting to the access point can be tricky because the mesh network is still running. Sometimes the connection fails, the node will be reset when this happens.
+
+The root will start broadcasting a message telling all the nodes to send measurements to his address. This is also a message telling the nodes that the root is still alive.\hypertarget{index_autotoc_md13}{}\doxysubsubsection{Dependencies\+:}\label{index_autotoc_md13}
+\href{https://github.com/espressif/arduino-esp32/tree/master/libraries/WiFi}{\texttt{ Wi\+Fi}}\+: For the connection to the access point.
+
+\href{https://github.com/espressif/arduino-esp32/tree/master/libraries/WebServer}{\texttt{ Web\+Server}}\+: Used for the REST API server.
+
+\href{https://arduinojson.org}{\texttt{ Arduino\+Json}}\+: To deserialize the JSON message of the REST API.\hypertarget{index_autotoc_md14}{}\doxysubsection{6. Send measurements}\label{index_autotoc_md14}
+All the nodes will read the sensor data and start sending their messages to the root node. The messages are specifically formatted to ease deserialization. When the root receives these messages they will be posted to Home Assistant.
+
+The JSON model we use is based on Sen\+ML which is designed for sending sensor data. This structure allows us to expand this Json without needing to change the deserialization function. Every part of the JSON is used for the POST request to Home Assistant.
+
+
+\begin{DoxyItemize}
+\item bn\+: Base name or sensor name (sensor1)
+\item n\+: Measurement name (temperature)
+\item u\+: Unit of Measurement (°C)
+\item v\+: Value (21.\+8) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{ \{"{}bn"{}: "{}sensor1"{}, "{}n"{}: "{}temperature"{}, "{}u"{}: "{}°C"{}, "{}v"{}: "{}25.6"{}\},}
+\DoxyCodeLine{ \{"{}n"{}: "{}humidity"{}, "{}u"{}: "{}\%"{}, "{}v"{}:"{}69.42"{}\},}
+\DoxyCodeLine{ \{"{}n"{}: "{}pressure"{}, "{}u"{}: "{}Hpa"{}, "{}v"{}:"{}1016"{}\}, }
+\DoxyCodeLine{ \{"{}n"{}: "{}chipID"{}, "{}u"{}: "{}ID"{}, "{}v"{}:"{}629348013"{}\}, }
+\DoxyCodeLine{ \{"{}n"{}: "{}rootIP"{}, "{}u"{}: "{}"{}, "{}v"{}:"{}192.168.99.43"{}\}}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+If the root loses its connection to Home Assistant it will stop broadcasting. In this case, all the nodes that stop receiving these messages will start selecting a new root.\hypertarget{index_autotoc_md15}{}\doxysubsubsection{Dependencies\+:}\label{index_autotoc_md15}
+\href{https://github.com/Zanduino/BME680}{\texttt{ Zanshin\+\_\+\+BME680}}\+: Read the sensor data if the BME680 is used.
+
+\href{https://github.com/adafruit/Adafruit_BME280_Library}{\texttt{ Adafruit\+\_\+\+BME280}}\+: Read the sensor data if the BME6280 is used.
+
+\href{https://arduinojson.org}{\texttt{ Arduino\+Json}}\+: To deserialize the JSON message of the mesh network.
+
+\href{https://github.com/espressif/arduino-esp32/tree/master/libraries/HTTPClient}{\texttt{ HTTPClient}}\+: Used for the POST request to Home Assistant. 

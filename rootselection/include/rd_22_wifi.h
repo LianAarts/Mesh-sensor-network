@@ -4,9 +4,6 @@
 #include <ArduinoJson.h>
 #include <HTTPClient.h>
 
-//! doxygen
-
-//! const String& sensorVal
 void post(String sensorVal, String name, String unit);
 void splitJson(String json);
 void setupNetwork();

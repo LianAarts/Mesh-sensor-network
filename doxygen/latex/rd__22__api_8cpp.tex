@@ -1,0 +1,97 @@
+\hypertarget{rd__22__api_8cpp}{}\doxysection{/\+Users/lian/\+Documents/\+Platform\+IO/\+Projects/rootselection/src/rd\+\_\+22\+\_\+api.cpp File Reference}
+\label{rd__22__api_8cpp}\index{/Users/lian/Documents/PlatformIO/Projects/rootselection/src/rd\_22\_api.cpp@{/Users/lian/Documents/PlatformIO/Projects/rootselection/src/rd\_22\_api.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino\+Json.\+h$>$}\newline
+{\ttfamily \#include $<$Web\+Server.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rd\+\_\+22\+\_\+configuration.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rd\+\_\+22\+\_\+mesh.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rd\+\_\+22\+\_\+debug.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rd__22__api_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}~\mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Web\+Server \mbox{\hyperlink{rd__22__api_8cpp_a85c7acb3bde25e6f5a8a3d739f7e9f79}{APIserver}} (80)
+\begin{DoxyCompactList}\small\item\em API server object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__api_8cpp_a1434daedf72bf86dbc8536b8723ee958}{handle\+Post}} ()
+\begin{DoxyCompactList}\small\item\em When we receive a Post request from Home Assistant this function is called. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__api_8cpp_a413403de0c58188b7313cf47bf82e51f}{setup\+API}} ()
+\begin{DoxyCompactList}\small\item\em Set up the REST API server we use for the messages from Home Assistant to the mesh network. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rd__22__api_8cpp_a087a442e7c6998509ee81edac32691a1}{api\+Check}} ()
+\begin{DoxyCompactList}\small\item\em Check the API server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Static\+Json\+Document$<$ 250 $>$ \mbox{\hyperlink{rd__22__api_8cpp_a704a5677dbeb99a0164b74076ab445eb}{json\+Document}}
+\begin{DoxyCompactList}\small\item\em JSON object with a size of 200 bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rd__22__api_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}\label{rd__22__api_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}} 
+\index{rd\_22\_api.cpp@{rd\_22\_api.cpp}!DEBUG@{DEBUG}}
+\index{DEBUG@{DEBUG}!rd\_22\_api.cpp@{rd\_22\_api.cpp}}
+\doxysubsubsection{\texorpdfstring{DEBUG}{DEBUG}}
+{\footnotesize\ttfamily \#define DEBUG~\mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rd__22__api_8cpp_a087a442e7c6998509ee81edac32691a1}\label{rd__22__api_8cpp_a087a442e7c6998509ee81edac32691a1}} 
+\index{rd\_22\_api.cpp@{rd\_22\_api.cpp}!apiCheck@{apiCheck}}
+\index{apiCheck@{apiCheck}!rd\_22\_api.cpp@{rd\_22\_api.cpp}}
+\doxysubsubsection{\texorpdfstring{apiCheck()}{apiCheck()}}
+{\footnotesize\ttfamily void api\+Check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check the API server. 
+
+\begin{DoxyWarning}{Warning}
+This should be done as often as possible 
+\end{DoxyWarning}
+\mbox{\Hypertarget{rd__22__api_8cpp_a85c7acb3bde25e6f5a8a3d739f7e9f79}\label{rd__22__api_8cpp_a85c7acb3bde25e6f5a8a3d739f7e9f79}} 
+\index{rd\_22\_api.cpp@{rd\_22\_api.cpp}!APIserver@{APIserver}}
+\index{APIserver@{APIserver}!rd\_22\_api.cpp@{rd\_22\_api.cpp}}
+\doxysubsubsection{\texorpdfstring{APIserver()}{APIserver()}}
+{\footnotesize\ttfamily Web\+Server APIserver (\begin{DoxyParamCaption}\item[{80}]{ }\end{DoxyParamCaption})}
+
+
+
+API server object. 
+
+\mbox{\Hypertarget{rd__22__api_8cpp_a1434daedf72bf86dbc8536b8723ee958}\label{rd__22__api_8cpp_a1434daedf72bf86dbc8536b8723ee958}} 
+\index{rd\_22\_api.cpp@{rd\_22\_api.cpp}!handlePost@{handlePost}}
+\index{handlePost@{handlePost}!rd\_22\_api.cpp@{rd\_22\_api.cpp}}
+\doxysubsubsection{\texorpdfstring{handlePost()}{handlePost()}}
+{\footnotesize\ttfamily void handle\+Post (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+When we receive a Post request from Home Assistant this function is called. 
+
+This means we have two nodes that are configured with the same name. We will send a single message to the node that needs to clear its name. \mbox{\Hypertarget{rd__22__api_8cpp_a413403de0c58188b7313cf47bf82e51f}\label{rd__22__api_8cpp_a413403de0c58188b7313cf47bf82e51f}} 
+\index{rd\_22\_api.cpp@{rd\_22\_api.cpp}!setupAPI@{setupAPI}}
+\index{setupAPI@{setupAPI}!rd\_22\_api.cpp@{rd\_22\_api.cpp}}
+\doxysubsubsection{\texorpdfstring{setupAPI()}{setupAPI()}}
+{\footnotesize\ttfamily void setup\+API (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set up the REST API server we use for the messages from Home Assistant to the mesh network. 
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{rd__22__api_8cpp_a704a5677dbeb99a0164b74076ab445eb}\label{rd__22__api_8cpp_a704a5677dbeb99a0164b74076ab445eb}} 
+\index{rd\_22\_api.cpp@{rd\_22\_api.cpp}!jsonDocument@{jsonDocument}}
+\index{jsonDocument@{jsonDocument}!rd\_22\_api.cpp@{rd\_22\_api.cpp}}
+\doxysubsubsection{\texorpdfstring{jsonDocument}{jsonDocument}}
+{\footnotesize\ttfamily Static\+Json\+Document$<$250$>$ json\+Document}
+
+
+
+JSON object with a size of 200 bytes. 
+

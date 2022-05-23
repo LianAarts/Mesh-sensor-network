@@ -1,11 +1,14 @@
 # Mesh Network of Environmental Sensors
 
-The purpose of this project is to deploy classrooms with environmental sensors that measure metrics like temperature and humidity. Because of the large area that has to be covered, it is impossible to set up a centralized solution. The Wifi infrastructure of the school cannot be used for security reasons.
+The purpose of this project is to deploy classrooms with environmental sensors that measure metrics like temperature and humidity. Because of the large area that has to be covered, it is impossible to set up a conventional solution. The Wifi infrastructure of the school cannot be used for security reasons.
 
 The solution to these problems is the deployment of a mesh network. The nodes in a mesh network don't only act as clients but also as repeaters. Every node will expand the network.
+
+<a href="https://meshnetwork.sinners.be">Description of the code.</a>
+
 Centralized architecture |Mesh architecture 
 :-------------------------:|:-------------------------:
-![This is an image](resources/centralized_setup.png)|![This is an image](resources/mesh_setup.png)
+![conventional setup](md_resources/conventional_setup.png)|![mesh setup](md_resources/mesh_setup.png)
 
 The painless mesh library enables us to set up this network without needing to worry about how the network is structured or managed. We only need to worry about our root node. The use of a root node is highly recommended and will improve the stability of the network. 
 
@@ -33,7 +36,7 @@ The root node can be used as a bridge to another network. This functionality is 
 
 ## Extra functionality:
 
-1. Reset name with button
+1. Reset the name with a button
 
 ## 1. Configuration of the identifier
 
@@ -46,7 +49,7 @@ Steps we execute:
 - Write the data to EEPROM
 - End the webserver
 
-<img src="resources/diagram_configuration.jpeg" alt="diagram" width="400"/>
+<img src="md_resources/diagram_configuration.jpeg" alt="configuration diagram" width="400"/>
 
 ### Dependencies:
 
@@ -65,7 +68,7 @@ Steps we execute:
 - Find the network with the SSID we want to connect to
 - Measure the RSSI (when we have no connection we set the RSSI to -100)
 
-<img src="resources/diagram_measure_RSSI.jpeg" alt="diagram" width="400"/>
+<img src="md_resources/diagram_measure_RSSI.jpeg" alt="RSSI diagram" width="400"/>
 
 ### Dependencies:
 <a href="https://github.com/espressif/arduino-esp32/tree/master/libraries/WiFi">WiFi</a>: To scan for networks and retrieve the RSSI.
@@ -89,7 +92,7 @@ Steps we execute:
 - When other nodes have a better RSSI stop broadcasting.
 - When the node does not receive any more RSSI data declare himself as root.
 
-<img src="resources/diagram_root_selection.jpeg" alt="diagram" width="400"/>
+<img src="md_resources/diagram_root_selection.jpeg" alt="root selection diagram" width="400"/>
 
 ### Dependencies:
 
@@ -116,9 +119,25 @@ The root will start broadcasting a message telling all the nodes to send measure
 
 ## 6. Send measurements
 
-All the nodes will read the sensor data and start sending their messages to the root node. The messages are formatted based on the SenML JSON model. When the root receives these messages they will be posted to Home Assistant. 
+All the nodes will read the sensor data and start sending their messages to the root node. The messages are specifically formatted to ease deserialization. When the root receives these messages they will be posted to Home Assistant. 
 
-If the root loses its connection to Home Assistant it will stop broadcasting. In this case, all the nodes that stop receiving these messages and will start selecting a new node.
+The JSON model we use is based on SenML which is designed for sending sensor data. This structure allows us to expand this Json without needing to change the deserialization function. Every part of the JSON is used for the POST request to Home Assistant.
+
+- bn: Base name or sensor name (sensor1)
+- n: Measurement name (temperature)
+- u: Unit of Measurement (°C)
+- v: Value (21.8)
+```JSON
+[
+ {"bn": "sensor1", "n": "temperature", "u": "°C", "v": "25.6"},
+ {"n": "humidity", "u": "%", "v":"69.42"},
+ {"n": "pressure", "u": "Hpa", "v":"1016"}, 
+ {"n": "chipID", "u": "ID", "v":"629348013"}, 
+ {"n": "rootIP", "u": "", "v":"192.168.99.43"}
+]
+```
+
+If the root loses its connection to Home Assistant it will stop broadcasting. In this case, all the nodes that stop receiving these messages will start selecting a new root.
 
 ### Dependencies:
 
@@ -128,4 +147,4 @@ If the root loses its connection to Home Assistant it will stop broadcasting. In
 
 <a href="https://arduinojson.org">ArduinoJson</a>: To deserialize the JSON message of the mesh network.
 
-<a href="https://gitlab.com/painlessMesh/painlessMesh">HTTPClient</a>: Used for the POST request to Home Assistant.
+<a href="https://github.com/espressif/arduino-esp32/tree/master/libraries/HTTPClient">HTTPClient</a>: Used for the POST request to Home Assistant.

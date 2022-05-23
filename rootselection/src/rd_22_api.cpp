@@ -15,7 +15,7 @@ WebServer APIserver(80);
 // make our webserver object
 
 /**
- * @brief Json object with a size of 200 bytes.
+ * @brief JSON object with a size of 200 bytes.
  * 
  */
 StaticJsonDocument<250> jsonDocument;
