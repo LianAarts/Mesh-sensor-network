@@ -13,22 +13,22 @@
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{rd__22__680sensor_8cpp_abe3b0217638808155a0ac7f709f39771}{setup\+Sensor680}} ()
-\begin{DoxyCompactList}\small\item\em setup the BME680 sensor \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em setup of the BME680 sensor \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{rd__22__680sensor_8cpp_ae59aa409df16e98af3f6b8f36b1968c3}{make\+Sensor\+Message680}} (bool is\+Root, String \mbox{\hyperlink{main_8cpp_ac72c672187176a6a0d7ade3dc9e30a27}{node\+Name}}, String IP, String node\+ID)
 \begin{DoxyCompactList}\small\item\em Make the JSON that we send to the root node. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 BME680\+\_\+\+Class \mbox{\hyperlink{rd__22__680sensor_8cpp_a5063630ccead4138f04d3c1bc67c9a39}{BME680}}
-\item 
+\begin{DoxyCompactList}\small\item\em Sensor object. \end{DoxyCompactList}\item 
 int32\+\_\+t \mbox{\hyperlink{rd__22__680sensor_8cpp_ae0c571af1d73ef7f40c4d3eb3b2c37a4}{temp}}
-\item 
+\begin{DoxyCompactList}\small\item\em Temp value. \end{DoxyCompactList}\item 
 int32\+\_\+t \mbox{\hyperlink{rd__22__680sensor_8cpp_a8dc8b9a805a3f68eaeaefbf53a2e0664}{humidity}}
-\item 
+\begin{DoxyCompactList}\small\item\em Humidity value. \end{DoxyCompactList}\item 
 int32\+\_\+t \mbox{\hyperlink{rd__22__680sensor_8cpp_af8ad120afa713a54244728bc253803b6}{pressure}}
-\item 
+\begin{DoxyCompactList}\small\item\em Pressure value. \end{DoxyCompactList}\item 
 int32\+\_\+t \mbox{\hyperlink{rd__22__680sensor_8cpp_aef8bfe519bbd9438e4fa08dd20a8d150}{gas}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gas value. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -75,9 +75,7 @@ v\+: Value (21.\+8)
 \begin{DoxyReturn}{Returns}
 String String in JSON format with all the measurements 
 \end{DoxyReturn}
-remove static
-
-rapidjson maybe\mbox{\Hypertarget{rd__22__680sensor_8cpp_abe3b0217638808155a0ac7f709f39771}\label{rd__22__680sensor_8cpp_abe3b0217638808155a0ac7f709f39771}} 
+\mbox{\Hypertarget{rd__22__680sensor_8cpp_abe3b0217638808155a0ac7f709f39771}\label{rd__22__680sensor_8cpp_abe3b0217638808155a0ac7f709f39771}} 
 \index{rd\_22\_680sensor.cpp@{rd\_22\_680sensor.cpp}!setupSensor680@{setupSensor680}}
 \index{setupSensor680@{setupSensor680}!rd\_22\_680sensor.cpp@{rd\_22\_680sensor.cpp}}
 \doxysubsubsection{\texorpdfstring{setupSensor680()}{setupSensor680()}}
@@ -85,7 +83,7 @@ rapidjson maybe\mbox{\Hypertarget{rd__22__680sensor_8cpp_abe3b0217638808155a0ac7
 
 
 
-setup the BME680 sensor 
+setup of the BME680 sensor 
 
 ifdef for different sensors
 
@@ -96,11 +94,19 @@ ifdef for different sensors
 \doxysubsubsection{\texorpdfstring{BME680}{BME680}}
 {\footnotesize\ttfamily BME680\+\_\+\+Class BME680}
 
+
+
+Sensor object. 
+
 \mbox{\Hypertarget{rd__22__680sensor_8cpp_aef8bfe519bbd9438e4fa08dd20a8d150}\label{rd__22__680sensor_8cpp_aef8bfe519bbd9438e4fa08dd20a8d150}} 
 \index{rd\_22\_680sensor.cpp@{rd\_22\_680sensor.cpp}!gas@{gas}}
 \index{gas@{gas}!rd\_22\_680sensor.cpp@{rd\_22\_680sensor.cpp}}
 \doxysubsubsection{\texorpdfstring{gas}{gas}}
 {\footnotesize\ttfamily int32\+\_\+t gas}
+
+
+
+Gas value. 
 
 \mbox{\Hypertarget{rd__22__680sensor_8cpp_a8dc8b9a805a3f68eaeaefbf53a2e0664}\label{rd__22__680sensor_8cpp_a8dc8b9a805a3f68eaeaefbf53a2e0664}} 
 \index{rd\_22\_680sensor.cpp@{rd\_22\_680sensor.cpp}!humidity@{humidity}}
@@ -108,15 +114,27 @@ ifdef for different sensors
 \doxysubsubsection{\texorpdfstring{humidity}{humidity}}
 {\footnotesize\ttfamily int32\+\_\+t humidity}
 
+
+
+Humidity value. 
+
 \mbox{\Hypertarget{rd__22__680sensor_8cpp_af8ad120afa713a54244728bc253803b6}\label{rd__22__680sensor_8cpp_af8ad120afa713a54244728bc253803b6}} 
 \index{rd\_22\_680sensor.cpp@{rd\_22\_680sensor.cpp}!pressure@{pressure}}
 \index{pressure@{pressure}!rd\_22\_680sensor.cpp@{rd\_22\_680sensor.cpp}}
 \doxysubsubsection{\texorpdfstring{pressure}{pressure}}
 {\footnotesize\ttfamily int32\+\_\+t pressure}
 
+
+
+Pressure value. 
+
 \mbox{\Hypertarget{rd__22__680sensor_8cpp_ae0c571af1d73ef7f40c4d3eb3b2c37a4}\label{rd__22__680sensor_8cpp_ae0c571af1d73ef7f40c4d3eb3b2c37a4}} 
 \index{rd\_22\_680sensor.cpp@{rd\_22\_680sensor.cpp}!temp@{temp}}
 \index{temp@{temp}!rd\_22\_680sensor.cpp@{rd\_22\_680sensor.cpp}}
 \doxysubsubsection{\texorpdfstring{temp}{temp}}
 {\footnotesize\ttfamily int32\+\_\+t temp}
+
+
+
+Temp value. 
 

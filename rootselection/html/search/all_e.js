@@ -19,6 +19,6 @@ var searchData=
   ['setupwebserver_16',['setupWebserver',['../rd__22__setup__portal_8h.html#a641c43a509987a62927fdb165032c576',1,'setupWebserver():&#160;rd_22_setup_portal.cpp'],['../rd__22__setup__portal_8cpp.html#a641c43a509987a62927fdb165032c576',1,'setupWebserver():&#160;rd_22_setup_portal.cpp']]],
   ['splitjson_17',['splitJson',['../rd__22__wifi_8h.html#aa400750636d4d4831176d9358a10ad2b',1,'splitJson(String json):&#160;rd_22_wifi.cpp'],['../rd__22__wifi_8cpp.html#aa400750636d4d4831176d9358a10ad2b',1,'splitJson(String json):&#160;rd_22_wifi.cpp']]],
   ['ssid_18',['ssid',['../rd__22__setup__portal_8cpp.html#abd15b8fcd3b82c2827693b9fd882a206',1,'rd_22_setup_portal.cpp']]],
-  ['ssidscan_19',['ssidScan',['../rd__22__wifi_8cpp.html#ac015ef281be46553436f6ee16b2e5e68',1,'rd_22_wifi.cpp']]],
-  ['ssidscan_5fsecr_20',['ssidScan_secr',['../rd__22__configuration_8h.html#a90f959ea05d387935fea4a9951f9c5c9',1,'rd_22_configuration.h']]]
+  ['ssid_5fscan_5fsecr_19',['SSID_SCAN_SECR',['../rd__22__configuration_8h.html#a3731e20afd485a20f45d87a5fac14dfd',1,'rd_22_configuration.h']]],
+  ['ssidscan_20',['ssidScan',['../rd__22__wifi_8cpp.html#ac015ef281be46553436f6ee16b2e5e68',1,'rd_22_wifi.cpp']]]
 ];

@@ -14,6 +14,5 @@ var rd__22__wifi_8cpp =
     [ "httpAtributes", "rd__22__wifi_8cpp.html#a114aa1458f71b84775e6274fc63a00f9", null ],
     [ "httpRequestData", "rd__22__wifi_8cpp.html#a76dee866cef104107a6bb2bc8a492924", null ],
     [ "httpResponseCode", "rd__22__wifi_8cpp.html#a37c34f4f38cdb432d71a76d70ea582ba", null ],
-    [ "ip", "rd__22__wifi_8cpp.html#a863c214d56d28a55467c000641e1be91", null ],
-    [ "test", "rd__22__wifi_8cpp.html#a5905a4fd1b69ca81f7dc29f26192adfc", null ]
+    [ "ip", "rd__22__wifi_8cpp.html#a863c214d56d28a55467c000641e1be91", null ]
 ];

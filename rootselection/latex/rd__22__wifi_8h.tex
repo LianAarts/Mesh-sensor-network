@@ -15,7 +15,7 @@ void \mbox{\hyperlink{rd__22__wifi_8h_a6d6c298c788eeb7b18a19d82a77761b3}{setup\+
 int \mbox{\hyperlink{rd__22__wifi_8h_ab59433792d0c66f5863aff6b77069863}{network\+Scan}} ()
 \begin{DoxyCompactList}\small\item\em Measure the RSSI of the Home Assistant access point. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{rd__22__wifi_8h_a7f6ad1fbb8ddfbceb2416ca94574252a}{get\+Ip}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the IP of the node. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -25,6 +25,13 @@ String \mbox{\hyperlink{rd__22__wifi_8h_a7f6ad1fbb8ddfbceb2416ca94574252a}{get\+
 \doxysubsubsection{\texorpdfstring{getIp()}{getIp()}}
 {\footnotesize\ttfamily String get\+Ip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Get the IP of the node. 
+
+\begin{DoxyReturn}{Returns}
+String The IP address in String format. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{rd__22__wifi_8h_ab59433792d0c66f5863aff6b77069863}\label{rd__22__wifi_8h_ab59433792d0c66f5863aff6b77069863}} 
 \index{rd\_22\_wifi.h@{rd\_22\_wifi.h}!networkScan@{networkScan}}
 \index{networkScan@{networkScan}!rd\_22\_wifi.h@{rd\_22\_wifi.h}}
@@ -35,12 +42,14 @@ String \mbox{\hyperlink{rd__22__wifi_8h_a7f6ad1fbb8ddfbceb2416ca94574252a}{get\+
 
 Measure the RSSI of the Home Assistant access point. 
 
-Received Signal Strength Indicator (RSSI) is the measurement of how strong the signal of a router or access point is to a device. The RSSI is a value between -\/100 and 0. Close to 0 means a better connection
+We search the index of the desired network and we measure the RSSI.
 
-There is no connection to the access point. We search the index of the desired network and we measure the RSSI.
+Received Signal Strength Indicator (RSSI) is the measurement of how strong the signal of a router or access point is to a device. The RSSI is a value between -\/100 and 0. An RSSI closer to 0 means a better connection.
+
+When there is no connection to the access point we set the value to -\/100.
 
 \begin{DoxyReturn}{Returns}
-int RSSI, a value between -\/100 and 0 
+int RSSI, a value between -\/100 and 0. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{rd__22__wifi_8h_a433a2bfe9f984e7dbd6e66f7a251852d}\label{rd__22__wifi_8h_a433a2bfe9f984e7dbd6e66f7a251852d}} 
 \index{rd\_22\_wifi.h@{rd\_22\_wifi.h}!post@{post}}

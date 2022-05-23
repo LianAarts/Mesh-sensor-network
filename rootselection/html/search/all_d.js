@@ -17,10 +17,11 @@ var searchData=
   ['rd_5f22_5fsetup_5fportal_2eh_14',['rd_22_setup_portal.h',['../rd__22__setup__portal_8h.html',1,'']]],
   ['rd_5f22_5fwifi_2ecpp_15',['rd_22_wifi.cpp',['../rd__22__wifi_8cpp.html',1,'']]],
   ['rd_5f22_5fwifi_2eh_16',['rd_22_wifi.h',['../rd__22__wifi_8h.html',1,'']]],
-  ['readspiffs_17',['readSpiffs',['../rd__22__setup__portal_8h.html#ad4b714b34e039a9e8a50cae4e8776ed5',1,'readSpiffs(String fileName):&#160;rd_22_setup_portal.cpp'],['../rd__22__setup__portal_8cpp.html#ad4b714b34e039a9e8a50cae4e8776ed5',1,'readSpiffs(String fileName):&#160;rd_22_setup_portal.cpp']]],
-  ['receivedcallback_18',['receivedCallback',['../rd__22__mesh_8cpp.html#aaabde591294d25c1323c47b8d336f2ad',1,'rd_22_mesh.cpp']]],
-  ['rootfound_19',['rootFound',['../class_node___information.html#a5ceb6ed064bf65b68c928368a54f973a',1,'Node_Information']]],
-  ['rootid_20',['rootID',['../class_node___information.html#a3b769ea94798ff2f7d30d08df4160dfa',1,'Node_Information']]],
-  ['roottimer_21',['rootTimer',['../rd__22__mesh_8h.html#af33853c91660c3c7381e91ba58bb0364',1,'rootTimer():&#160;rd_22_mesh.cpp'],['../rd__22__mesh_8cpp.html#af33853c91660c3c7381e91ba58bb0364',1,'rootTimer():&#160;rd_22_mesh.cpp']]],
-  ['rssi_22',['RSSI',['../class_node___information.html#a0e8ac74167ea215aeb0c6eb2e3583f68',1,'Node_Information']]]
+  ['readme_2emd_17',['readme.md',['../readme_8md.html',1,'']]],
+  ['readspiffs_18',['readSpiffs',['../rd__22__setup__portal_8h.html#ad4b714b34e039a9e8a50cae4e8776ed5',1,'readSpiffs(String fileName):&#160;rd_22_setup_portal.cpp'],['../rd__22__setup__portal_8cpp.html#ad4b714b34e039a9e8a50cae4e8776ed5',1,'readSpiffs(String fileName):&#160;rd_22_setup_portal.cpp']]],
+  ['receivedcallback_19',['receivedCallback',['../rd__22__mesh_8cpp.html#aaabde591294d25c1323c47b8d336f2ad',1,'rd_22_mesh.cpp']]],
+  ['rootfound_20',['rootFound',['../class_node___information.html#a5ceb6ed064bf65b68c928368a54f973a',1,'Node_Information']]],
+  ['rootid_21',['rootID',['../class_node___information.html#a3b769ea94798ff2f7d30d08df4160dfa',1,'Node_Information']]],
+  ['roottimer_22',['rootTimer',['../rd__22__mesh_8h.html#af33853c91660c3c7381e91ba58bb0364',1,'rootTimer():&#160;rd_22_mesh.cpp'],['../rd__22__mesh_8cpp.html#af33853c91660c3c7381e91ba58bb0364',1,'rootTimer():&#160;rd_22_mesh.cpp']]],
+  ['rssi_23',['RSSI',['../class_node___information.html#a0e8ac74167ea215aeb0c6eb2e3583f68',1,'Node_Information']]]
 ];

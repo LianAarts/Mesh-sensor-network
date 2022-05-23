@@ -5,13 +5,37 @@
 #define DEBUG DEBUG_LEVEL
 #include "rd_22_debug.h"
 
+/**
+ * @brief Sensor object.
+ * 
+ */
 BME680_Class BME680;
-int32_t temp, humidity, pressure, gas;
+
+/**
+ * @brief Temp value
+ * 
+ */
+int32_t temp;
+/**
+ * @brief Humidity value
+ * 
+ */
+int32_t humidity;
+/**
+ * @brief Pressure value
+ * 
+ */
+int32_t pressure;
+/**
+ * @brief Gas value
+ * 
+ */
+int32_t gas;
 
 //***********************************************************************
 //**************************** Setup sensor *****************************
 /**
- * @brief setup the BME680 sensor
+ * @brief setup of the BME680 sensor
  *
  */
 void setupSensor680() {
@@ -62,7 +86,7 @@ void setupSensor680() {
  */
 String makeSensorMessage680(bool isRoot, String nodeName, String IP,
                             String nodeID) {
-  //! remove static
+  // remove static
   // variables for the measurements
 
   BME680.getSensorData(temp, humidity, pressure, gas);
@@ -73,7 +97,7 @@ String makeSensorMessage680(bool isRoot, String nodeName, String IP,
   float presBME680 = (pressure / 100) + float(pressure % 100) / 100;
   // calculate all the measurements
 
-  //! rapidjson maybe
+  // rapidjson maybe
   String header = "[{\"bn\": \"" + nodeName;
   String meas1 =
       "\", \"n\": \"temperature\", \"u\": \"°C\", \"v\":" + String(tempBME680);

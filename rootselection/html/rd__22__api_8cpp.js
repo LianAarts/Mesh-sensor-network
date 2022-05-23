@@ -5,6 +5,5 @@ var rd__22__api_8cpp =
     [ "APIserver", "rd__22__api_8cpp.html#a85c7acb3bde25e6f5a8a3d739f7e9f79", null ],
     [ "handlePost", "rd__22__api_8cpp.html#a1434daedf72bf86dbc8536b8723ee958", null ],
     [ "setupAPI", "rd__22__api_8cpp.html#a413403de0c58188b7313cf47bf82e51f", null ],
-    [ "buffer", "rd__22__api_8cpp.html#a8745e746cd7fbaf58063e9d45cc3a68a", null ],
     [ "jsonDocument", "rd__22__api_8cpp.html#a704a5677dbeb99a0164b74076ab445eb", null ]
 ];

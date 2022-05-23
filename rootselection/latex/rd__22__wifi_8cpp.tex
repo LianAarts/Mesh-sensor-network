@@ -11,17 +11,17 @@
 \item 
 \#define \mbox{\hyperlink{rd__22__wifi_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}~\mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}
 \item 
-\#define \mbox{\hyperlink{rd__22__wifi_8cpp_a29ec70fa12d4cf5af9b0aadd7bc27875}{token}}~\mbox{\hyperlink{rd__22__configuration_8h_a33ea1b9be62c9bbff886118f9049a69d}{token\+\_\+secr}}
+\#define \mbox{\hyperlink{rd__22__wifi_8cpp_a29ec70fa12d4cf5af9b0aadd7bc27875}{token}}~\mbox{\hyperlink{rd__22__configuration_8h_a3cb0a34fa1f839f37c60073c252159c6}{TOKEN\+\_\+\+SECR}}
 \item 
-\#define \mbox{\hyperlink{rd__22__wifi_8cpp_ac015ef281be46553436f6ee16b2e5e68}{ssid\+Scan}}~\mbox{\hyperlink{rd__22__configuration_8h_a90f959ea05d387935fea4a9951f9c5c9}{ssid\+Scan\+\_\+secr}}
+\#define \mbox{\hyperlink{rd__22__wifi_8cpp_ac015ef281be46553436f6ee16b2e5e68}{ssid\+Scan}}~\mbox{\hyperlink{rd__22__configuration_8h_a3731e20afd485a20f45d87a5fac14dfd}{SSID\+\_\+\+SCAN\+\_\+\+SECR}}
 \item 
-\#define \mbox{\hyperlink{rd__22__wifi_8cpp_a3f54551baefecea1c8b34f25378585c1}{pass\+Scan}}~\mbox{\hyperlink{rd__22__configuration_8h_a5cee90982c1f736f726dea41b4d5a583}{pass\+Scan\+\_\+secr}}
+\#define \mbox{\hyperlink{rd__22__wifi_8cpp_a3f54551baefecea1c8b34f25378585c1}{pass\+Scan}}~\mbox{\hyperlink{rd__22__configuration_8h_a2d93710b326c349eceb334c43069e714}{PASS\+\_\+\+SCAN\+\_\+\+SECR}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 String \mbox{\hyperlink{rd__22__wifi_8cpp_a7f6ad1fbb8ddfbceb2416ca94574252a}{get\+Ip}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Get the IP of the node. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{rd__22__wifi_8cpp_a433a2bfe9f984e7dbd6e66f7a251852d}{post}} (String sensor\+Val, String name, String unit)
 \begin{DoxyCompactList}\small\item\em Post the measurement to the Home Assistant REST API. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{rd__22__wifi_8cpp_ab59433792d0c66f5863aff6b77069863}{network\+Scan}} ()
@@ -33,20 +33,18 @@ void \mbox{\hyperlink{rd__22__wifi_8cpp_aa400750636d4d4831176d9358a10ad2b}{split
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-const char $\ast$ \mbox{\hyperlink{rd__22__wifi_8cpp_a5905a4fd1b69ca81f7dc29f26192adfc}{test}} = \char`\"{}home-\/assistant-\/AP\char`\"{}
-\item 
 HTTPClient \mbox{\hyperlink{rd__22__wifi_8cpp_a58eddff149cd37cc3f16deb0bf67c9c0}{http}}
-\item 
+\begin{DoxyCompactList}\small\item\em Http client object. \end{DoxyCompactList}\item 
 Wi\+Fi\+Client \mbox{\hyperlink{rd__22__wifi_8cpp_a323dfc205549b3c13f0a25c1b670708a}{client}}
-\item 
+\begin{DoxyCompactList}\small\item\em Wifi client object. \end{DoxyCompactList}\item 
 IPAddress \mbox{\hyperlink{rd__22__wifi_8cpp_a863c214d56d28a55467c000641e1be91}{ip}}
-\item 
+\begin{DoxyCompactList}\small\item\em Ip address object. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{rd__22__wifi_8cpp_a76dee866cef104107a6bb2bc8a492924}{http\+Request\+Data}} = \char`\"{}\char`\"{}
-\item 
+\begin{DoxyCompactList}\small\item\em variable will store the measurement data of our POST request to Home Assistant. \end{DoxyCompactList}\item 
 String \mbox{\hyperlink{rd__22__wifi_8cpp_a114aa1458f71b84775e6274fc63a00f9}{http\+Atributes}} = \char`\"{}\char`\"{}
-\item 
+\begin{DoxyCompactList}\small\item\em Variable will store the attributes of our POST request. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{rd__22__wifi_8cpp_a37c34f4f38cdb432d71a76d70ea582ba}{http\+Response\+Code}} = 0
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The response code of our POST request to Home Assistant. Response codes of 200 or 201 are successful. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -60,19 +58,19 @@ int \mbox{\hyperlink{rd__22__wifi_8cpp_a37c34f4f38cdb432d71a76d70ea582ba}{http\+
 \index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!passScan@{passScan}}
 \index{passScan@{passScan}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
 \doxysubsubsection{\texorpdfstring{passScan}{passScan}}
-{\footnotesize\ttfamily \#define pass\+Scan~\mbox{\hyperlink{rd__22__configuration_8h_a5cee90982c1f736f726dea41b4d5a583}{pass\+Scan\+\_\+secr}}}
+{\footnotesize\ttfamily \#define pass\+Scan~\mbox{\hyperlink{rd__22__configuration_8h_a2d93710b326c349eceb334c43069e714}{PASS\+\_\+\+SCAN\+\_\+\+SECR}}}
 
 \mbox{\Hypertarget{rd__22__wifi_8cpp_ac015ef281be46553436f6ee16b2e5e68}\label{rd__22__wifi_8cpp_ac015ef281be46553436f6ee16b2e5e68}} 
 \index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!ssidScan@{ssidScan}}
 \index{ssidScan@{ssidScan}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
 \doxysubsubsection{\texorpdfstring{ssidScan}{ssidScan}}
-{\footnotesize\ttfamily \#define ssid\+Scan~\mbox{\hyperlink{rd__22__configuration_8h_a90f959ea05d387935fea4a9951f9c5c9}{ssid\+Scan\+\_\+secr}}}
+{\footnotesize\ttfamily \#define ssid\+Scan~\mbox{\hyperlink{rd__22__configuration_8h_a3731e20afd485a20f45d87a5fac14dfd}{SSID\+\_\+\+SCAN\+\_\+\+SECR}}}
 
 \mbox{\Hypertarget{rd__22__wifi_8cpp_a29ec70fa12d4cf5af9b0aadd7bc27875}\label{rd__22__wifi_8cpp_a29ec70fa12d4cf5af9b0aadd7bc27875}} 
 \index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!token@{token}}
 \index{token@{token}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
 \doxysubsubsection{\texorpdfstring{token}{token}}
-{\footnotesize\ttfamily \#define token~\mbox{\hyperlink{rd__22__configuration_8h_a33ea1b9be62c9bbff886118f9049a69d}{token\+\_\+secr}}}
+{\footnotesize\ttfamily \#define token~\mbox{\hyperlink{rd__22__configuration_8h_a3cb0a34fa1f839f37c60073c252159c6}{TOKEN\+\_\+\+SECR}}}
 
 
 
@@ -83,6 +81,13 @@ int \mbox{\hyperlink{rd__22__wifi_8cpp_a37c34f4f38cdb432d71a76d70ea582ba}{http\+
 \doxysubsubsection{\texorpdfstring{getIp()}{getIp()}}
 {\footnotesize\ttfamily String get\+Ip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Get the IP of the node. 
+
+\begin{DoxyReturn}{Returns}
+String The IP address in String format. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{rd__22__wifi_8cpp_ab59433792d0c66f5863aff6b77069863}\label{rd__22__wifi_8cpp_ab59433792d0c66f5863aff6b77069863}} 
 \index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!networkScan@{networkScan}}
 \index{networkScan@{networkScan}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
@@ -93,12 +98,14 @@ int \mbox{\hyperlink{rd__22__wifi_8cpp_a37c34f4f38cdb432d71a76d70ea582ba}{http\+
 
 Measure the RSSI of the Home Assistant access point. 
 
-Received Signal Strength Indicator (RSSI) is the measurement of how strong the signal of a router or access point is to a device. The RSSI is a value between -\/100 and 0. Close to 0 means a better connection
+We search the index of the desired network and we measure the RSSI.
 
-There is no connection to the access point. We search the index of the desired network and we measure the RSSI.
+Received Signal Strength Indicator (RSSI) is the measurement of how strong the signal of a router or access point is to a device. The RSSI is a value between -\/100 and 0. An RSSI closer to 0 means a better connection.
+
+When there is no connection to the access point we set the value to -\/100.
 
 \begin{DoxyReturn}{Returns}
-int RSSI, a value between -\/100 and 0 
+int RSSI, a value between -\/100 and 0. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{rd__22__wifi_8cpp_a433a2bfe9f984e7dbd6e66f7a251852d}\label{rd__22__wifi_8cpp_a433a2bfe9f984e7dbd6e66f7a251852d}} 
 \index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!post@{post}}
@@ -159,11 +166,19 @@ Split the received JSON in individual measurements so we can POST them to Home A
 \doxysubsubsection{\texorpdfstring{client}{client}}
 {\footnotesize\ttfamily Wi\+Fi\+Client client}
 
+
+
+Wifi client object. 
+
 \mbox{\Hypertarget{rd__22__wifi_8cpp_a58eddff149cd37cc3f16deb0bf67c9c0}\label{rd__22__wifi_8cpp_a58eddff149cd37cc3f16deb0bf67c9c0}} 
 \index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!http@{http}}
 \index{http@{http}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
 \doxysubsubsection{\texorpdfstring{http}{http}}
 {\footnotesize\ttfamily HTTPClient http}
+
+
+
+Http client object. 
 
 \mbox{\Hypertarget{rd__22__wifi_8cpp_a114aa1458f71b84775e6274fc63a00f9}\label{rd__22__wifi_8cpp_a114aa1458f71b84775e6274fc63a00f9}} 
 \index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!httpAtributes@{httpAtributes}}
@@ -171,11 +186,19 @@ Split the received JSON in individual measurements so we can POST them to Home A
 \doxysubsubsection{\texorpdfstring{httpAtributes}{httpAtributes}}
 {\footnotesize\ttfamily String http\+Atributes = \char`\"{}\char`\"{}}
 
+
+
+Variable will store the attributes of our POST request. 
+
 \mbox{\Hypertarget{rd__22__wifi_8cpp_a76dee866cef104107a6bb2bc8a492924}\label{rd__22__wifi_8cpp_a76dee866cef104107a6bb2bc8a492924}} 
 \index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!httpRequestData@{httpRequestData}}
 \index{httpRequestData@{httpRequestData}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
 \doxysubsubsection{\texorpdfstring{httpRequestData}{httpRequestData}}
 {\footnotesize\ttfamily String http\+Request\+Data = \char`\"{}\char`\"{}}
+
+
+
+variable will store the measurement data of our POST request to Home Assistant. 
 
 \mbox{\Hypertarget{rd__22__wifi_8cpp_a37c34f4f38cdb432d71a76d70ea582ba}\label{rd__22__wifi_8cpp_a37c34f4f38cdb432d71a76d70ea582ba}} 
 \index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!httpResponseCode@{httpResponseCode}}
@@ -183,15 +206,17 @@ Split the received JSON in individual measurements so we can POST them to Home A
 \doxysubsubsection{\texorpdfstring{httpResponseCode}{httpResponseCode}}
 {\footnotesize\ttfamily int http\+Response\+Code = 0}
 
+
+
+The response code of our POST request to Home Assistant. Response codes of 200 or 201 are successful. 
+
 \mbox{\Hypertarget{rd__22__wifi_8cpp_a863c214d56d28a55467c000641e1be91}\label{rd__22__wifi_8cpp_a863c214d56d28a55467c000641e1be91}} 
 \index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!ip@{ip}}
 \index{ip@{ip}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
 \doxysubsubsection{\texorpdfstring{ip}{ip}}
 {\footnotesize\ttfamily IPAddress ip}
 
-\mbox{\Hypertarget{rd__22__wifi_8cpp_a5905a4fd1b69ca81f7dc29f26192adfc}\label{rd__22__wifi_8cpp_a5905a4fd1b69ca81f7dc29f26192adfc}} 
-\index{rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}!test@{test}}
-\index{test@{test}!rd\_22\_wifi.cpp@{rd\_22\_wifi.cpp}}
-\doxysubsubsection{\texorpdfstring{test}{test}}
-{\footnotesize\ttfamily const char$\ast$ test = \char`\"{}home-\/assistant-\/AP\char`\"{}}
+
+
+Ip address object. 
 

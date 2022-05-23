@@ -13,9 +13,9 @@
 \item 
 \#define \mbox{\hyperlink{rd__22__mesh_8cpp_ad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}~\mbox{\hyperlink{rd__22__configuration_8h_ac2d33ccaf63f5d5b66552b95426c0137}{DEBUG\+\_\+\+LEVEL}}
 \item 
-\#define \mbox{\hyperlink{rd__22__mesh_8cpp_a3cff1c27d78708c0c0fd803ccab37ca7}{MESH\+\_\+\+PREFIX}}~\mbox{\hyperlink{rd__22__configuration_8h_a79f9b7e77f6e74c91163ff19b46c4925}{MESH\+\_\+\+PREFIX\+\_\+secr}}
+\#define \mbox{\hyperlink{rd__22__mesh_8cpp_a3cff1c27d78708c0c0fd803ccab37ca7}{MESH\+\_\+\+PREFIX}}~\mbox{\hyperlink{rd__22__configuration_8h_a7ddcea8e1dbddc4895c974b089808553}{MESH\+\_\+\+SSID\+\_\+\+SECR}}
 \item 
-\#define \mbox{\hyperlink{rd__22__mesh_8cpp_af6cdc02b83c744305b96acc45053cf3b}{MESH\+\_\+\+PASSWORD}}~\mbox{\hyperlink{rd__22__configuration_8h_a339c2c68afdeb5057a6b1e5f5767507a}{MESH\+\_\+\+PASSWORD\+\_\+secr}}
+\#define \mbox{\hyperlink{rd__22__mesh_8cpp_af6cdc02b83c744305b96acc45053cf3b}{MESH\+\_\+\+PASSWORD}}~\mbox{\hyperlink{rd__22__configuration_8h_ad8b3b789ba1741149c1af0ccb9304d2f}{MESH\+\_\+\+PASSWORD\+\_\+\+SECR}}
 \item 
 \#define \mbox{\hyperlink{rd__22__mesh_8cpp_a18c25eaf6d7220b554300a512776d52f}{MESH\+\_\+\+PORT}}~\mbox{\hyperlink{rd__22__configuration_8h_ad5e05c0e9fd82d860ce8744376c1d5c9}{MESH\+\_\+\+PORT\+\_\+conf}}
 \end{DoxyCompactItemize}
@@ -23,7 +23,7 @@
 \begin{DoxyCompactItemize}
 \item 
 Dynamic\+Json\+Document \mbox{\hyperlink{rd__22__mesh_8cpp_a269ca9e6b97d7060de9b8b9eaeeaf303}{doc}} (512)
-\item 
+\begin{DoxyCompactList}\small\item\em Json object with a size of 512 bytes. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{rd__22__mesh_8cpp_af33853c91660c3c7381e91ba58bb0364}{root\+Timer}} ()
 \begin{DoxyCompactList}\small\item\em Timer that resets when a keep-\/alive message from the root has been received. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{rd__22__mesh_8cpp_a8e8613de2dd40203c81a54e38c834e0f}{send\+Broadcast}} (String message)
@@ -37,7 +37,7 @@ void \mbox{\hyperlink{rd__22__mesh_8cpp_aaabde591294d25c1323c47b8d336f2ad}{recei
 void \mbox{\hyperlink{rd__22__mesh_8cpp_ab204ffabb75f0f826ff7707130c3de1e}{new\+Connection\+Callback}} (uint32\+\_\+t node\+Id)
 \begin{DoxyCompactList}\small\item\em When we have a new connection in the mesh network this function is called. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{rd__22__mesh_8cpp_a3067ee655c5fa6d15fc4afb5ee804918}{changed\+Connection\+Callback}} ()
-\begin{DoxyCompactList}\small\item\em When we have a connection changes in the mesh network this function is called. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em When we have a connection change in the mesh network this function is called. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{rd__22__mesh_8cpp_af83ba476ea0af35a85c3152671256c7f}{node\+Time\+Adjusted\+Callback}} (int32\+\_\+t offset)
 \begin{DoxyCompactList}\small\item\em This function is called when a node syncs its own time with that of the mesh. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{rd__22__mesh_8cpp_a1a5de8ae29765e7c3c16907209e2ccb3}{setup\+Mesh}} ()
@@ -46,15 +46,15 @@ void \mbox{\hyperlink{rd__22__mesh_8cpp_a1a5de8ae29765e7c3c16907209e2ccb3}{setup
 \begin{DoxyCompactItemize}
 \item 
 Json\+Array \mbox{\hyperlink{rd__22__mesh_8cpp_a46a45178b5bd8f618f20239e71361773}{arr}}
-\item 
+\begin{DoxyCompactList}\small\item\em JSON array object Because we send a JSON array we also need a JSON array object. \end{DoxyCompactList}\item 
 painless\+Mesh \mbox{\hyperlink{rd__22__mesh_8cpp_ab26d19e0dca45c621ee9e97a345efc03}{mesh}}
-\item 
+\begin{DoxyCompactList}\small\item\em Mesh object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_node___information}{Node\+\_\+\+Information}} \mbox{\hyperlink{rd__22__mesh_8cpp_a1044458da94efb15060cad8b57168721}{node}}
-\item 
+\begin{DoxyCompactList}\small\item\em Node object that will store all the information about our node. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{rd__22__mesh_8cpp_a7d0ddbd1476d329c19e6654075279dae}{last\+Time\+RSSI}} = 0
-\item 
+\begin{DoxyCompactList}\small\item\em Variable that will store timing information. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{rd__22__mesh_8cpp_ac81a8a85b26671d00908531065f35046}{last\+Time\+Root}} = 0
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Variable that will store timing information. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -68,7 +68,7 @@ int \mbox{\hyperlink{rd__22__mesh_8cpp_ac81a8a85b26671d00908531065f35046}{last\+
 \index{rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}!MESH\_PASSWORD@{MESH\_PASSWORD}}
 \index{MESH\_PASSWORD@{MESH\_PASSWORD}!rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}}
 \doxysubsubsection{\texorpdfstring{MESH\_PASSWORD}{MESH\_PASSWORD}}
-{\footnotesize\ttfamily \#define MESH\+\_\+\+PASSWORD~\mbox{\hyperlink{rd__22__configuration_8h_a339c2c68afdeb5057a6b1e5f5767507a}{MESH\+\_\+\+PASSWORD\+\_\+secr}}}
+{\footnotesize\ttfamily \#define MESH\+\_\+\+PASSWORD~\mbox{\hyperlink{rd__22__configuration_8h_ad8b3b789ba1741149c1af0ccb9304d2f}{MESH\+\_\+\+PASSWORD\+\_\+\+SECR}}}
 
 \mbox{\Hypertarget{rd__22__mesh_8cpp_a18c25eaf6d7220b554300a512776d52f}\label{rd__22__mesh_8cpp_a18c25eaf6d7220b554300a512776d52f}} 
 \index{rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}!MESH\_PORT@{MESH\_PORT}}
@@ -80,7 +80,7 @@ int \mbox{\hyperlink{rd__22__mesh_8cpp_ac81a8a85b26671d00908531065f35046}{last\+
 \index{rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}!MESH\_PREFIX@{MESH\_PREFIX}}
 \index{MESH\_PREFIX@{MESH\_PREFIX}!rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}}
 \doxysubsubsection{\texorpdfstring{MESH\_PREFIX}{MESH\_PREFIX}}
-{\footnotesize\ttfamily \#define MESH\+\_\+\+PREFIX~\mbox{\hyperlink{rd__22__configuration_8h_a79f9b7e77f6e74c91163ff19b46c4925}{MESH\+\_\+\+PREFIX\+\_\+secr}}}
+{\footnotesize\ttfamily \#define MESH\+\_\+\+PREFIX~\mbox{\hyperlink{rd__22__configuration_8h_a7ddcea8e1dbddc4895c974b089808553}{MESH\+\_\+\+SSID\+\_\+\+SECR}}}
 
 
 
@@ -93,13 +93,17 @@ int \mbox{\hyperlink{rd__22__mesh_8cpp_ac81a8a85b26671d00908531065f35046}{last\+
 
 
 
-When we have a connection changes in the mesh network this function is called. 
+When we have a connection change in the mesh network this function is called. 
 
 The layout is printed when this happens \mbox{\Hypertarget{rd__22__mesh_8cpp_a269ca9e6b97d7060de9b8b9eaeeaf303}\label{rd__22__mesh_8cpp_a269ca9e6b97d7060de9b8b9eaeeaf303}} 
 \index{rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}!doc@{doc}}
 \index{doc@{doc}!rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}}
 \doxysubsubsection{\texorpdfstring{doc()}{doc()}}
 {\footnotesize\ttfamily Dynamic\+Json\+Document doc (\begin{DoxyParamCaption}\item[{512}]{ }\end{DoxyParamCaption})}
+
+
+
+Json object with a size of 512 bytes. 
 
 \mbox{\Hypertarget{rd__22__mesh_8cpp_ab204ffabb75f0f826ff7707130c3de1e}\label{rd__22__mesh_8cpp_ab204ffabb75f0f826ff7707130c3de1e}} 
 \index{rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}!newConnectionCallback@{newConnectionCallback}}
@@ -157,11 +161,13 @@ Timer that resets when a keep-\/alive message from the root has been received.
 
 We can use this to check if there is a root node in the network. The root node will send a broadcast at set intervals. We have to select a new node when there is no more root.
 
-\begin{DoxyReturn}{Returns}
-true No message of the root has been received in the timeframe that has been set. 
 
-false A message has been received in the timeframe. 
-\end{DoxyReturn}
+\begin{DoxyRetVals}{Return values}
+{\em true} & No message of the root has been received in the timeframe that has been set. \\
+\hline
+{\em false} & A message has been received in the timeframe. \\
+\hline
+\end{DoxyRetVals}
 \mbox{\Hypertarget{rd__22__mesh_8cpp_a8e8613de2dd40203c81a54e38c834e0f}\label{rd__22__mesh_8cpp_a8e8613de2dd40203c81a54e38c834e0f}} 
 \index{rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}!sendBroadcast@{sendBroadcast}}
 \index{sendBroadcast@{sendBroadcast}!rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}}
@@ -226,11 +232,19 @@ This should be done as often as possible.
 \doxysubsubsection{\texorpdfstring{arr}{arr}}
 {\footnotesize\ttfamily Json\+Array arr}
 
+
+
+JSON array object Because we send a JSON array we also need a JSON array object. 
+
 \mbox{\Hypertarget{rd__22__mesh_8cpp_ac81a8a85b26671d00908531065f35046}\label{rd__22__mesh_8cpp_ac81a8a85b26671d00908531065f35046}} 
 \index{rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}!lastTimeRoot@{lastTimeRoot}}
 \index{lastTimeRoot@{lastTimeRoot}!rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}}
 \doxysubsubsection{\texorpdfstring{lastTimeRoot}{lastTimeRoot}}
 {\footnotesize\ttfamily int last\+Time\+Root = 0}
+
+
+
+Variable that will store timing information. 
 
 \mbox{\Hypertarget{rd__22__mesh_8cpp_a7d0ddbd1476d329c19e6654075279dae}\label{rd__22__mesh_8cpp_a7d0ddbd1476d329c19e6654075279dae}} 
 \index{rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}!lastTimeRSSI@{lastTimeRSSI}}
@@ -238,15 +252,27 @@ This should be done as often as possible.
 \doxysubsubsection{\texorpdfstring{lastTimeRSSI}{lastTimeRSSI}}
 {\footnotesize\ttfamily int last\+Time\+RSSI = 0}
 
+
+
+Variable that will store timing information. 
+
 \mbox{\Hypertarget{rd__22__mesh_8cpp_ab26d19e0dca45c621ee9e97a345efc03}\label{rd__22__mesh_8cpp_ab26d19e0dca45c621ee9e97a345efc03}} 
 \index{rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}!mesh@{mesh}}
 \index{mesh@{mesh}!rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}}
 \doxysubsubsection{\texorpdfstring{mesh}{mesh}}
 {\footnotesize\ttfamily painless\+Mesh mesh}
 
+
+
+Mesh object. 
+
 \mbox{\Hypertarget{rd__22__mesh_8cpp_a1044458da94efb15060cad8b57168721}\label{rd__22__mesh_8cpp_a1044458da94efb15060cad8b57168721}} 
 \index{rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}!node@{node}}
 \index{node@{node}!rd\_22\_mesh.cpp@{rd\_22\_mesh.cpp}}
 \doxysubsubsection{\texorpdfstring{node}{node}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_node___information}{Node\+\_\+\+Information}} node}
+
+
+
+Node object that will store all the information about our node. 
 

@@ -14,8 +14,7 @@
 #include "rd_22_280sensor.h"
 #define setupSensor() setupSensor280()
 #define makeSensorMessage(a, b, c, d) makeSensorMessage280(a, b, c, d)
-#endif
-#ifdef bme680
+#elif defined(bme680)
 #include "rd_22_680sensor.h"
 #define setupSensor() setupSensor680()
 #define makeSensorMessage(a, b, c, d) makeSensorMessage680(a, b, c, d)
@@ -26,35 +25,33 @@
 
 #define LED 2
 // this led will show the root status
-// #define buttonPin 16
+#define buttonPin 16
 // button pin we need for the reset of the eeprom
 
 bool hasRun = false;
 bool serverNeeded = false;
 // variables used for decision making
 
-//! put in class or header
-// variable that will store the identifier of the node
+bool ledState = LOW;
 
 int lastTimeButton = 0;
 int lastTime = 0;
-// timing variable for reset button (press 10 seconds for)
+// timing variable
 
 String nodeName = "";
-
-//!
-
-//! use namespace
+// variable for identifier of the node
 
 //***********************************************************************
 //******************************** setup ********************************
+/**
+ * @brief The setup will run once and will initialise everything needed.
+ * 
+ */
 void setup() {
   Serial.begin(115200);
-  debugln2("test");
   pinMode(LED, OUTPUT);
-  // pinMode(buttonPin, INPUT);
   digitalWrite(LED, LOW);
-  // setup button and led, turn off led
+  // pinMode(buttonPin, INPUT);
 
   nodeName = readSpiffs("/assets.txt");
   // we read the eeprom
@@ -67,24 +64,42 @@ void setup() {
     // can setup our mesh
     debugln2("server is needed");
   }
-  delay(1000);  //! remove maybe?
+  delay(100);
   setupSensor();
   // start the BME680 sensor
 }
 
 //***********************************************************************
 //******************************** loop *********************************
+/**
+ * @brief This loop will run forever.
+ * 
+ */
 void loop() {
   nextDnsRequest();
   nodeName = readSpiffs("/assets.txt");
-
   // while we don't have a sensorname we have to wait
   // the dns is used for the captive window
+
+  if ((millis() - lastTime) > 200){
+    if (ledState == HIGH){
+      ledState = LOW;
+    }
+    else{
+      ledState = HIGH;
+    }
+    digitalWrite(LED, ledState);
+    lastTime = millis();
+  }
+  
+
+
 
   while (nodeName != "") {
     // when we have a sensorname we enter the main loop
     //? Only run this one time (setup of the mesh network)
     if (hasRun == false) {
+      digitalWrite(LED, LOW);
       // we have to run this part once after we got our sensorname
       if (serverNeeded == true) {
         endWebserver();
@@ -113,23 +128,25 @@ void loop() {
     }
 
     updateMesh();
-    apiCheck();
+    if (node.iAmRoot){
+      apiCheck();
+    }
     // this has to be done as often as possible
     // this will be the only things that are executed on this thread
 
-    // if (digitalRead(buttonPin) == LOW and ((millis() - lastTimeButton) >
-    // timerDelayButton)){
-    //   // when the button is pressed for 10 seconds we reset the eeprom and
-    //   restart the esp debug1(digitalRead(buttonPin)); debugln1(" Button has
-    //   been pressed for 10 seconds, ESP will be reset"); writeSpiffs("",
-    //   "/assets.txt");
-    //   // write a empty string
-    //   ESP.restart();
-    // }
-    // if (digitalRead(buttonPin) == HIGH){
-    //   lastTimeButton = millis();
-    //   // if the buttonpin is not pressed we reset the timer
-    // }
+    if (digitalRead(buttonPin) == LOW and ((millis() - lastTimeButton) >
+    timerDelayButton)){
+      // when the button is pressed for 10 seconds we reset the eeprom and restart the esp 
+      debug1(digitalRead(buttonPin)); 
+      debugln1(" Button has been pressed, ESP will be reset"); 
+      writeSpiffs("","/assets.txt");
+      // write a empty string
+      ESP.restart();
+    }
+    if (digitalRead(buttonPin) == HIGH){
+      lastTimeButton = millis();
+      // if the buttonpin is not pressed we reset the timer
+    }
 
     if (!node.rootFound and ((millis() - lastTime) > timerDelay)) {
       // as long we have not selected a root send a message every 10 seconds
@@ -141,22 +158,26 @@ void loop() {
       // send a message with RSSI information
       lastTime = millis();
       // reset the timer
-    } else if ((millis() - lastTime) > timerDelay) {
+    } 
+    
+    else if ((millis() - lastTime) > timerDelay) {
       // if a root has been found do this every 10 seconds
       if (node.iAmRoot) {
         // if this is the root
         digitalWrite(LED, HIGH);
         // turn the blue led on
-        Serial.println("I am the root");
+        debugln2("I am the root");
         String rootStatus = "[{\"bn\": \"Root\"";
         sendBroadcast(rootStatus + "}]");
         // make and broadcast the root is alive message
         splitJson(makeSensorMessage(true, nodeName, getIp(), node.nodeID));
         // we read the sensor and post everything to Home Assistant
-      } else {
+      }
+      
+      else {
         digitalWrite(LED, LOW);
         // if we are not the root we turn off the blue light
-        Serial.println("Not root");
+        debugln2("Not root");
         if (node.rootID == 0) {
           sendBroadcast(
               makeSensorMessage(false, nodeName, getIp(), node.nodeID));
@@ -167,6 +188,7 @@ void loop() {
         }
         // the sensor is read and we send it to the root
         if (rootTimer() && !node.iAmRoot) {
+          debugln2("No root, ESP reset");
           // if we are not the root and we have not received a message from the
           // root for 40 seconds reset the esp (start the rootselection again)
           ESP.restart();

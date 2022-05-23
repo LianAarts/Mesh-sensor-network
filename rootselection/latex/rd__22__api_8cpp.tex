@@ -15,20 +15,18 @@
 \begin{DoxyCompactItemize}
 \item 
 Web\+Server \mbox{\hyperlink{rd__22__api_8cpp_a85c7acb3bde25e6f5a8a3d739f7e9f79}{APIserver}} (80)
-\item 
+\begin{DoxyCompactList}\small\item\em API server object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{rd__22__api_8cpp_a1434daedf72bf86dbc8536b8723ee958}{handle\+Post}} ()
 \begin{DoxyCompactList}\small\item\em When we receive a Post request from Home Assistant this function is called. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{rd__22__api_8cpp_a413403de0c58188b7313cf47bf82e51f}{setup\+API}} ()
-\begin{DoxyCompactList}\small\item\em Setup the REST API server we use for the messages from Home Assistant to the mesh network. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Set up the REST API server we use for the messages from Home Assistant to the mesh network. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{rd__22__api_8cpp_a087a442e7c6998509ee81edac32691a1}{api\+Check}} ()
 \begin{DoxyCompactList}\small\item\em Check the API server. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 Static\+Json\+Document$<$ 250 $>$ \mbox{\hyperlink{rd__22__api_8cpp_a704a5677dbeb99a0164b74076ab445eb}{json\+Document}}
-\item 
-char \mbox{\hyperlink{rd__22__api_8cpp_a8745e746cd7fbaf58063e9d45cc3a68a}{buffer}} \mbox{[}250\mbox{]}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Json object with a size of 200 bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -60,6 +58,10 @@ This should be done as often as possible
 \doxysubsubsection{\texorpdfstring{APIserver()}{APIserver()}}
 {\footnotesize\ttfamily Web\+Server APIserver (\begin{DoxyParamCaption}\item[{80}]{ }\end{DoxyParamCaption})}
 
+
+
+API server object. 
+
 \mbox{\Hypertarget{rd__22__api_8cpp_a1434daedf72bf86dbc8536b8723ee958}\label{rd__22__api_8cpp_a1434daedf72bf86dbc8536b8723ee958}} 
 \index{rd\_22\_api.cpp@{rd\_22\_api.cpp}!handlePost@{handlePost}}
 \index{handlePost@{handlePost}!rd\_22\_api.cpp@{rd\_22\_api.cpp}}
@@ -78,20 +80,18 @@ This means we have two nodes that are configured with the same name. We will sen
 
 
 
-Setup the REST API server we use for the messages from Home Assistant to the mesh network. 
+Set up the REST API server we use for the messages from Home Assistant to the mesh network. 
 
 
 
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{rd__22__api_8cpp_a8745e746cd7fbaf58063e9d45cc3a68a}\label{rd__22__api_8cpp_a8745e746cd7fbaf58063e9d45cc3a68a}} 
-\index{rd\_22\_api.cpp@{rd\_22\_api.cpp}!buffer@{buffer}}
-\index{buffer@{buffer}!rd\_22\_api.cpp@{rd\_22\_api.cpp}}
-\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
-{\footnotesize\ttfamily char buffer\mbox{[}250\mbox{]}}
-
 \mbox{\Hypertarget{rd__22__api_8cpp_a704a5677dbeb99a0164b74076ab445eb}\label{rd__22__api_8cpp_a704a5677dbeb99a0164b74076ab445eb}} 
 \index{rd\_22\_api.cpp@{rd\_22\_api.cpp}!jsonDocument@{jsonDocument}}
 \index{jsonDocument@{jsonDocument}!rd\_22\_api.cpp@{rd\_22\_api.cpp}}
 \doxysubsubsection{\texorpdfstring{jsonDocument}{jsonDocument}}
 {\footnotesize\ttfamily Static\+Json\+Document$<$250$>$ json\+Document}
+
+
+
+Json object with a size of 200 bytes. 
 

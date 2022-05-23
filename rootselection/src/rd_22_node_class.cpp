@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "rd_22_node_class.h"
 
-// These functions are not really necessary, I might expand on this later.
+// These functions are not necessary, I might expand on this later.
 // Why use classes with no functions :O
 
 /**
@@ -46,6 +46,9 @@ void Node_Information::setRootFound(bool state) {
  * the signal of a router or access point is to a device. We use this
  * measurement to determine which node has the better connection to the Home
  * Assistant access point.
+ * 
+ * The RSSI is a value between -100 and 0. 
+ * An RSSI closer to 0 means a better connection.
  *
  * @param rssi RSSI value (between -100 and 0).
  */

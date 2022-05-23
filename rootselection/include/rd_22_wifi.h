@@ -7,11 +7,11 @@
 //! doxygen
 
 //! const String& sensorVal
-void post(String sensorVal, String name, String unit);  //?
-void splitJson(String json);                            //?
-void setupNetwork();                                    //?
+void post(String sensorVal, String name, String unit);
+void splitJson(String json);
+void setupNetwork();
 
-int networkScan();  //?
+int networkScan(); 
 
 String getIp();
 
