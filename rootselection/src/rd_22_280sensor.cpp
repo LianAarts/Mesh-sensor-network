@@ -24,7 +24,7 @@ void setupSensor280() { BME280.begin(); }
  * This JSON is based on the SenML specification. This one JSON will include
  * multiple measurements.
  *
- * bn:  Base name or sensor name  (sensor1)
+ * bn:  Basename or sensor name  (sensor1)
  *
  * n:   Measurement name          (temperature)
  *

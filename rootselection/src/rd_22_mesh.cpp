@@ -18,7 +18,7 @@
 // Scheduler userScheduler; // to control your personal task
 
 /**
- * @brief Json object with a size of 512 bytes.
+ * @brief JSON object with a size of 512 bytes.
  * 
  */
 DynamicJsonDocument doc(512);

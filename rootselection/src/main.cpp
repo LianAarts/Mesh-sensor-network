@@ -26,7 +26,7 @@
 #define LED 2
 // this led will show the root status
 #define buttonPin 16
-// button pin we need for the reset of the eeprom
+// button pin we need for the reset of the EEPROM
 
 bool hasRun = false;
 bool serverNeeded = false;
@@ -44,7 +44,7 @@ String nodeName = "";
 //***********************************************************************
 //******************************** setup ********************************
 /**
- * @brief The setup will run once and will initialise everything needed.
+ * @brief The setup will run once and will initialize everything needed.
  * 
  */
 void setup() {

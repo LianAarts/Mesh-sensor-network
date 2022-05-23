@@ -1,4 +1,5 @@
-# RD
+# Study & Development of a Mesh Network of Environmental Sensors
+
 
 This project aims to study, implement and deploy a network of environmental sensors (e.g. temperature, humidity) covering all the rooms of the Department Informatique building. The final purpose of the project is to be able to perform statistics on these environmental data but also to send some alerts in case of an anomaly (e.g. rapid drop in temperature). 
 ## Why mesh?
