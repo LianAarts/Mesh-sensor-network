@@ -34,13 +34,13 @@ The root node can be used as a bridge to another network. This functionality is 
 
 \begin{DoxyItemize}
 \item main\+: main loop
-\item rd\+\_\+22\+\_\+280sensor\+: read bme280
-\item rd\+\_\+22\+\_\+680sensor\+: read bme680
-\item rd\+\_\+22\+\_\+api\+: setup the api and callback when a POST is received
-\item rd\+\_\+22\+\_\+mesh\+: send messages,
-\item rd\+\_\+22\+\_\+node\+\_\+class\+:
-\item rd\+\_\+22\+\_\+setup\+\_\+portal\+: read Spiffs, captive portal for setup
-\item rd\+\_\+22\+\_\+wifi\+: measure RSSI, connect to wifi, POST, deserialize json
+\item rd\+\_\+22\+\_\+280sensor\+: Functions for the BME280.
+\item rd\+\_\+22\+\_\+680sensor\+: Functions for the BME680.
+\item rd\+\_\+22\+\_\+api\+: Setup and callback for the API on the root node.
+\item rd\+\_\+22\+\_\+mesh\+: Mesh setup, callbacks and messaging.
+\item rd\+\_\+22\+\_\+node\+\_\+class\+: Functions for the node class.
+\item rd\+\_\+22\+\_\+setup\+\_\+portal\+: Reading and writing EEPROM. Captive configuration portal.
+\item rd\+\_\+22\+\_\+wifi\+: Measuring RSSI, connecting to the server, POST request and JSON deserialization.
 \end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{Necessary steps}\label{index_autotoc_md2}
 
 \begin{DoxyEnumerate}
