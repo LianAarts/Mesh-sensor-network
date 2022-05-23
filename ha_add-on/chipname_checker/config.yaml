@@ -1,0 +1,6 @@
+name: "nodeChecker"
+description: "This add-on will check if the configured node name already exist and will an callback to the corresponding node."
+version: "2.0"
+slug: "chipid"
+arch:
+  - amd64

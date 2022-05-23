@@ -1,3 +1,4 @@
+from __future__ import annotations
 import sys
 import argparse
 
@@ -17,11 +18,12 @@ def checkIfHasDigits(s):
 
 # args
 parser = argparse.ArgumentParser(description='A program to generate the secret file')
-parser.add_argument("-m", "--meshSSID", help="The Mesh SSID for the mesh system", default="meshSSID", required=True)
-parser.add_argument("-M", "--meshPassword", help="The Mesh Password for the mesh system", default="meshPassword", required=True)
-parser.add_argument("-b", "--bearerToken", help="The Bearer token of yout Home Assistant system", default="eyxxxxxxx", required=True)
-parser.add_argument("-a", "--appSSID", help="The AP SSID", default="APSSID", required=True)
-parser.add_argument("-A", "--appPAssword", help="The Password for your AP SSID", default="PPassword", required=True)
+parser.add_argument("-m", "--meshSSID", help="The Mesh SSID for the mesh system", default="meshDefault")
+parser.add_argument("-M", "--meshPassword", help="The Mesh Password for the mesh system", default="meshPassDefault")
+parser.add_argument("-b", "--bearerToken", help="The Bearer token of yout Home Assistant system", default="eyxxxxxxxxxxxxxx", required=True)
+parser.add_argument("-a", "--appSSID", help="The AP SSID", default="APSSID")
+parser.add_argument("-A", "--appPAssword", help="The Password for your AP SSID", default="APPassword",)
+
 args = parser.parse_args()
 filename = sys.argv[0]
 meshSSID = sys.argv[2]

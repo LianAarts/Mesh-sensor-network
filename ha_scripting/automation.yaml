@@ -1,0 +1,14 @@
+- id: '1652946549989'
+  alias: Jeroen notify
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: jeroen-notify-9dFNWgQEI_lhWSpxII7TpH9O
+  condition: []
+  action:
+  - service: notify.mobile_app_iphone_van_jeroen
+    data:
+      title: Pleae check node {{ trigger.json.sort }} !
+      message: The sensor {{ trigger.json.sort }} reports {{ trigger.json.data.state}}
+        {{ trigger.json.data.attr }}
+  mode: single

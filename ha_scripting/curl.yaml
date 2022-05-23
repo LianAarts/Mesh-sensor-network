@@ -1,0 +1,9 @@
+input_text:
+  chipid:
+    name: chipid
+    
+shell_command:
+    curl: >
+      curl -X POST -H "Content-Type: application/json" --data  "{'chipID' : {{ states('input_text.chipid') }} }" http://{% for entity in states -%}"{% if entity.entity_id.endswith("rootip") and entity.state.startswith("192") %}{{ entity.state }}{% endif %}{%- endfor %}/usedNameID     
+    
+    
