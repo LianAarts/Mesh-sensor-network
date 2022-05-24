@@ -41,7 +41,7 @@ Jeroen: Today I continued to work on optimizing the connection between the diffe
 09-03-22:
 Lian: Vincent asked me to make a section about the power consumption of the sensors. After that started working on the RestAPI of Home Assistant. I used Postman for troubleshooting. When everything was working, I used the API to send sensor data from the ESP to Home Assistant. Here we can make a comparison of the received data we get. Two sensors are operational.
 
-Jeroen: Today and yesterday I continued to work on optimizing the connection between the different ESPs. I also tried to combine the libraries to also make requests towards Home Assistant.
+Jeroen: Today and yesterday I continued to work on optimizing the connection between the different ESPs. I also tried to combine the libraries to make requests towards Home Assistant.
 
 
 10-03-22:
@@ -59,7 +59,7 @@ We had our meeting with Maartje, Sophie, and Vincent. Afterward, we had our meet
 
 
 14-03-22:
-Lian: I started by analyzing the data I collected during the weekend. All the sensors seem to follow the same trendline. The BME280 does show some abnormal measurements compared to the other sensors. I started working on Home Assistant. Home Assistant still needed the flash drive to boot. I Searched for a solution and eventually found a nice guide. I made a bootable ubuntu drive. It is possible to use ubuntu from the flash drive without installing the OS on the internal drive. Using this method, I was able to flash the internal nvme ssd. After lunch I restored the backup, I made of Home Assistant. Then I started working on the code of the mesh network. I have not been able to get measurements in Home Assistant.
+Lian: I started by analyzing the data I collected during the weekend. All the sensors seem to follow the same trendline. The BME280 does show some abnormal measurements compared to the other sensors. I started working on Home Assistant. Home Assistant still needed the flash drive to boot. I Searched for a solution and eventually found a nice guide. I made a bootable ubuntu drive. It is possible to use ubuntu from the flash drive without installing the OS on the internal drive. Using this method, I was able to flash the internal nvme SSD. After lunch I restored the backup, I made of Home Assistant. Then I started working on the code of the mesh network. I have not been able to get measurements in Home Assistant.
 
 Jeroen: sick
 
@@ -77,7 +77,7 @@ Jeroen: Today I worked on the API Request that needs to be up and running simult
 
 
 17-03-22:
-Lian: I started with reading the supervised Home Assistant install documentation. I decided to use the Debian distribution. After the installation of Debian I followed the guide provided by Home Assistant. This process was not very easy. I had to reinstall Debian because of an error. I got further the second time but came across a DNS error (probably because of the network configuration). I used my mobile data to download the Home Assistant software. Home Assistant was finally up and running.
+Lian: I started with reading the supervised Home Assistant install documentation. I decided to use the Debian distribution. After the installation of Debian, I followed the guide provided by Home Assistant. This process was not very easy. I had to reinstall Debian because of an error. I got further the second time but came across a DNS error (probably because of the network configuration). I used my mobile data to download the Home Assistant software. Home Assistant was finally up and running.
 
 Jeroen: Today I worked on pushing my work on Git. I am still stuck on this part and will finish this tomorrow. I checked if the Mesh is still operational and working and if the nodes are responding as needed. I also made the post request work in combination with the painless mesh library. I'm ready for the meeting tomorrow with Vincent.
 
@@ -121,14 +121,14 @@ Jeroen: Today we had our 'Plan Of Action' Meeting with Maartje to discuss the cu
 
 
 28-03-22:
-Lian: Today I started with the setup window for the ESP nodes. When you plug in your ESP it will first set up its own AP, you can connect with this and give your node a name. This name will be used in the post request and in Home Assistant. You currently have to browse to an IP address. I am working on a captive window that will pop up when you connect to the AP. I will also try to write the configuration to the EEPROM so nothing is lost when rebooting the node.
+Lian: Today I started with the setup window for the ESP nodes. When you plug in your ESP it will first set up its own AP, you can connect with this and give your node a name. This name will be used in the post request and Home Assistant. You currently have to browse to an IP address. I am working on a captive window that will pop up when you connect to the AP. I will also try to write the configuration to the EEPROM so nothing is lost when rebooting the node.
 
 Jeroen: I made a few functions (bool checkRoot(), size_t getRootId(protocol::NodeTree nodeTree)) to check the root and get the rootID, 
 I made the first prototype about this and hopefully I will get the root and assign the root to a certain node. I am making a comparison between WiFi and RRSI to check for the best connection.
 
 
 29-03-22:
-Lian: I finished the captive portal for the configuration early in the morning. After that, I started helping Jeroen with the root allocation. I decided to try a different concept so we wouldn't be doing double work. I will try to select a root based on the RSSI (Received Signal Strenght Index) of the wifi signal. I will set up a JSON so the nodes can share their signal strength and select a root node.
+Lian: I finished the captive portal for the configuration early in the morning. After that, I started helping Jeroen with the root allocation. I decided to try a different concept so we wouldn't be doing double work. I will try to select a root based on the wifi signal's RSSI (Received Signal Strenght Index). I will set up a JSON so the nodes can share their signal strength and select a root node.
 
 Jeroen: Today Lian and I worked on the root algorithm. This is the tricky part of the whole Mesh setup, I worked on a script that every node pings the Control System to get the response time and make a root decision based on the average time of response. We made some first drafts and sketches on paper to visualize the network for ourselves. We combined some code to be up-to-date with each other and make sure we had the same code.
 
@@ -140,7 +140,7 @@ Jeroen: For today Lian and I joined in to work on the Root Allocation. We were d
 
 
 31-03-22:
-Lian: Today I started with splitting the code into two parts, so it is easier to manage. I have one file with functions that need to be called and one file that manages the mesh network. I continued on making the mesh network more reliable. there are still a few bugs but the nodes figure out what the best root is given enough time. I will let the network run overnight to check the reliability. There are still some problems when connecting to the API. It is more stable than yesterday but still not as I want it. The mesh will be ready for a quick demo but it will need some improvement.
+Lian: Today I started with splitting the code into two parts, so it is easier to manage. I have one file with functions that need to be called and one file that manages the mesh network. I continued making the mesh network more reliable. there are still a few bugs but the nodes figure out what the best root is given enough time. I will let the network run overnight to check the reliability. There are still some problems when connecting to the API. It is more stable than yesterday but still not as I want it. The mesh will be ready for a quick demo but it will need some improvement.
 
 Jeroen: I worked further on my first documentation of the mesh system. After I finished that I published it to GitLab. Then I started working with the notifications and alerts, I can now send alerts to devices through a service called 'notify.event'. Tomorrow I will finish this and start working with variables and priority alerts.
 
@@ -164,7 +164,154 @@ Jeroen: Today I finished the EEPROM saving where a String can be written and rea
 
 
 06-04-22:
-Lian: I finally figured out what the problem was. The host machine would enter sleep mode after some time... Very weird because we didn't have any problems with our previous installs. I disabled the sleep mode and did some testing. After that, I tried to implement Jeroens EEPROM code in the main code. Because the spiffs file system uses the EEPROM it was difficult to implement. It is recommended to not use the EEPROM library in combination with spiffs. The solution is using a .txt file to save your data. I also added a button to the schematic. When this button is pressed the data saved on the file is cleared so you are able to choose a new name.
+Lian: I finally figured out what the problem was. The host machine would enter sleep mode after some time... Very weird because we didn't have any problems with our previous installs. I disabled the sleep mode and did some testing. After that, I tried to implement Jeroens EEPROM code in the main code. Because the spiffs file system uses the EEPROM it was difficult to implement. It is recommended to not use the EEPROM library in combination with spiffs. The solution is using a .txt file to save your data. I also added a button to the schematic. When this button is pressed the data saved on the file is cleared so you can choose a new name.
 
 Jeroen: Today I finished the EEPROM reading and I have sent this to Lian to finish it. After that, I started making the first .md for mesh security and looking up some important statements about the security in a mesh system. After lunch, I started working on alert sending with SMTP but Home Assistant cannot ping the outside so that is something for tomorrow to fix!
 
+
+07-04-22:
+Lian: I did some more testing on the code for the sensor. I made some small changes that improved the reliability. I also changed the code so the measurements wouldn't be broadcast to all the nodes of the mesh network. A single message will be sent to the root node. When the root node loses connection the network will heal itself faster. I also made some changes to the Home Assistant guide. 
+
+Jeroen: Today I worked further on the mesh documentation with the feedback given by Vincent. I split the different documents and pushed them to Github. Today I also took a look at the WiFi security. AES protocol would be the best for this project. I also worked on the alert sending with Notify and the Gmail servers. There are some problems with the VLAN. Home Assistant can't reach the outside, we are currently figuring this out with the IT team. 
+
+
+08-04-22:
+Lian: Today I started with checking the sensors. Everything seems to run pretty stably. After that, I read all the documentation. I corrected some errors and made some changes. I installed InfluxDB and Grafana again so I can run an extended test this weekend. We had our weekly meeting where we discussed everything. After our meeting with Vincent, I started researching some components we want to use for our PCB. 
+
+Jeroen: Today we worked further on the alert sending with SMTP and we were prepared for the meeting with Vincent, also we did some more Root Allocation testing to make sure we were ready for the test week. In the meeting with Vincent, we came across some important items that we need to configure in the next week such as package update, docker, ...
+
+
+11-04-22:
+Lian: I started by checking the test that ran this weekend. Everything seems to run very well with five nodes. We will be expanding this soon! I did some more research about the components we want to use. I also continued writing the documentation about the code. I decided to add comments to the code first before continuing on the documentation.
+
+Jeroen: Today I dropped off my friends at the airport because they were staying for the weekend. I worked a few hours at home to look into the stuff that Lian worked on today, I checked the MatterMost board and started some research for the approach for tomorrow to have an efficient start to the week. In the few days to come, I'll be working longer at the university to make sure I work 35h/week.
+
+
+12-04-22:
+Lian: I made a new presentation for the intermediate presentation we have to give this week. We will be talking about our progress and our goals. After this was finished I continued writing the comments in the code. This was done at the end of the day. I will be reviewing this with Vincent on Friday.
+
+Jeroen: Today I worked on the automated secret file. This file will generate the 'secret.h' file which is used in the main program. When you run this code you will be prompted with a few questions that will result in the end file. This is written in Python. Also, I took a first look at cronjobs and tested some of them and I am learning what the format of cron-time is.
+
+
+13-04-22:
+Lian: I started making the schematic so we can make a printed circuit board. I based my design on the Adafruit Huzzah 32 feather. I made some changes to make it fit our purpose. I also chose to use a usb-c connector. The PCB will be fully SMD soldered. We had to make sure all the parts are available from JLC PCB. The BME680 was not in stock so we chose the BME280 instead. The schematic was almost done at the end of the day.
+
+Jeroen: Today I finished the cronjobs where the updates can be performed automatically without having to do this manually. I discovered how to use cron time and how this is set up. Also, I took a look into making an add-on for checking if the configured node name is already been used.
+
+
+14-04-22:
+Lian: I finished the schematic and started designing the PCB. It was difficult to fit everything on a two-layer PCB. We have a lot of SMD components. It was my goal to make the PCB as small as possible. I laid out everything as well as I could. I used the autoroute to lay out the tracks, this took a couple of tries. After everything was connected I imported everything into JLCPCB and found out that our voltage regulator was not in stock. I chose a different regulator(which was a lot bigger) and redesigned the PCB. I added some logos to the backside. The PCB is ready to be ordered.
+
+Jeroen: Today I worked further on the add-on, this is configured with docker (Dockerfile and .yaml) and can be deployed inside Home Assistant to perform automated functions on the system. My add-on checks of the ID exist in the system and can print out messages to the system for debugging purposes. For the further, this plug-in needs to report back to the nodes.
+
+
+15-04-22:
+Lian: In the morning we prepared our presentation for Maartje. We gave our update on the project and discussed some topics. After our presentation, I started soldering all the sensors to prepare for our large-scale test next week. After lunch, we had an extended meeting with Vincent and Stephane. We discussed our progress and our next steps. We did a code review, we got some points to improve on. All our components for next week also arrived today!
+
+Jeroen: Today was already the end of the week. Time flies when you are having fun. In the morning we were preparing for the presentation for Maartje where we discussed all the topics and items we have done so far. She was very happy with the results! After that, we made sure we were ready for the demo for Vincent and Stephane. We made a code review and set up the points for next week. Next week the big scaling test is coming up! See you next week.
+
+
+18-04-22:
+National holiday.
+
+
+19-04-22:
+Lian: I started with assembling all the sensors and deploying these in batches. The first batch of nine sensors was deployed and operational before lunch. After lunch, I assembled and programmed the rest of the sensors. The setup of the sensors is really easy and fast. All the sensors worked as desired. We discovered that there were two root notes at one point. This didn't impact performance at all because we still receive all the messages. I kept two nodes with me to test the MQTT connection so we can send messages from Home Assistant to the nodes.
+
+Jeroen: 
+
+
+20-04-22:
+Lian: We discovered that the computers we use to supply the sensors enter sleep mode after some time. So we cannot run the large-scale test overnight. I gave MQTT another try but it won't work when we have a connection to Home Assistant and a mesh network running. I switched to hosting a restful API server on the root node. This way we will be able to send messages from Home Assistant to the root node. The root node will, in turn, send a message to the desired node. After some coding, I got this working. I still have to do some things in regards to security. Tomorrow I will focus on the cleanup of the code. Splitting the code into more files to keep the main code as clean and simple as possible.
+
+Jeroen: Today I worked on the node exists add-on. I worked on the python algorithm that checks the incoming node names and the changing node names to make sure there are no duplicates. This modeling and scripting take a lot of effort because this is an important part.
+
+
+21-04-22:
+Lian: I started with splitting and cleaning up the code. We tested the API request to reset the node through Home Assistant. After lunch, I decided to start again from the last GitLab version because the code was not working anymore. I managed to get rid of all the errors. There are a few bugs in the code that require some rewriting of the code. I will continue with this tomorrow.
+
+Jeroen: Today was a coding day where I was testing the homemade plugin which checks for duplicate node names and/or chipIDs. This took me a whole day and it is finished for 90%, tomorrow I can finish this and I can show a small demo.
+
+
+22-04-22:
+Lian: We started by turning on all the computers to make sure we had our large-scale test running. After that, I continued with the code. I had to do some rewriting to make the code work. I finished this right before our meeting. We had our meeting with vincent where we discussed our progress. I had a few extra hours left off last week, so I stopped a bit earlier today.
+
+Jeroen: Today was the day my parents would come and visit for the weekend so we made sure we were ready for the meeting with Vincent and Stephane. We had everything plugged in and set up in the multiple rooms so we could do a good demo with all the ESPs and sensors combined. After lunch, we had some talks about the next week to come and what is on the list of "to-do". Next week we are having a week off but we will work from home!
+
+During our week off:
+Lian: I Implemented multithreading so the mesh network can run more stable. The mesh network gets its own routine so we don’t have to interrupt it when we need to execute other tasks. I also wrote some more comments to explain all the extra functions needed. I added a function that checks if the key is in the JSON before reading. Otherwise, the ESP will crash if the key doesn’t exist. I also changed a few things on the PCB and made the order. The PCB should arrive in the next couple of weeks. I was contacted by JLC PCB, there were a few stock issues with the SMT assembly. I selected some new parts and checked the orientation of all the components. I did some research on Doxygen, it’s not as straightforward as I thought. It will require a lot more time than anticipated. I also added the basic functionality of debug levels. This has to be expanded and implemented further. The PCB is fully assembled and on its way to France! 
+
+Jeroen: 
+
+
+02-05-22: 
+Lian: I fully implemented the debug levels in the code. I will have to test this tomorrow. 
+
+
+03-05-22:
+Lian: I started with testing the code I wrote during our week off. There were some mistakes but they were resolved fairly easily. The mesh network was very unreliable. The root kept crashing "Core  1 panic'ed (LoadProhibited)". I discovered that this was because of multithreading. I removed multithreading and the code worked as intended. I also made a new library for the BME280 when our PCB arrives.
+
+
+04-05-22:
+Lian: I started with the declaration of the sensor so it is possible to choose between the BME280 and the BME680. After that, I did some more research on Doxygen. I installed all things needed for Doxygen and started documenting all the functions in the code. I ran Doxygen and open the generated HTML. I pushed everything to GitLab. I will expand this with some markdown files later. I also made a Fritzing schematic so it is easy to replicate for people with less experience in electronics.
+
+
+05-05-22:
+Lian: Today I decided to correct the code. We got a lot of suggestions during our code review with Vincent. I decided to make a Node class where we store all the information about the node like nodeID, RSSI, ... I also decided to redo the networkScan function. We don't have to connect to the Access point to measure the RSSI. We only have to scan for the Access point. This will relieve some pressure from the Home Assistant AP addon. 
+
+
+06-05-22:
+Lian: I made some last-minute changes to the code. We had our weekly meeting with Vincent where we discussed the schedule of our last month. We will give a quick presentation next week where we give a small summary of our project. We left a bit early so we could spend some time on the PCB that arrived today!! We discovered some problems that we will have to address on Monday.
+
+
+09-05-22:
+Lian: I started by trying to figure out the problems with the PCB. It seems that the problem has something to do with the UART chip. The school was a victim of a cyber attack. We had no access to the internet or internal servers like GitLab and Mattermost. Sophie told us we could leave earlier if we wanted to. We decided to leave after lunch and work from home so we at least had internet access. I decided to work on the presentation for Vincent on Friday. I had to order an FTDI adapter for the PCB. When this arrives I will try to get the chips programmed.
+
+Jeroen: Today I finally finished the add-on that can check the name and report back a reset of the EEPROM of the node, during the attack at the ethernet I was not able to deploy this to Home Assitant so that will be a task for tomorrow. I also did some research about the SMTP and alert sending part.
+
+
+10-05-22:
+Lian: Yesterday evening we received an email from Sophie telling us that we will not have internet access today. We decided to work from home in our collaboration room where we still have wifi. I continued on the presentation for Vincent. This will be a technical presentation with a lot of details. I also expanded the Doxygen documentation, all the elements of the code are fully described.
+
+Jeroen: Today I assisted Lian a little with the Home Assistant part and since we have no access to the network and we are working from home I did some documentation about the custom add-on inside Home Assistant.
+
+
+11-05-22:
+Lian: Today we continued working from home where we have an internet connection. I checked all the files for spelling mistakes. The Doxygen should be finished. We will do a code review on Friday.
+
+Jeroen: Today we discovered we have no internet as well so we had to stay home and do some things at home. I did some research for tomorrow and I started gathering information about the whole project to present in Belgium!
+
+
+12-05-22:
+Lian: The FTDI adaptor I ordered arrived yesterday. I tried getting the PCB working with little success. I was able to get the esp connected and flashed. The esp entered a reboot loop once the code started running. I tried using the Arduino IDE. After a few tries, I managed to get a blink sketch running. I converted the Platformio project to an Adruino project to be able to upload the code through the Arduino IDE. The esp entered the same reboot cycle. I went back to the Blink sketch, when I added one line the esp entered the same reset loop. I have not been able to get more out of the PCB.
+
+Jeroen: Today was the first day we worked a whole day at the university. I started to download the Home Assistant application to send alerts to this app since we have no access to the SMTP during the network attack. I can send local push notifications when values are getting too big or too small. Scripting in the .yaml file is done through jinja, this language is new to me but I can get along quite well with it. I try to make the alerts as dynamic as possible so that it is easy to apply and does not need many changes.
+
+13-05-22:
+Lian: I started with finishing the presentation for Vincent. I also did some last changes to the Doxygen file to prepare for our meeting. I also finished the 3D drawing for the enclosure. After lunch, we started setting up the mesh network for next week. We had a long meeting with Vincent. We gave a small presentation and did a code review.
+
+Jeroen: Today was meeting day, I worked on an add-on that can send POSTS to a Home Assistant automation webhook that sends a push notification on the mobile phone. For this, you need to have the app installed on your phone.  After the meeting with Vincent, we discovered that this automation is only for 1 device so I need to take a look into that. We also did some talk about the last finishing weeks of our internship. Unfurtonaly we still don't have access to GitLab and Mattermost but hopefully, this will be fixed in the upcoming days. Bon weekend!
+
+
+16-05-22:
+lian: I started with flashing all the nodes we have to make sure they are running the latest code. The nodes are ready for all the demos we will give during our teacher's visit. I also made a new KeyNote that we will present during the visit. I used Vincent's feedback to make sure people with no knowledge about electronics would be able to understand everything. I also added a blinking led to the node when it is in its setup mode.
+
+Jeroen: Today is already Monday. Today I  mapped and designed the overview of the university for the presentation to show the data flow of the mesh system. I also started on a Home-Assitant frontend button to reset a node from Home Assistant. Hopefully, we will have access to Gitlab and Mattermost!
+
+
+17-05-22:
+Lian: The mesh network was still running very reliable. I decided to write some documentation about the root selection code. I described all the main steps that have to be taken. I made diagrams for every step to make it as clear as possible. I will expand this further tomorrow.
+
+Jeroen: Today I worked on a push button on the Home Assistant frontend that is able to send a node to reset request from Home Assistant if the node needs another name and there is no collusion. This was harder than I suspected but I think I can manage to get it done before the presentation. The button sends a Curl request to the root node and the root node sends the message to the corresponding node.
+
+
+18-05-22: We met Maartje en Jochen in the morning and showed them around our building and workplace. We had a nice tour together with Sophie. After lunch, we decided to visit the center of Bordeaux.
+
+
+19-05-22: We set up the mesh network and checked the presentation. We presented our project to Maartje and Jochen as well as the teachers and staff members of the university. We gave a small demo and talked about the project. After lunch, we decided to head to the center and live like the real Bordelais together with our teachers.
+
+
+20-05-22: 
+Lian: Our teachers left Bordeaux. I continued writing the documentation for the code. I also started with the reflection document. It was a long day of documentation.
+
+Jeroen: Today we started the documentation that needs to be done for our school back in Belgium, I started working on my own reflection (technical and personal) and I started checking if I had all the exhibits for the GitHub we are going to make Monday.
